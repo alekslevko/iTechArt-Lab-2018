@@ -1,0 +1,42 @@
+
+.header{
+    margin: auto;
+    text-align: center;  
+}
+.header__icon_bg {
+    width: 89px;
+    height: 89px;
+    border-radius: 50%;
+    background-color: #03a8cb;
+    margin-top: 26px; 
+    margin-bottom: 11px;
+  }
+.header__icon_logo{
+    position: relative;
+    top: 23px;
+}
+.header__textblock{
+    display: inline-block;
+    width:  100%;
+    margin-bottom: 7px;
+    }
+.header__sitename{
+    font-family: 'Source Sans Pro Bold';    
+    font-size: 44px;
+    color: rgb(59, 62, 74);
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 3.5px;
+}
+.header__expression{
+    position: relative;
+    bottom: 25px;
+    right: 1px;
+    font-family: 'Source Sans Pro Light';
+    color: rgb(130, 130, 130);
+    font-size: 18px;
+    letter-spacing: 1.5px;
+}
+
+  
+  
