@@ -1,0 +1,41 @@
+
+.banner{
+    max-width: 1170px;
+    background: url(../images/space.png) no-repeat;
+    padding-bottom: 70px;
+    padding-top: 130px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    background-position-x: center;
+    position: relative;
+    bottom: 1px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+.banner__title{
+    font-size: 60px;
+    color:white;
+    word-spacing: 7px;
+    letter-spacing: 4px;
+}
+.banner__add-text{
+    font-size: 28px;
+    color:white;
+    letter-spacing: 2.5px;
+    line-height: 1.2;
+    margin-top: 15px;
+    margin-bottom: 30px;
+}
+.banner__button{
+    padding: 11px 24px;
+    border-radius: 25px;
+    font-size: 22px;
+    letter-spacing: 2px;
+}
+@media screen and (max-width: 768px){
+    .banner{
+        padding-top: 50px;
+    }
+}
