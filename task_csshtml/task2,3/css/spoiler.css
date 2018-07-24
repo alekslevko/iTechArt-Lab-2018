@@ -1,0 +1,115 @@
+
+.spoiler .spoiler-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    min-height: 270px;
+    padding: 0;  
+    margin: 0; 
+}
+.spoiler .spoiler-item {
+    padding:0;
+    margin: 0 0 7px 0;
+}
+.spoiler [type=radio], .spoiler [type=checkbox] {
+    display:none;
+}
+.spoiler .spoiler-title {
+    padding-left: 20px;
+    display:block;
+    font-size:16px;
+    line-height: 1.2;
+    letter-spacing: 1px;
+    border: 1px solid #e6e6e6;
+    font-family: "Source Sans Pro Regular";
+	color: #3b3e4a;
+    cursor:pointer;
+    border-radius: 5px;
+}
+.spoiler [type=checkbox]:checked ~ .spoiler-title{
+    border-bottom-left-radius: 0;
+    background: #3b3e4a;
+    color:#FFF;
+}
+.spoiler [type=checkbox]:checked ~ .spoiler-title:hover{
+    border-bottom-left-radius: 0;
+    background: white ;
+    color:#3b3e4a;
+}
+.spoiler .spoiler-list .spoiler-item .spoiler-title:hover, .spoiler [type=radio]:checked ~ label {
+    background: #3b3e4a;
+    color:#FFF;
+}
+.content__text{
+    margin: auto;
+    padding: 0 10px;
+}
+.spoiler .spoiler-content {
+    padding:0 10px;
+    overflow:hidden;
+}
+.vertical .spoiler-list .spoiler-item {
+    overflow:hidden;
+}
+.vertical .spoiler-list .spoiler-item .spoiler-title{
+    max-width: 570px;
+    min-height: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: stretch;
+}
+.vertical .spoiler-list .spoiler-item .spoiler-title label{
+    position: relative;
+    top: 10px;
+    width: 100%;
+    margin: auto;
+}
+.vertical .spoiler-list .spoiler-item .spoiler-content {
+    height:0;
+}
+.vertical [type=checkbox]:checked ~ .spoiler-title ~ .spoiler-content {
+    min-height: 78px;
+    display: flex;
+    flex-direction: column;
+    border:1px solid #e6e6e6;
+    background-color: #f0f0f0;
+    line-height: 1.2;
+	text-align: left;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    max-width: 570px;   
+}
+.spoiler-item > .input + .spoiler-title > .label:after{
+    position: relative;
+    bottom: 10px;
+    padding-top: 5px;
+    text-align: center;
+    font-size: 25px;
+    font-family: "Source Sans Pro Regular";
+    color:white;
+    width: 39px;
+    min-height: 35px;
+    background-color: #03a8cb;
+    content: "+";
+    float: right;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+.spoiler-item > .input:checked + .spoiler-title > .label:after{
+    position: relative;
+    bottom: 10px;
+    padding-top: 5px;
+    text-align: center;
+    font-size: 25px;
+    font-family: "Source Sans Pro Regular";
+    color:white;
+    width: 39px;
+    min-height: 35px;
+    background-color: #03a8cb;
+    content: "-";
+    float: right;
+    border-bottom-right-radius: 0;
+}
+
+  

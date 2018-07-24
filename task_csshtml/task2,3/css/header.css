@@ -1,0 +1,42 @@
+
+.header{
+    padding-top: 30px;  
+    text-align: center;
+}
+.header__icon_bg {
+    margin: auto;
+    display: flex;
+    width: 89px;
+    height: 89px;
+    border-radius: 50%;
+    background-color: #03a8cb;
+    color: white;
+    font-size: 45px;
+}
+.title{
+	font-family: "Source Sans Pro Bold";
+	text-transform: uppercase;
+    line-height: 1.2;
+    font-weight: bold;
+    color: #454855;
+    letter-spacing: 1.5px;
+}
+.add-text{
+	font-family: "Source Sans Pro Light";
+	color: #828282;
+	line-height: 1;
+	letter-spacing: 1.5px;
+}
+.header__title{
+    font-size: 44px;
+    margin-top: 10px;
+}
+
+.header__add-text{
+    font-size: 18px;
+    margin-bottom: 30px; 
+}
+
+
+  
+  

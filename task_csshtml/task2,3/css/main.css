@@ -1,0 +1,12 @@
+body{
+    background: url(../images/body.png) repeat;
+    padding-top: 110px;
+    padding-bottom: 110px;
+}
+.page{
+    max-width: 1230px;
+    background-color: white;
+    margin: auto;
+    border-radius: 10px;
+    
+}

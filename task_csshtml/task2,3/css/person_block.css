@@ -1,0 +1,59 @@
+.person-container{
+	max-width: 1170px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	text-align: center;
+	margin: auto;
+	padding-top: 37px;
+	padding-bottom: 40px;
+}
+.person{
+	max-width: 270px;
+	height: 380px;
+	border: 0.5px solid #f5f5f7;
+	border-radius: 5px;
+}
+.person__content{
+	padding-top: 20px;
+	padding-left: 19px; 
+	text-align: left;
+}
+.person__title{
+	font-size: 18px;
+  	margin-bottom: 10px;
+}
+.text{
+	font-size: 14px;
+	font-family: "Source Sans Pro Regular";
+	color: #3b3e4a;
+	word-spacing: 1.5px;
+	letter-spacing: 0.7px;
+	line-height: 1.657;
+}
+.person__text{
+	color: #828282;
+}
+.button-more{
+	padding: 5.5px 11px;
+	border-radius: 13px;
+	font-size: 12px;
+	letter-spacing: 0.5px;
+}
+.button-more_small-margin-top{
+	margin-top: 16px;
+}
+@media screen and (max-width: 1250px){
+    .person-container{
+		padding-right: 15px;
+        padding-left: 15px;
+		justify-content: space-around;
+	}
+	.person{
+		margin-bottom: 30px;
+	}
+}
+
+
+
