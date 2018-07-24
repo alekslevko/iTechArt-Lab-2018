@@ -2,7 +2,6 @@ import React from 'react';
 import Counter from '../views/Counter';
 import PropTypes from 'prop-types';
 
-
 class CounterContainer extends React.Component {
     constructor(props) {
         super(props);
