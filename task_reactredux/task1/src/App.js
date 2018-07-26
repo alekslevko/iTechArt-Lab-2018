@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import './App.css';
-import CounterContainer from './containers/CounterContainer';
+import CounterAddDelContainer from './containers/CounterAddDelContainer';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <CounterContainer />
+        <CounterAddDelContainer />
       </div>
     );
   }
