@@ -1,10 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './styles'
-import Button from '@material-ui/core/Button';
-import { Typography, withStyles, Paper } from '@material-ui/core';
+import { Typography, withStyles, Paper, Button } from '@material-ui/core';
 
-let Counter = ({ increment, decrement, reset, count, classes}) => {
+const Counter = ({ increment, decrement, reset, count, classes}) => {
     return (
         <div>
             <Paper className={classes.root} elevation={8}>
@@ -17,7 +16,7 @@ let Counter = ({ increment, decrement, reset, count, classes}) => {
     );
 }
 
-Counter.PropTypes = {
+Counter.propTypes = {
     classes: PropTypes.object.isRequired,
     increment: PropTypes.func,
     decrement: PropTypes.func,
