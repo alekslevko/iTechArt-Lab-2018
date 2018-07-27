@@ -49,35 +49,29 @@ class CounterAddDelContainer extends React.Component {
     }
 
     componentDidMount(){
-        console.log("componentDidMount()");
+        console.log("Parent: componentDidMount()");
     }
 
     componentDidUpdate(){
-        console.log("componentDidUpdate()");
+        console.log("Parent: componentDidUpdate()");
     }
 
     componentWillUnmount(){
-        console.log("componentWillUnmount()");
+        console.log("Parent: componentWillUnmount()");
     }
 
     UNSAFE_componentWillReceiveProps(prop){
-        console.log("componentWillReceiveProps()");
+        console.log("Parent: componentWillReceiveProps()");
     }
 
     shouldComponentUpdate(nextProps, nextState){
-        console.log("shouldComponentUpdate()");
+        console.log("Parent: shouldComponentUpdate()");
 
-        if (nextState.command === this.setState.command){
-            return false;
-        }
-        
-        else{
-            return true;
-        }
+        return true;
     }
 
     render() {
-        console.log("render()");
+        console.log("Parent: render()");
 
         return (<AddDelCounter
             onAddBtnClick={this.onAddBtnClick}

@@ -32,19 +32,19 @@ class CounterContainer extends React.Component {
     }
 
     componentDidMount(){
-        console.log("componentDidMount()");
+        console.log("Child: componentDidMount()");
     }
 
     componentDidUpdate(){
-        console.log("componentDidUpdate()");
+        console.log("Child: componentDidUpdate()");
     }
 
     componentWillUnmount(){
-        console.log("componentWillUnmount()");
+        console.log("Child: componentWillUnmount()");
     }
 
     UNSAFE_componentWillReceiveProps(prop) {
-        console.log("componentWillReceiveProps()");
+        console.log("Child: componentWillReceiveProps()");
 
         let counter = this.state.count;
 
@@ -68,7 +68,7 @@ class CounterContainer extends React.Component {
     }
 
     shouldComponentUpdate(nextProps, nextState) {
-        console.log("shouldComponentUpdate()");
+        console.log("Child: shouldComponentUpdate()");
 
         if (nextState.count === this.state.count) {
             return false;
@@ -80,7 +80,7 @@ class CounterContainer extends React.Component {
     }
 
     render() {
-        console.log("render()");         
+        console.log("Child: render()");         
 
         return (<Counter
             increment = {this.increment}
