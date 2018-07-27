@@ -70,7 +70,7 @@ class CounterContainer extends React.Component {
     shouldComponentUpdate(nextProps, nextState) {
         console.log("shouldComponentUpdate()");
 
-        if (nextState === this.state) {
+        if (nextState.count === this.state.count) {
             return false;
         }
         

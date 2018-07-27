@@ -66,8 +66,14 @@ class CounterAddDelContainer extends React.Component {
 
     shouldComponentUpdate(nextProps, nextState){
         console.log("shouldComponentUpdate()");
+
+        if (nextState.command === this.setState.command){
+            return false;
+        }
         
-        return true;        
+        else{
+            return true;
+        }
     }
 
     render() {
