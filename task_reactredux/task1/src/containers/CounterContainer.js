@@ -1,5 +1,6 @@
 import React from 'react';
 import Counter from '../views/Counter';
+import commandsEnum from '../Constants';
 
 class CounterContainer extends React.Component {
     constructor(props) {
@@ -48,23 +49,19 @@ class CounterContainer extends React.Component {
 
         let counter = this.state.count;
 
-        if ((prop.command === "add") && (counter % 2 === 0) && (counter !== 0)) {
+        if ((prop.command === commandsEnum.add) && (counter % 2 === 0) && (counter !== 0)) {
             this.setState({
                 count: counter + 1
             });
-        }
-
-        else if ((prop.command === "delete") && (counter % 2 !== 0) && (counter !== 0)) {
+        } else if ((prop.command === commandsEnum.del) && (counter % 2 !== 0) && (counter !== 0)) {
             this.setState({
                 count: counter - 1
             });
-        }
-
-        else if (prop.command === "default") {
+        } else if (prop.command === commandsEnum.def) {
             this.setState({
                 count: 0
             });
-        }
+        }       
     }
 
     shouldComponentUpdate(nextProps, nextState) {
@@ -72,9 +69,7 @@ class CounterContainer extends React.Component {
 
         if (nextState.count === this.state.count) {
             return false;
-        }
-        
-        else {
+        } else {
             return true;
         }
     }
