@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import './App.css';
-import CountersParentContainer from './containers/CountersParentContainer';
+import MenuContainer from './containers/MenuContainer';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <CountersParentContainer />
+        <MenuContainer />
       </div>
     );
   }
