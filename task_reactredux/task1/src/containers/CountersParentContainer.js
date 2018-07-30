@@ -36,12 +36,9 @@ class CountersParentContainer extends React.Component {
     }
 
     onSetDefaultsBtnClick = () => {
-        let counterArr = [...this.state.countersList];
-        
-        counterArr = [<CounterContainer />];
         this.setState({
             command: commandsEnum.def,
-            countersList: counterArr
+            countersList: [<CounterContainer />]
         });
     }
 

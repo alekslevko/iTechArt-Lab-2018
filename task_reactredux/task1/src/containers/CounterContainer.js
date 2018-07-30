@@ -49,11 +49,11 @@ class CounterContainer extends React.Component {
 
         let counter = this.state.count;
 
-        if (prop.command === commandsEnum.add  && this.checkNumberOnParity(counter) && counter !== 0) {
+        if (prop.command === commandsEnum.add && counter !== 0 && this.checkNumberOnParity(counter) ) {
             this.setState({
                 count: counter + 1
             });
-        } else if (prop.command === commandsEnum.del && !this.checkNumberOnParity(counter) && counter !== 0) {
+        } else if (prop.command === commandsEnum.del && counter !== 0 && !this.checkNumberOnParity(counter) ) {
             this.setState({
                 count: counter - 1
             });
