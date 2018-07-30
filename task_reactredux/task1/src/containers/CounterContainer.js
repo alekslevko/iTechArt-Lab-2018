@@ -28,10 +28,8 @@ class CounterContainer extends React.Component {
         });
     }
 
-    checkNumberOnPatiry = (num) => {
-        if(num % 2 === 0){
-            return true;
-        }
+    checkNumberOnParity = (num) => {
+        return num % 2 === 0;
     }
 
     componentDidMount() {
@@ -51,11 +49,11 @@ class CounterContainer extends React.Component {
 
         let counter = this.state.count;
 
-        if (prop.command === commandsEnum.add  && this.checkNumberOnPatiry(counter) && counter !== 0) {
+        if (prop.command === commandsEnum.add  && this.checkNumberOnParity(counter) && counter !== 0) {
             this.setState({
                 count: counter + 1
             });
-        } else if (prop.command === commandsEnum.del && !this.checkNumberOnPatiry(counter) && counter !== 0) {
+        } else if (prop.command === commandsEnum.del && !this.checkNumberOnParity(counter) && counter !== 0) {
             this.setState({
                 count: counter - 1
             });

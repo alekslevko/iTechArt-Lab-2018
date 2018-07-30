@@ -1,10 +1,8 @@
-const commandsEnum = {
+const commandsEnum = Object.freeze({
     start: "start",
     add: "add",
     del: "delete",
     def: "default"
-};
-
-Object.freeze(commandsEnum);
+}); 
 
 export default (commandsEnum);
