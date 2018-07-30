@@ -8,39 +8,41 @@ class CounterContainer extends React.Component {
         this.state = {
             count: 0
         }
-
-        this.increment = this.increment.bind(this);
-        this.decrement = this.decrement.bind(this);
-        this.reset = this.reset.bind(this);
     }
 
-    increment() {
+    increment = () => {
         this.setState({
             count: this.state.count + 1
         });
     }
 
-    decrement() {
+    decrement = () => {
         this.setState({
             count: this.state.count - 1
         });
     }
 
-    reset() {
+    reset = () => {
         this.setState({
             count: 0
         });
     }
 
-    componentDidMount(){
+    checkNumberOnPatiry = (num) => {
+        if(num % 2 === 0){
+            return true;
+        }
+    }
+
+    componentDidMount() {
         console.log("Child: componentDidMount()");
     }
 
-    componentDidUpdate(){
+    componentDidUpdate() {
         console.log("Child: componentDidUpdate()");
     }
 
-    componentWillUnmount(){
+    componentWillUnmount() {
         console.log("Child: componentWillUnmount()");
     }
 
@@ -49,11 +51,11 @@ class CounterContainer extends React.Component {
 
         let counter = this.state.count;
 
-        if ((prop.command === commandsEnum.add) && (counter % 2 === 0) && (counter !== 0)) {
+        if (prop.command === commandsEnum.add  && this.checkNumberOnPatiry(counter) && counter !== 0) {
             this.setState({
                 count: counter + 1
             });
-        } else if ((prop.command === commandsEnum.del) && (counter % 2 !== 0) && (counter !== 0)) {
+        } else if (prop.command === commandsEnum.del && !this.checkNumberOnPatiry(counter) && counter !== 0) {
             this.setState({
                 count: counter - 1
             });
@@ -71,7 +73,7 @@ class CounterContainer extends React.Component {
             return false;
         } else {
             return true;
-        }
+        } 
     }
 
     render() {

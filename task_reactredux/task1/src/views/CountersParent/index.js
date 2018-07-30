@@ -6,12 +6,12 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import ThreeSixtyIcon from '@material-ui/icons/ThreeSixty';
 import { withStyles, Button }  from '@material-ui/core';
 
-const CountersParent = ({onAddCounterBtnClick, onDeleteCounterBtnClick, onSetDefaultsCounterBtnClick, counterArr, classes}) => {
+const CountersParent = ({onAddCounterBtnClick, onDeleteCounterBtnClick, onSetDefaultsBtnClick, counterArr, classes}) => {
     return (
         <div>
             <Button variant="fab" color="primary" aria-label="Add" className={classes.button} onClick={() => onAddCounterBtnClick()}><AddIcon /></Button>
             <Button variant="fab" color="secondary" aria-label="Delete" className={classes.button} onClick={() => onDeleteCounterBtnClick()}><DeleteIcon /></Button>
-            <Button variant="fab" color="default" className={classes.button} onClick={() => onSetDefaultsCounterBtnClick()}><ThreeSixtyIcon /></Button>
+            <Button variant="fab" color="default" className={classes.button} onClick={() => onSetDefaultsBtnClick()}><ThreeSixtyIcon /></Button>
             <div>
                 {counterArr}
             </div>
@@ -28,4 +28,3 @@ CountersParent.propTypes = {
 }
 
 export default withStyles(styles)(CountersParent);
-

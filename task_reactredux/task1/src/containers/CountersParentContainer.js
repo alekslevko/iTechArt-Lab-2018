@@ -10,13 +10,9 @@ class CountersParentContainer extends React.Component {
             countersList: [<CounterContainer  />],
             command: commandsEnum.start
         };
-        
-        this.onAddCounterBtnClick = this.onAddCounterBtnClick.bind(this);
-        this.onDeleteCounterBtnClick = this.onDeleteCounterBtnClick.bind(this);
-        this.onSetDefaultsCounterBtnClick = this.onSetDefaultsCounterBtnClick.bind(this);
     }
 
-    onAddCounterBtnClick() {
+    onAddCounterBtnClick = () => {
         let counterArr = [...this.state.countersList];
 
         counterArr.push(<CounterContainer />);
@@ -26,7 +22,7 @@ class CountersParentContainer extends React.Component {
         });
     }
 
-    onDeleteCounterBtnClick() {
+    onDeleteCounterBtnClick = () => {
         let counterArr = [...this.state.countersList];
         let index = counterArr.length - 1;
 
@@ -39,7 +35,7 @@ class CountersParentContainer extends React.Component {
         }
     }
 
-    onSetDefaultsCounterBtnClick() {
+    onSetDefaultsBtnClick = () => {
         let counterArr = [...this.state.countersList];
         
         counterArr = [<CounterContainer />];
@@ -49,23 +45,23 @@ class CountersParentContainer extends React.Component {
         });
     }
 
-    componentDidMount(){
+    componentDidMount() {
         console.log("Parent: componentDidMount()");
     }
 
-    componentDidUpdate(){
+    componentDidUpdate() {
         console.log("Parent: componentDidUpdate()");
     }
 
-    componentWillUnmount(){
+    componentWillUnmount() {
         console.log("Parent: componentWillUnmount()");
     }
 
-    UNSAFE_componentWillReceiveProps(prop){
+    UNSAFE_componentWillReceiveProps(prop) {
         console.log("Parent: componentWillReceiveProps()");
     }
 
-    shouldComponentUpdate(nextProps, nextState){
+    shouldComponentUpdate(nextProps, nextState) {
         console.log("Parent: shouldComponentUpdate()");
 
         return true;
@@ -77,7 +73,7 @@ class CountersParentContainer extends React.Component {
         return (<CountersParent
             onAddCounterBtnClick={this.onAddCounterBtnClick}
             onDeleteCounterBtnClick={this.onDeleteCounterBtnClick}
-            onSetDefaultsCounterBtnClick={this.onSetDefaultsCounterBtnClick}
+            onSetDefaultsBtnClick={this.onSetDefaultsBtnClick}
             counterArr={this.state.countersList.map((item, index) => {
                 return <CounterContainer key={index} command={this.state.command} />;
             })}
