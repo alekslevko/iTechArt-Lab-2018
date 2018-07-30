@@ -71,9 +71,9 @@ class CounterContainer extends React.Component {
 
         if (nextState.count === this.state.count) {
             return false;
-        } else {
-            return true;
         } 
+
+        return true;
     }
 
     render() {
