@@ -12,8 +12,7 @@ const Menu = ({ value, showMenu, handleChange, classes }) => {
     {showMenu && <AppBar position="static">
       <Tabs 
         value={value}
-        onChange = {handleChange}
-      >
+        onChange = {handleChange} >
         <Tab label='О нас'  component={Link} to={'/iTechArt-Lab-2018/about'} />
         <Tab label='Счетчики'  component={Link} to={'/iTechArt-Lab-2018/counters'} />        
       </Tabs>
