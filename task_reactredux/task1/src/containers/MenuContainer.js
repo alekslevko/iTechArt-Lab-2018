@@ -6,7 +6,7 @@ class MenuContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: -1,
+      value: false,
       showMenu: true
     }
   }
@@ -33,7 +33,7 @@ class MenuContainer extends React.Component {
       });
     } else {
       this.setState({
-        value: -1,
+        value: false,
         showMenu: false
       });
     }

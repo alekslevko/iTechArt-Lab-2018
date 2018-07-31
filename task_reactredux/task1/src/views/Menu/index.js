@@ -4,6 +4,7 @@ import { withStyles, Tab } from '@material-ui/core';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import styles from './styles';
+import { Link } from 'react-router-dom';
 
 const Menu = ({ value, showMenu, handleChange, classes }) => {
   return (
@@ -13,8 +14,8 @@ const Menu = ({ value, showMenu, handleChange, classes }) => {
         value={value}
         onChange = {handleChange}
       >
-        <Tab label="О нас" href='/iTechArt-Lab-2018/about' />
-        <Tab label="Счетчики" href='/iTechArt-Lab-2018/counters' />
+        <Tab label="О нас" key={'/iTechArt-Lab-2018/about'} className={classes.link} component={Link} to={'/iTechArt-Lab-2018/about'} />
+        <Tab label="Счетчики" key={'/iTechArt-Lab-2018/counters'} className={classes.link} component={Link} to={'/iTechArt-Lab-2018/counters'} />        
       </Tabs>
     </AppBar>
     }
@@ -24,7 +25,7 @@ const Menu = ({ value, showMenu, handleChange, classes }) => {
 
 Menu.propTypes = {
   classes: PropTypes.object.isRequired,
-  value: PropTypes.number,
+  value: PropTypes.bool,
   handleChange: PropTypes.func
 };
 
