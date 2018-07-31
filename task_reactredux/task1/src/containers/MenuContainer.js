@@ -15,18 +15,18 @@ class MenuContainer extends React.Component {
     this.setState({ value });
   };
   
-  componentWillMount() {
-    if (this.props.history.location.pathname === "/iTechArt-Lab-2018/about") {
+  componentDidMount() {
+    if (this.props.history.location.pathname === '/iTechArt-Lab-2018/about') {
       this.setState({
         value: 0,
         showMenu: true
       });
-    } else if (this.props.history.location.pathname === "/iTechArt-Lab-2018/counters") {
+    } else if (this.props.history.location.pathname === '/iTechArt-Lab-2018/counters') {
       this.setState({
         value: 1,
         showMenu: true
       });
-    } else if (this.props.history.location.pathname === "/iTechArt-Lab-2018/") {
+    } else if (this.props.history.location.pathname === '/iTechArt-Lab-2018/') {
       this.setState({
         value: -1,
         showMenu: true
