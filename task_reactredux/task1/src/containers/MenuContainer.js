@@ -15,7 +15,13 @@ class MenuContainer extends React.Component {
         value: 1,
         showMenu: true
       };
-    } else if (this.props.history.location.pathname === '/iTechArt-Lab-2018/') {
+    } else if (this.props.history.location.pathname === '/iTechArt-Lab-2018/login') {
+      this.state = {
+        value: false,
+        showMenu: true
+      };
+    }
+     else if (this.props.history.location.pathname === '/iTechArt-Lab-2018/') {
       this.state = {
         value: false,
         showMenu: true
