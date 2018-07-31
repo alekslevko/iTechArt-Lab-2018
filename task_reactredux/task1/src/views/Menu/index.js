@@ -25,7 +25,6 @@ const Menu = ({ value, showMenu, handleChange, classes }) => {
 
 Menu.propTypes = {
   classes: PropTypes.object.isRequired,
-  value: PropTypes.bool,
   handleChange: PropTypes.func
 };
 
