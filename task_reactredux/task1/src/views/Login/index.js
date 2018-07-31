@@ -17,8 +17,7 @@ const Login = ({ classes, mail, password, mailValid, passwordValid,  onInputChan
                             className={classes.textField}
                             value={mail}
                             onChange={onInputChange}
-                            margin="normal"
-                        />
+                            margin="normal" />                        
                     </div>
                     <div>
                         <TextField
@@ -30,8 +29,7 @@ const Login = ({ classes, mail, password, mailValid, passwordValid,  onInputChan
                             type="password"
                             value={password}
                             autoComplete="current-password"
-                            margin="normal"
-                        />
+                            margin="normal" />                        
                     </div>
                     <Button type="submit" variant="outlined" className={classes.button}>
                         Войти
@@ -44,16 +42,14 @@ const Login = ({ classes, mail, password, mailValid, passwordValid,  onInputChan
                         id="mail_info"
                         InputProps={{
                             readOnly: true,
-                        }}
-                    />
+                        }} />                    
                 </div>
                 <div>
                     <TextField
                         id="pass_info"
                         InputProps={{
                             readOnly: true,
-                        }}
-                    />
+                        }} />                    
                 </div>
             </Paper>
         </div>
