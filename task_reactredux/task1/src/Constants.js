@@ -6,3 +6,5 @@ const commandsEnum = Object.freeze({
 }); 
 
 export default (commandsEnum);
+
+export const MIN_PASSWORD_LENGTH = 5;

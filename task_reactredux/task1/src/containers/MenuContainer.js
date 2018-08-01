@@ -5,31 +5,49 @@ import Menu from '../views/Menu/index';
 class MenuContainer extends React.Component {
   constructor(props) {
     super(props);
+    this.state = this.handlePropsUpdate(true)
+  }
+
+  componentDidUpdate(prevProps){
+    let routeChanged = prevProps.location !== this.props.location;
+    if (routeChanged){
+      this.handlePropsUpdate();      
+    }
+  }
+
+  handlePropsUpdate = (shouldReturnState) => {
+    let state;
     if (this.props.history.location.pathname === '/iTechArt-Lab-2018/about') {
-      this.state = {
+      state = {
         value: 0,
         showMenu: true
       };
     } else if (this.props.history.location.pathname === '/iTechArt-Lab-2018/counters') {
-      this.state = {
+      state = {
         value: 1,
         showMenu: true
       };
     } else if (this.props.history.location.pathname === '/iTechArt-Lab-2018/login') {
-      this.state = {
+      state = {
         value: 2,
         showMenu: true
       };
     } else if (this.props.history.location.pathname === '/iTechArt-Lab-2018/') {
-      this.state = {
+      state = {
         value: false,
         showMenu: true
       };
     } else {
-      this.state = {
+      state = {
         value: false,
         showMenu: false
       };
+    }
+
+    if (shouldReturnState) {
+      return state;
+    } else {
+      this.setState(state);
     }
   }
 

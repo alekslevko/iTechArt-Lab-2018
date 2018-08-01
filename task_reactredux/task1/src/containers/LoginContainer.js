@@ -10,40 +10,38 @@ class MenuContainer extends React.Component {
       mail: '',
       password: '',
       mailValid: false,
-      passwordValid: false      
+      passwordValid: false
     }
   }
 
   onInputChange = (e) => {
     let value = e.target.value;
-    let isValid = validateMail(value);
-    
+
     this.setState({
       mail: value,
-      mailValid: isValid
+      mailValid: validateMail(value)
     });
 
-    document.getElementById ('mail_info').value = value;
+    document.getElementById('mail_info').value = value;
   }
 
   onPasswordChange = (e) => {
     let value = e.target.value;
-    let isValid = validatePassword(value);
-    
-    this.setState({    
+
+    this.setState({
       password: value,
-      passwordValid: isValid      
+      passwordValid: validatePassword(value)
     });
-    
-    document.getElementById ('pass_info').value = value;
+
+    document.getElementById('pass_info').value = value;
   }
 
   handleSubmit = (e) => {
     e.preventDefault();
 
-    if(this.state.mailValid && this.state.passwordValid){
+    if (this.state.mailValid && this.state.passwordValid) {
       console.log(JSON.stringify(this.state));
-      alert(JSON.stringify({mail: this.state.mail, password: this.state.password}));
+      alert(JSON.stringify({ mail: this.state.mail, password: this.state.password }));
 
       this.setState({
         mail: '',
@@ -52,21 +50,22 @@ class MenuContainer extends React.Component {
         passwordValid: false
       });
 
-      document.getElementById ('mail_info').value = '';
-      document.getElementById ('pass_info').value = '';
-    }       
+      document.getElementById('mail_info').value = '';
+      document.getElementById('pass_info').value = '';
+    }
   }
 
   render() {
-    return (<Login 
-      handleSubmit = {this.handleSubmit}
-      onInputChange = {this.onInputChange}
-      onPasswordChange = {this.onPasswordChange}
-      mail = {this.state.mail}
-      password = {this.state.password}
-      mailValid = {this.state.mailValid}
-      passwordValid = {this.state.passwordValid}
-    />);
+    return (
+      <Login
+        handleSubmit={this.handleSubmit}
+        onInputChange={this.onInputChange}
+        onPasswordChange={this.onPasswordChange}
+        mail={this.state.mail}
+        password={this.state.password}
+        mailValid={this.state.mailValid}
+        passwordValid={this.state.passwordValid} />
+    );
   }
 }
 
