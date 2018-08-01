@@ -10,7 +10,7 @@ class MenuContainer extends React.Component {
 
   componentDidUpdate(prevProps){
     let routeChanged = prevProps.location !== this.props.location;
-    if (routeChanged){
+    if (routeChanged) {
       this.handlePropsUpdate();      
     }
   }

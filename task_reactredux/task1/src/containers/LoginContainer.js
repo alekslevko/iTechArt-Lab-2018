@@ -2,7 +2,7 @@ import React from 'react';
 import Login from '../views/Login/index';
 import { validateMail, validatePassword } from '../Validation';
 
-class MenuContainer extends React.Component {
+class LoginContainer extends React.Component {
   constructor(props) {
     super(props);
 
@@ -69,4 +69,4 @@ class MenuContainer extends React.Component {
   }
 }
 
-export default MenuContainer;
+export default LoginContainer;
