@@ -14,15 +14,13 @@ class LoginContainer extends React.Component {
     }
   }
 
-  onInputChange = (e) => {
+  onMailChange = (e) => {
     let value = e.target.value;
 
     this.setState({
       mail: value,
       mailValid: validateMail(value)
     });
-
-    document.getElementById('mail_info').value = value;
   }
 
   onPasswordChange = (e) => {
@@ -32,16 +30,16 @@ class LoginContainer extends React.Component {
       password: value,
       passwordValid: validatePassword(value)
     });
-
-    document.getElementById('pass_info').value = value;
   }
 
   handleSubmit = (e) => {
     e.preventDefault();
 
+    let {mail, password} = this.state;
+
     if (this.state.mailValid && this.state.passwordValid) {
       console.log(JSON.stringify(this.state));
-      alert(JSON.stringify({ mail: this.state.mail, password: this.state.password }));
+      alert(JSON.stringify({ mail: mail, password: password }));
 
       this.setState({
         mail: '',
@@ -49,9 +47,19 @@ class LoginContainer extends React.Component {
         mailValid: false,
         passwordValid: false
       });
+    } else {
+      this.OnError();
+    }
+  }
 
-      document.getElementById('mail_info').value = '';
-      document.getElementById('pass_info').value = '';
+  OnError = () => {
+    switch(true) {
+      case (!this.state.mailValid):
+        alert("Введите корректно почту!");
+        break;
+      case (!this.state.passwordValid):
+        alert("Пароль минимум 6 символов");
+        break;
     }
   }
 
@@ -59,7 +67,7 @@ class LoginContainer extends React.Component {
     return (
       <Login
         handleSubmit={this.handleSubmit}
-        onInputChange={this.onInputChange}
+        onMailChange={this.onMailChange}
         onPasswordChange={this.onPasswordChange}
         mail={this.state.mail}
         password={this.state.password}

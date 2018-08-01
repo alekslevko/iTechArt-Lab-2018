@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Paper, withStyles, TextField, Button } from '@material-ui/core';
 import styles from './styles'
 
-const Login = ({ classes, mail, password, mailValid, passwordValid,  onInputChange, onPasswordChange, handleSubmit}) => {
+const Login = ({ classes, mail, password, mailValid, passwordValid,  onMailChange, onPasswordChange, handleSubmit}) => {
 
     return (
         <div>
@@ -16,7 +16,7 @@ const Login = ({ classes, mail, password, mailValid, passwordValid,  onInputChan
                             label="Почта"
                             className={classes.textField}
                             value={mail}
-                            onChange={onInputChange}
+                            onChange={onMailChange}
                             margin="normal" />                        
                     </div>
                     <div>
@@ -37,20 +37,8 @@ const Login = ({ classes, mail, password, mailValid, passwordValid,  onInputChan
                 </form>
             </Paper>
             <Paper>
-                <div>
-                    <TextField
-                        id="mail_info"
-                        InputProps={{
-                            readOnly: true,
-                        }} />                    
-                </div>
-                <div>
-                    <TextField
-                        id="pass_info"
-                        InputProps={{
-                            readOnly: true,
-                        }} />                    
-                </div>
+                <p>{mail}</p>
+                <p>{password}</p>
             </Paper>
         </div>
     );

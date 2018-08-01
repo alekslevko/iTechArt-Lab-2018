@@ -1,8 +1,7 @@
-import { MIN_PASSWORD_LENGTH } from './Constants';
+import { MIN_PASSWORD_LENGTH, REG_EXPR } from './Constants';
 
 export const validateMail = (email) => {
-    let regExpr = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return regExpr.test(String(email).toLowerCase());
+    return REG_EXPR.test(String(email).toLowerCase());
 }
 
 export const validatePassword = (password) => {
