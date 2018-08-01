@@ -1,7 +1,14 @@
 import React from 'react';
 import Login from '../views/Login/index';
-import { validateMail, validatePassword, OnError } from '../Validation';
-import { formDefaultValues } from '../Constants';
+import { validateMail, validatePassword } from '../Validation';
+
+const formDefaultValues = Object.freeze({
+  mail: '',
+  password: '',
+  mailValid: false,
+  passwordValid: false,
+  wasSubmited: false
+});
 
 class LoginContainer extends React.Component {
   constructor(props) {
@@ -33,16 +40,16 @@ class LoginContainer extends React.Component {
 
     let { mail, password, mailValid, passwordValid } = this.state;
 
-    if (this.state.mailValid && this.state.passwordValid) {
+    this.setState({
+      wasSubmited: true
+    });
+
+    if (mailValid && passwordValid) {
       alert(JSON.stringify({ mail: mail, password: password }));
 
       this.setState(formDefaultValues);
     } 
-
-    OnError(this.state.mailValid, this.state.passwordValid);
   }
-
-  
 
   render() {
     return (
@@ -50,7 +57,7 @@ class LoginContainer extends React.Component {
         handleSubmit={this.handleSubmit}
         onMailChange={this.onMailChange}
         onPasswordChange={this.onPasswordChange}
-        onError={this.onError}
+        wasSubmited={this.state.wasSubmited}
         mail={this.state.mail}
         password={this.state.password}
         mailValid={this.state.mailValid}

@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Paper, withStyles, TextField, Button, FormControl, FormHelperText } from '@material-ui/core';
 import styles from './styles'
+import { ERROR_MESSAGES } from '../../Constants';
 
-const Login = ({ classes, mail, password, mailValid, passwordValid, onMailChange, onPasswordChange, handleSubmit }) => {
-
+const Login = ({ classes, mail, password, mailValid, passwordValid, onMailChange, onPasswordChange, handleSubmit, wasSubmited }) => {
     return (
         <div>
             <Paper >
@@ -19,7 +19,7 @@ const Login = ({ classes, mail, password, mailValid, passwordValid, onMailChange
                                 value={mail}
                                 onChange={onMailChange}
                                 margin="normal" />
-                            <FormHelperText id='mail-error'></FormHelperText>
+                            {!mailValid && wasSubmited && <FormHelperText >{ERROR_MESSAGES[0]}</FormHelperText>}
                         </FormControl>
                     </div>
                     <div>
@@ -34,7 +34,7 @@ const Login = ({ classes, mail, password, mailValid, passwordValid, onMailChange
                                 value={password}
                                 autoComplete="current-password"
                                 margin="normal" />
-                            <FormHelperText id='password-error'></FormHelperText>
+                            {!passwordValid && wasSubmited && <FormHelperText >{ERROR_MESSAGES[1]}</FormHelperText>}
                         </FormControl>
                     </div>
                     <Button type="submit" variant="outlined" className={classes.button}>
