@@ -1,17 +1,13 @@
 import React from 'react';
 import Login from '../views/Login/index';
-import { validateMail, validatePassword } from '../Validation';
+import { validateMail, validatePassword, OnError } from '../Validation';
+import { formDefaultValues } from '../Constants';
 
 class LoginContainer extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      mail: '',
-      password: '',
-      mailValid: false,
-      passwordValid: false
-    }
+    this.state = formDefaultValues;
   }
 
   onMailChange = (e) => {
@@ -35,33 +31,18 @@ class LoginContainer extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault();
 
-    let {mail, password} = this.state;
+    let { mail, password, mailValid, passwordValid } = this.state;
 
     if (this.state.mailValid && this.state.passwordValid) {
-      console.log(JSON.stringify(this.state));
       alert(JSON.stringify({ mail: mail, password: password }));
 
-      this.setState({
-        mail: '',
-        password: '',
-        mailValid: false,
-        passwordValid: false
-      });
-    } else {
-      this.OnError();
-    }
+      this.setState(formDefaultValues);
+    } 
+
+    OnError(this.state.mailValid, this.state.passwordValid);
   }
 
-  OnError = () => {
-    switch(true) {
-      case (!this.state.mailValid):
-        alert("Введите корректно почту!");
-        break;
-      case (!this.state.passwordValid):
-        alert("Пароль минимум 6 символов");
-        break;
-    }
-  }
+  
 
   render() {
     return (
@@ -69,6 +50,7 @@ class LoginContainer extends React.Component {
         handleSubmit={this.handleSubmit}
         onMailChange={this.onMailChange}
         onPasswordChange={this.onPasswordChange}
+        onError={this.onError}
         mail={this.state.mail}
         password={this.state.password}
         mailValid={this.state.mailValid}
