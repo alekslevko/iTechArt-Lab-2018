@@ -3,7 +3,7 @@ const commandsEnum = Object.freeze({
     add: "add",
     del: "delete",
     def: "default"
-}); 
+});
 
 export default (commandsEnum);
 
@@ -23,3 +23,9 @@ export const initialState = Object.freeze({
     passwordValid: false,
     wasSubmited: false
 });
+
+export const ON_MAIL_CHANGE = 'ON_MAIL_CHANGE';
+export const ON_PASSWORD_CHANGE = 'ON_PASSWORD_CHANGE'
+export const VALIDATE_MAIL = 'VALIDATE_MAIL';
+export const VALIDATE_PASSWORD = 'VALIDATE_PASSWORD';
+export const HANDLE_SUBMIT = 'HANDLE_SUBMIT';
