@@ -1,5 +1,5 @@
 import React from 'react';
-import { onMailChange, onPasswordChange, validateMail, validatePassword, resetForm, handleSubmit } from '../actions';
+import { onMailChange, onPasswordChange, validateMail, validatePassword, handleSubmit } from '../actions';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Login from '../views/Login/index';
@@ -24,15 +24,10 @@ class LoginReduxContainer extends React.Component{
     this.props.handleSubmit(true);
 
     const {mailValid, passwordValid} = this.props;
-
     if(mailValid && passwordValid){
       this.props.history.push(
-        `${this.props.history.location.pathname}/success`); 
+        `${this.props.history.location.pathname}/success`);     
     }   
-  }
-
-  componentDidMount(){
-    this.props.resetForm();
   }
 
   render() {
@@ -50,7 +45,11 @@ class LoginReduxContainer extends React.Component{
 }
 
 const mapStateToProps = (state) => {
-	return {...state}
+  return {
+    ...state.mail,
+    ...state.password,
+    ...state.form
+  }
 };
 
 const mapDispatchToProps = (dispatch) => {
@@ -59,8 +58,7 @@ const mapDispatchToProps = (dispatch) => {
     onPasswordChange: bindActionCreators(onPasswordChange, dispatch),
     validateMail: bindActionCreators(validateMail, dispatch),
     validatePassword: bindActionCreators(validatePassword, dispatch),
-    handleSubmit: bindActionCreators(handleSubmit,dispatch),
-    resetForm: bindActionCreators(resetForm, dispatch)   
+    handleSubmit: bindActionCreators(handleSubmit,dispatch),  
   };
 };
 

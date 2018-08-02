@@ -32,9 +32,3 @@ export const handleSubmit = (wasSubmited) => {
     wasSubmited
   }
 };
-
-export const resetForm = () => {
-  return {
-    type: 'RESET_FORM'
-  }
-};

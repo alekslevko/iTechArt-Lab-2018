@@ -5,11 +5,10 @@ import App from './App';
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
 import { BrowserRouter } from 'react-router-dom';
-import loginReduxReducer from './reducers/index';
+import reducer from './reducers/index';
 import registerServiceWorker from './registerServiceWorker';
 
-
-let store = createStore(loginReduxReducer)
+const store = createStore(reducer);
 
 ReactDOM.render((
     <Provider store={store}>

@@ -11,7 +11,7 @@ const Success = ({ mail, password }) => {
                     {mail}
                 </Typography>
                 <Typography variant='display1'>
-                    {password}
+                    {password} 
                 </Typography>
             </Paper>
         </div>
@@ -25,8 +25,8 @@ Success.propTypes = {
 
 const mapStateToProps = (state) => {
     return {
-        mail: state.mail,
-        password: state.password
+        mail: state.mail.mail,
+        password: state.password.password
     }
 };
 
