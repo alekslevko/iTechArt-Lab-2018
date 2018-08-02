@@ -8,10 +8,10 @@ class MenuContainer extends React.Component {
     this.state = this.handlePropsUpdate(true)
   }
 
-  componentDidUpdate(prevProps){
+  componentDidUpdate(prevProps) {
     let routeChanged = prevProps.location !== this.props.location;
     if (routeChanged) {
-      this.handlePropsUpdate();      
+      this.handlePropsUpdate();
     }
   }
 
@@ -30,6 +30,12 @@ class MenuContainer extends React.Component {
     } else if (this.props.history.location.pathname === '/iTechArt-Lab-2018/login') {
       state = {
         value: 2,
+        showMenu: true
+      };
+    } else if (this.props.history.location.pathname === '/iTechArt-Lab-2018/login-redux' ||
+      this.props.history.location.pathname === '/iTechArt-Lab-2018/login-redux/success') {
+      state = {
+        value: 3,
         showMenu: true
       };
     } else if (this.props.history.location.pathname === '/iTechArt-Lab-2018/') {
@@ -54,7 +60,7 @@ class MenuContainer extends React.Component {
   handleChange = (event, value) => {
     this.setState({ value });
   };
-  
+
   render() {
     return (
       <Menu handleChange={this.handleChange}

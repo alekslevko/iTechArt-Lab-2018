@@ -1,0 +1,67 @@
+import React from 'react';
+import { onMailChange, onPasswordChange, validateMail, validatePassword, resetForm, handleSubmit } from '../actions';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import Login from '../views/Login/index';
+
+class LoginReduxContainer extends React.Component{
+
+  onMailChange = (e) => {
+    let value = e.target.value;
+    this.props.onMailChange(value);
+    this.props.validateMail(value); 
+  }
+
+  onPasswordChange = (e) => {
+    let value = e.target.value;
+    this.props.onPasswordChange(value);
+    this.props.validatePassword(value);
+  }
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+  
+    this.props.handleSubmit(true);
+
+    const {mailValid, passwordValid} = this.props;
+
+    if(mailValid && passwordValid){
+      this.props.history.push(
+        `${this.props.history.location.pathname}/success`); 
+    }   
+  }
+
+  componentDidMount(){
+    this.props.resetForm();
+  }
+
+  render() {
+    return (<Login 
+      handleSubmit = {this.handleSubmit}
+      onMailChange = {this.onMailChange}
+      onPasswordChange = {this.onPasswordChange}
+      mail = {this.props.mail}
+      wasSubmited = {this.props.wasSubmited}
+      password = {this.props.password}
+      mailValid = {this.props.mailValid}
+      passwordValid = {this.props.passwordValid} />
+    );
+  }
+}
+
+const mapStateToProps = (state) => {
+	return {...state}
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onMailChange: bindActionCreators(onMailChange, dispatch),
+    onPasswordChange: bindActionCreators(onPasswordChange, dispatch),
+    validateMail: bindActionCreators(validateMail, dispatch),
+    validatePassword: bindActionCreators(validatePassword, dispatch),
+    handleSubmit: bindActionCreators(handleSubmit,dispatch),
+    resetForm: bindActionCreators(resetForm, dispatch)   
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginReduxContainer);
