@@ -1,5 +1,5 @@
 import { validatePassword } from '../Validation';
-import { ON_PASSWORD_CHANGE } from '../Constants';
+import { ON_PASSWORD_CHANGE } from '../actions/types';
 
 const initialState = {
     password: '',

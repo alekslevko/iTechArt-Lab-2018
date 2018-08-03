@@ -1,5 +1,5 @@
 import React from 'react';
-import { onMailChange, onPasswordChange, validateMail, validatePassword, handleSubmit } from '../actions';
+import { onMailChange, onPasswordChange, handleSubmit } from '../actions';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Login from '../views/Login/index';

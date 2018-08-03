@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Paper, Typography } from '@material-ui/core';
 
@@ -23,11 +22,4 @@ Success.propTypes = {
     password: PropTypes.string
 };
 
-const mapStateToProps = (state) => {
-    return {
-        mail: state.mail.mail,
-        password: state.password.password
-    }
-};
-
-export default connect(mapStateToProps)(Success);
+export default (Success);

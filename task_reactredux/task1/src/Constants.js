@@ -15,9 +15,3 @@ export const errorMessagesEnum = Object.freeze({
     EmailErrorMessage: "Некорректно введена почта",
     PasswordErrorMessage: "Пароль минимум 6 символов"
 });
-
-export const ON_MAIL_CHANGE = 'ON_MAIL_CHANGE';
-export const ON_PASSWORD_CHANGE = 'ON_PASSWORD_CHANGE'
-export const VALIDATE_MAIL = 'VALIDATE_MAIL';
-export const VALIDATE_PASSWORD = 'VALIDATE_PASSWORD';
-export const HANDLE_SUBMIT = 'HANDLE_SUBMIT';

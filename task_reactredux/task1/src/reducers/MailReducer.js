@@ -1,5 +1,5 @@
 import { validateMail } from '../Validation';
-import { ON_MAIL_CHANGE } from '../Constants';
+import { ON_MAIL_CHANGE } from '../actions/types';
 
 const initialState = {
     mail: '',

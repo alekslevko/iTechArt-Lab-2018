@@ -1,4 +1,4 @@
-import { HANDLE_SUBMIT } from '../Constants';
+import { HANDLE_SUBMIT } from '../actions/types';
 
 const initialState = {
     wasSubmited: false

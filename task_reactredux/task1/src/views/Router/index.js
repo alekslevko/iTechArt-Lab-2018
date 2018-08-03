@@ -5,7 +5,7 @@ import CountersParentContainer from '../../containers/CountersParentContainer';
 import NotFound from '../NotFound/index';
 import LoginContainer from '../../containers/LoginContainer';
 import LoginReduxContainer from '../../containers/LoginReduxContainer';
-import Success from '../Success/index';
+import SuccessContainer from '../../containers/SuccessContainer';
 
 const Main = () => (
     <main>
@@ -15,7 +15,7 @@ const Main = () => (
             <Route path='/iTechArt-Lab-2018/about' component={About} />
             <Route path='/iTechArt-Lab-2018/counters' component={CountersParentContainer} />
             <Route path='/iTechArt-Lab-2018/login' component={LoginContainer} />
-            <Route path='/iTechArt-Lab-2018/login-redux/success' component={Success} />
+            <Route path='/iTechArt-Lab-2018/login-redux/success' component={SuccessContainer} />
             <Route path='/iTechArt-Lab-2018/login-redux' component={LoginReduxContainer} />            
             <Route path='/iTechArt-Lab-2018/404' component={NotFound} />
             <Route path='/*' >
