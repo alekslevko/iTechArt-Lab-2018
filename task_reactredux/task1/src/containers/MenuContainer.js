@@ -23,6 +23,14 @@ const tabsActiveLinkStates = {
     value: 3,
     showMenu: true
   },
+  '/iTechArt-Lab-2018/login-redux-form': {
+    value: 4,
+    showMenu: true
+  },
+  '/iTechArt-Lab-2018/login-redux-form/success': {
+    value: 4,
+    showMenu: true
+  },
   '/iTechArt-Lab-2018/': {
     value: false,
     showMenu: true

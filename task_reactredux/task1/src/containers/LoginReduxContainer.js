@@ -46,7 +46,7 @@ const mapStateToProps = (state) => {
   return {
     ...state.mail,
     ...state.password,
-    ...state.form
+    ...state.formRed
   }
 };
 
