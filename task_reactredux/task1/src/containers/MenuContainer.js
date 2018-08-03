@@ -40,19 +40,13 @@ const tabsActiveLinkStates = {
 class MenuContainer extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {...tabsActiveLinkStates[this.props.history.location.pathname]};
-    console.log(this.state)
+    this.state = {...(tabsActiveLinkStates[this.props.history.location.pathname] ||
+      tabsActiveLinkStates['default'])};
   }   
     
   handleChange = (event, value) => {
     this.setState({ value });
   };
-
-  componentDidMount(){
-    if(tabsActiveLinkStates[this.props.history.location.pathname] === undefined){
-      this.setState({...tabsActiveLinkStates['default']});
-    }
-  }
 
   render() {
     return (

@@ -1,8 +1,12 @@
-import initialState from '../Constants';
+import { HANDLE_SUBMIT } from '../Constants';
+
+const initialState = {
+    wasSubmited: false
+};
 
 const FormReducer = (state = initialState, action) => {
     switch (action.type) {
-        case 'HANDLE_SUBMIT':
+        case HANDLE_SUBMIT:
             return {
                 ...state,
                 wasSubmited: true

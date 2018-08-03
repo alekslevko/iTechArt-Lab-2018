@@ -16,14 +16,6 @@ export const errorMessagesEnum = Object.freeze({
     PasswordErrorMessage: "Пароль минимум 6 символов"
 });
 
-export const initialState = Object.freeze({
-    mail: '',
-    password: '',
-    mailValid: false,
-    passwordValid: false,
-    wasSubmited: false
-});
-
 export const ON_MAIL_CHANGE = 'ON_MAIL_CHANGE';
 export const ON_PASSWORD_CHANGE = 'ON_PASSWORD_CHANGE'
 export const VALIDATE_MAIL = 'VALIDATE_MAIL';
