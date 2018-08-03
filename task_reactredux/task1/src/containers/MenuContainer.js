@@ -1,54 +1,49 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import Menu from '../views/Menu/index';
+import Menu from '../views/Menu';
+
+const tabsActiveLinkStates = {
+  '/iTechArt-Lab-2018/about': {
+    value: 0,
+    showMenu: true
+  },
+  '/iTechArt-Lab-2018/counters': {
+    value: 1,
+    showMenu: true
+  },
+  '/iTechArt-Lab-2018/login': {
+    value: 2,
+    showMenu: true
+  },
+  '/iTechArt-Lab-2018/login-redux': {
+    value: 3,
+    showMenu: true
+  },
+  '/iTechArt-Lab-2018/login-redux/success': {
+    value: 3,
+    showMenu: true
+  },
+  '/iTechArt-Lab-2018/': {
+    value: false,
+    showMenu: true
+  },
+  '/': {
+    value: false,
+    showMenu: true
+  },
+  'default': {
+    value: false,
+    showMenu: false
+  }
+}
 
 class MenuContainer extends React.Component {
   constructor(props) {
     super(props);
-    this.state = this.handlePropsUpdate(true)
-  }
-
-  componentDidUpdate(prevProps){
-    let routeChanged = prevProps.location !== this.props.location;
-    if (routeChanged) {
-      this.handlePropsUpdate();      
-    }
-  }
-
-  handlePropsUpdate = (shouldReturnState) => {
-    let state;
-    if (this.props.history.location.pathname === '/iTechArt-Lab-2018/about') {
-      state = {
-        value: 0,
-        showMenu: true
-      };
-    } else if (this.props.history.location.pathname === '/iTechArt-Lab-2018/counters') {
-      state = {
-        value: 1,
-        showMenu: true
-      };
-    } else if (this.props.history.location.pathname === '/iTechArt-Lab-2018/login') {
-      state = {
-        value: 2,
-        showMenu: true
-      };
-    } else if (this.props.history.location.pathname === '/iTechArt-Lab-2018/') {
-      state = {
-        value: false,
-        showMenu: true
-      };
-    } else {
-      state = {
-        value: false,
-        showMenu: false
-      };
-    }
-
-    if (shouldReturnState) {
-      return state;
-    } else {
-      this.setState(state);
-    }
+    this.state = {
+      ...(tabsActiveLinkStates[this.props.history.location.pathname] ||
+        tabsActiveLinkStates['default'])
+    };
   }
 
   handleChange = (event, value) => {
@@ -57,7 +52,8 @@ class MenuContainer extends React.Component {
   
   render() {
     return (
-      <Menu handleChange={this.handleChange}
+      <Menu
+        handleChange={this.handleChange}
         value={this.state.value}
         showMenu={this.state.showMenu} />
     );

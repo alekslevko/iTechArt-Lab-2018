@@ -3,7 +3,7 @@ const commandsEnum = Object.freeze({
     add: "add",
     del: "delete",
     def: "default"
-}); 
+});
 
 export default (commandsEnum);
 
@@ -15,4 +15,3 @@ export const errorMessagesEnum = Object.freeze({
     EmailErrorMessage: "Некорректно введена почта",
     PasswordErrorMessage: "Пароль минимум 6 символов"
 });
-
