@@ -8,14 +8,12 @@ class LoginReduxContainer extends React.Component{
 
   onMailChange = (e) => {
     let value = e.target.value;
-    this.props.onMailChange(value);
-    this.props.validateMail(value); 
+    this.props.onMailChange(value); 
   }
 
   onPasswordChange = (e) => {
     let value = e.target.value;
     this.props.onPasswordChange(value);
-    this.props.validatePassword(value);
   }
 
   handleSubmit = (e) => {
@@ -56,8 +54,6 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onMailChange: bindActionCreators(onMailChange, dispatch),
     onPasswordChange: bindActionCreators(onPasswordChange, dispatch),
-    validateMail: bindActionCreators(validateMail, dispatch),
-    validatePassword: bindActionCreators(validatePassword, dispatch),
     handleSubmit: bindActionCreators(handleSubmit,dispatch),  
   };
 };
