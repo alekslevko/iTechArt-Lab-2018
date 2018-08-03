@@ -2,7 +2,7 @@ import React from 'react';
 import { onMailChange, onPasswordChange, handleSubmit } from '../actions';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import Login from '../views/Login/index';
+import Login from '../views/Login';
 
 class LoginReduxContainer extends React.Component{
 

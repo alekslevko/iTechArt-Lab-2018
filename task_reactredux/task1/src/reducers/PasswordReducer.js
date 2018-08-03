@@ -6,7 +6,7 @@ const initialState = {
     passwordValid: false
 };
 
-const PasswordReducer = (state = initialState, action) => {
+const passwordReducer = (state = initialState, action) => {
     switch (action.type) {
         case ON_PASSWORD_CHANGE:
             return {
@@ -19,4 +19,4 @@ const PasswordReducer = (state = initialState, action) => {
     }
 }
 
-export default (PasswordReducer);
+export default (passwordReducer);

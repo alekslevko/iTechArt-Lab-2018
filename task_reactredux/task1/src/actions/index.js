@@ -1,4 +1,4 @@
-import {ON_MAIL_CHANGE, ON_PASSWORD_CHANGE, HANDLE_SUBMIT} from './types';
+import { ON_MAIL_CHANGE, ON_PASSWORD_CHANGE, HANDLE_SUBMIT } from './types';
 
 export const onMailChange = (mail) => {
   return {

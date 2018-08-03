@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import FormReducer from './FormReducer';
-import PasswordReducer from './PasswordReducer';
-import MailReducer from './MailReducer';
+import formReducer from './FormReducer';
+import passwordReducer from './PasswordReducer';
+import mailReducer from './MailReducer';
 
-const reducer = combineReducers({form: FormReducer, password: PasswordReducer, mail: MailReducer  });
+const reducer = combineReducers({form: formReducer, password: passwordReducer, mail: mailReducer  });
 
 export default reducer;

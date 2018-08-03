@@ -4,7 +4,7 @@ const initialState = {
     wasSubmited: false
 };
 
-const FormReducer = (state = initialState, action) => {
+const formReducer = (state = initialState, action) => {
     switch (action.type) {
         case HANDLE_SUBMIT:
             return {
@@ -16,4 +16,4 @@ const FormReducer = (state = initialState, action) => {
     }
 }
 
-export default (FormReducer);
+export default (formReducer);

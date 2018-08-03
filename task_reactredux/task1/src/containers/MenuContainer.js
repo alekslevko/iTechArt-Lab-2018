@@ -40,20 +40,22 @@ const tabsActiveLinkStates = {
 class MenuContainer extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {...(tabsActiveLinkStates[this.props.history.location.pathname] ||
-      tabsActiveLinkStates['default'])};
-  }   
-    
+    this.state = {
+      ...(tabsActiveLinkStates[this.props.history.location.pathname] ||
+        tabsActiveLinkStates['default'])
+    };
+  }
+
   handleChange = (event, value) => {
     this.setState({ value });
   };
-
+  
   render() {
     return (
-      <Menu 
+      <Menu
         handleChange={this.handleChange}
         value={this.state.value}
-        showMenu={this.state.showMenu}  />     
+        showMenu={this.state.showMenu} />
     );
   }
 }
