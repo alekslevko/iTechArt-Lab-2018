@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import Success from '../views/Success/index';
+import Success from '../views/Success';
 
 const mapStateToProps = (state) => {
     return {

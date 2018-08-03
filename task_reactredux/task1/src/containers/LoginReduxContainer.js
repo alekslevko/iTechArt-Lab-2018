@@ -54,7 +54,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onMailChange: bindActionCreators(onMailChange, dispatch),
     onPasswordChange: bindActionCreators(onPasswordChange, dispatch),
-    handleSubmit: bindActionCreators(handleSubmit,dispatch),  
+    handleSubmit: bindActionCreators(handleSubmit, dispatch)  
   };
 };
 

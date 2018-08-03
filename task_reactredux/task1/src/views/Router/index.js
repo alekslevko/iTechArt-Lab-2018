@@ -2,7 +2,7 @@ import React from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
 import About from '../About/index';
 import CountersParentContainer from '../../containers/CountersParentContainer';
-import NotFound from '../NotFound/index';
+import NotFound from '../NotFound';
 import LoginContainer from '../../containers/LoginContainer';
 import LoginReduxContainer from '../../containers/LoginReduxContainer';
 import SuccessContainer from '../../containers/SuccessContainer';

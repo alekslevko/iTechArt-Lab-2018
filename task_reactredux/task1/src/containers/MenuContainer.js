@@ -1,6 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import Menu from '../views/Menu/index';
+import Menu from '../views/Menu';
 
 const tabsActiveLinkStates = {
   '/iTechArt-Lab-2018/about': {
