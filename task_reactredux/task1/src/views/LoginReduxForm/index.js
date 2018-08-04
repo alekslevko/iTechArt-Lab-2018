@@ -17,12 +17,12 @@ const renderField = ({ input, label, type, meta: { touched, error }, margin }) =
 	</div>
 );
 
-let LoginReduxForm = ({ onSubmit, mail, password }) => {
+let LoginReduxForm = ({ handleSubmit, mail, password }) => {
 	return (
 		<div>
 			<Paper>
-				<form onSubmit={onSubmit} >
-					<Field name="mail" component={renderField} label="Почта" type="text" margin="normal"  />
+				<form onSubmit={handleSubmit} >
+					<Field name="mail" component={renderField} label="Почта" type="text" margin="normal" />
 					<Field name="password" component={renderField} label="Пароль" type="password" margin="normal" />
 					<Button type="submit" variant="outlined">
 						Войти

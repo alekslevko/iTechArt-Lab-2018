@@ -7,13 +7,12 @@ import LoginReduxForm from '../views/LoginReduxForm';
 import { errorMessagesEnum } from '../Constants';
 
 class LoginReduxFormContainer extends React.Component {
-  submit = values => {
-    console.log(values);
+  handleSubmit = values => {
     this.props.onMailChange(values.mail);
     this.props.onPasswordChange(values.password);
     this.props.history.push(
-      `${this.props.history.location.pathname}/success`);
-  }
+      `${this.props.history.location.pathname}/success`);   
+  };
 
   Validation = values => {
     const errors = {};
@@ -34,12 +33,15 @@ class LoginReduxFormContainer extends React.Component {
   };
 
   render() {
+    let { mail, password } = this.props.formState.values
+			? this.props.formState.values : '';
+			
     return (
       <LoginReduxForm
-        onSubmit={this.submit}
-        validate={this.Validation}
-        mail={this.props.mail}
-        password={this.props.mail} />
+        onSubmit={this.handleSubmit}
+        mail={mail}
+        password={password}
+        validate={this.Validation} />
     );
   }
 }
@@ -47,14 +49,14 @@ class LoginReduxFormContainer extends React.Component {
 const mapDispatchToProps = (dispatch) => {
   return {
     onMailChange: bindActionCreators(onMailChange, dispatch),
-    onPasswordChange: bindActionCreators(onPasswordChange, dispatch)
+    onPasswordChange: bindActionCreators(onPasswordChange, dispatch),
   }
 };
 
 const mapStateToProps = (state) => {
   return {
-    ...state.form
+    formState: {...state.form.login},
   }
 }
 
-export default connect(mapDispatchToProps, mapStateToProps)(LoginReduxFormContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(LoginReduxFormContainer);
