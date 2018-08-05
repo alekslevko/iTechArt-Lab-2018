@@ -11,7 +11,7 @@ class LoginReduxFormContainer extends React.Component {
     this.props.onMailChange(values.mail);
     this.props.onPasswordChange(values.password);
     this.props.history.push(
-      `${this.props.history.location.pathname}/success`);   
+      `${this.props.history.location.pathname}/success`);
   };
 
   Validation = values => {
@@ -49,7 +49,7 @@ class LoginReduxFormContainer extends React.Component {
 const mapDispatchToProps = (dispatch) => {
   return {
     onMailChange: bindActionCreators(onMailChange, dispatch),
-    onPasswordChange: bindActionCreators(onPasswordChange, dispatch),
+    onPasswordChange: bindActionCreators(onPasswordChange, dispatch)
   }
 };
 
