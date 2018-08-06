@@ -7,14 +7,14 @@ import LoginReduxForm from '../views/LoginReduxForm';
 import { errorMessagesEnum } from '../Constants';
 
 class LoginReduxFormContainer extends React.Component {
-  handleSubmit = values => {
+  handleSubmit = (values) => {
     this.props.saveMailFromForm(values.mail);
     this.props.savePasswordFromForm(values.password);
     this.props.history.push(
       `${this.props.history.location.pathname}/success`);
   };
 
-  Validation = values => {
+  Validation = (values) => {
     const errors = {};
 
     if (!values.mail) {
