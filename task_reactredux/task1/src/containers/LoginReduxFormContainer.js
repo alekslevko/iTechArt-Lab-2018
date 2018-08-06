@@ -5,6 +5,7 @@ import { saveMailFromForm, savePasswordFromForm, loginClearState, loginReduxForm
 import { validateMail, validatePassword } from '../Validation';
 import LoginReduxForm from '../views/LoginReduxForm';
 import { errorMessagesEnum } from '../Constants';
+import { applicationRoutes } from '../Constants';
 
 class LoginReduxFormContainer extends React.Component {
   handleSubmit = (values) => {
@@ -13,7 +14,7 @@ class LoginReduxFormContainer extends React.Component {
     this.props.loginClearState(); 
     this.props.loginReduxFormSuccess();
     this.props.history.push(
-      `${this.props.history.location.pathname}/success`); 
+      applicationRoutes.loginReduxFormSuccessRoute); 
   };
 
   Validation = (values) => {

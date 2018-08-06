@@ -5,6 +5,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import styles from './styles';
 import { Link } from 'react-router-dom';
+import { applicationRoutes } from '../../Constants';
 
 const Menu = ({ value, showMenu, handleChange, classes }) => {
   return (
@@ -13,11 +14,11 @@ const Menu = ({ value, showMenu, handleChange, classes }) => {
       <Tabs 
         value={value}
         onChange = {handleChange} >
-        <Tab label='О нас' component={Link} to={'/iTechArt-Lab-2018/about'} />
-        <Tab label='Счетчики' component={Link} to={'/iTechArt-Lab-2018/counters'} />
-        <Tab label='Войти' component={Link} to={'/iTechArt-Lab-2018/login'} />
-        <Tab label='Войти c Redux' component={Link} to={'/iTechArt-Lab-2018/login-redux'} />
-        <Tab label='Войти c Redux-form' component={Link} to={'/iTechArt-Lab-2018/login-redux-form'} />
+        <Tab label='О нас' component={Link} to={applicationRoutes.aboutRoute} />
+        <Tab label='Счетчики' component={Link} to={applicationRoutes.countersRoute} />
+        <Tab label='Войти' component={Link} to={applicationRoutes.loginRoute} />
+        <Tab label='Войти c Redux' component={Link} to={applicationRoutes.loginReduxRoute} />
+        <Tab label='Войти c Redux-form' component={Link} to={applicationRoutes.loginReduxFormRoute} />
       </Tabs>
     </AppBar>
     }

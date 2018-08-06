@@ -1,16 +1,9 @@
 import { LOGIN_REDUX_FORM_SUCCESS } from '../actions/types';
 
-const initialState = {
-    IsAutorized: false
-};
-
-const authorizationReducer = (state = initialState, action) => {
+const authorizationReducer = (state = false, action) => {
     switch (action.type) {
         case LOGIN_REDUX_FORM_SUCCESS:
-            return {
-                ...state,
-                IsAutorized: true
-            }
+            return true;
         default:
             return state;
     }
