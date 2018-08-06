@@ -4,7 +4,7 @@ const initialState = {
     IsAutorized: false
 };
 
-const formSuccess = (state = initialState, action) => {
+const authorizationReducer = (state = initialState, action) => {
     switch (action.type) {
         case LOGIN_REDUX_FORM_SUCCESS:
             return {
@@ -16,4 +16,4 @@ const formSuccess = (state = initialState, action) => {
     }
 }
 
-export default (formSuccess);
+export default (authorizationReducer);

@@ -8,7 +8,7 @@ const PrivateRoute = ({IsAutorized, ...props}) => {
 
 const MapStateToProps = (state) => {
     return {
-        IsAutorized: state.formSuc.IsAutorized
+        IsAutorized: state.authorizationReducer.IsAutorized
     }
 };
 
