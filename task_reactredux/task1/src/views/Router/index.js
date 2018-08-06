@@ -7,7 +7,6 @@ import LoginContainer from '../../containers/LoginContainer';
 import LoginReduxContainer from '../../containers/LoginReduxContainer';
 import LoginReduxFormContainer from '../../containers/LoginReduxFormContainer';
 import SuccessContainer from '../../containers/SuccessContainer';
-import SuccessReduxFormContainer from '../../containers/SuccessReduxFormContainer';
 
 const Main = () => (
     <main>
@@ -19,7 +18,7 @@ const Main = () => (
             <Route path='/iTechArt-Lab-2018/login' component={LoginContainer} />
             <Route path='/iTechArt-Lab-2018/login-redux/success' component={SuccessContainer} />
             <Route path='/iTechArt-Lab-2018/login-redux' component={LoginReduxContainer} />
-            <Route path='/iTechArt-Lab-2018/login-redux-form/success' component={SuccessReduxFormContainer} />
+            <Route path='/iTechArt-Lab-2018/login-redux-form/success' component={SuccessContainer} />
             <Route path='/iTechArt-Lab-2018/login-redux-form' component={LoginReduxFormContainer} />
             <Route path='/iTechArt-Lab-2018/404' component={NotFound} />
             <Route path='/*' >

@@ -1,4 +1,4 @@
-import { ON_MAIL_CHANGE, ON_PASSWORD_CHANGE, HANDLE_SUBMIT, ON_MAIL_CHANGE_REDUX_FORM, ON_PASSWORD_CHANGE_REDUX_FORM} from './types';
+import { ON_MAIL_CHANGE, ON_PASSWORD_CHANGE, HANDLE_SUBMIT, SAVE_MAIL_FROM_FORM, SAVE_PASSWORD_FROM_FORM } from './types';
 
 export const onMailChange = (mail) => {
   return {
@@ -21,16 +21,16 @@ export const handleSubmit = (wasSubmited) => {
   }
 };
 
-export const onMailChangeReduxForm = (mail) => {
+export const saveMailFromForm = (mail) => {
   return {
-    type: ON_MAIL_CHANGE_REDUX_FORM,
+    type: SAVE_MAIL_FROM_FORM,
     mail
   }
 };
 
-export const onPasswordChangeReduxForm = (password) => {
+export const savePasswordFromForm = (password) => {
   return {
-    type: ON_PASSWORD_CHANGE_REDUX_FORM,
+    type: SAVE_PASSWORD_FROM_FORM,
     password
   }
 };
