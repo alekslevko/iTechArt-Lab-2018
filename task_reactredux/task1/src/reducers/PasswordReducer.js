@@ -17,7 +17,8 @@ const passwordReducer = (state = initialState, action) => {
         case SAVE_PASSWORD_FROM_FORM:
             return {
                 ...state,
-                password: action.password
+                password: action.password,
+                passwordValid: true
             }
         default:
             return state;

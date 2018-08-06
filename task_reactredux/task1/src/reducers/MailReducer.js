@@ -17,7 +17,8 @@ const mailReducer = (state = initialState, action) => {
         case SAVE_MAIL_FROM_FORM:
             return {
                 ...state,
-                mail: action.mail
+                mail: action.mail,
+                mailValid: true
             }
         default:
             return state;
