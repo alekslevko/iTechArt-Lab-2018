@@ -1,4 +1,4 @@
-import { ON_MAIL_CHANGE, ON_PASSWORD_CHANGE, HANDLE_SUBMIT, SAVE_MAIL_FROM_FORM, SAVE_PASSWORD_FROM_FORM, LOGIN_SAVE_SUCCESS } from './types';
+import { ON_MAIL_CHANGE, ON_PASSWORD_CHANGE, HANDLE_SUBMIT, SAVE_MAIL_FROM_FORM, SAVE_PASSWORD_FROM_FORM, LOGIN_CLEAR_STATE, LOGIN_REDUX_FORM_SUCCESS } from './types';
 
 export const onMailChange = (mail) => {
   return {
@@ -35,8 +35,14 @@ export const savePasswordFromForm = (password) => {
   }
 };
 
-export const loginSaveSuccess = () => {
+export const loginClearState = () => {
   return {
-    type: LOGIN_SAVE_SUCCESS
+    type: LOGIN_CLEAR_STATE,
+  }
+}
+
+export const loginReduxFormSuccess = () => {
+  return {
+    type: LOGIN_REDUX_FORM_SUCCESS,
   }
 }

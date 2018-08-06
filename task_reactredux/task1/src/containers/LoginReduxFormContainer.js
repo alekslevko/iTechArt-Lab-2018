@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { saveMailFromForm, savePasswordFromForm, loginSaveSuccess } from '../actions/index';
+import { saveMailFromForm, savePasswordFromForm, loginClearState, loginReduxFormSuccess } from '../actions/index';
 import { validateMail, validatePassword } from '../Validation';
 import LoginReduxForm from '../views/LoginReduxForm';
 import { errorMessagesEnum } from '../Constants';
@@ -10,7 +10,8 @@ class LoginReduxFormContainer extends React.Component {
   handleSubmit = (values) => {
     this.props.saveMailFromForm(values.mail);
     this.props.savePasswordFromForm(values.password);
-    this.props.loginSaveSuccess(); 
+    this.props.loginClearState(); 
+    this.props.loginReduxFormSuccess();
     this.props.history.push(
       `${this.props.history.location.pathname}/success`); 
   };
@@ -51,7 +52,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     saveMailFromForm: bindActionCreators(saveMailFromForm, dispatch),
     savePasswordFromForm: bindActionCreators(savePasswordFromForm, dispatch),
-    loginSaveSuccess: bindActionCreators(loginSaveSuccess, dispatch)
+    loginClearState: bindActionCreators(loginClearState, dispatch),
+    loginReduxFormSuccess: bindActionCreators(loginReduxFormSuccess, dispatch)
   }
 };
 
