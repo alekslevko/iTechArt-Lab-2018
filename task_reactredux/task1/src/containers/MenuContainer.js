@@ -1,37 +1,46 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import Menu from '../views/Menu';
+import { applicationRoutes } from '../Constants';
 
 const tabsActiveLinkStates = {
-  '/iTechArt-Lab-2018/about': {
+  [applicationRoutes.aboutRoute]: {
     value: 0,
     showMenu: true
   },
-  '/iTechArt-Lab-2018/counters': {
+  [applicationRoutes.countersRoute]: {
     value: 1,
     showMenu: true
   },
-  '/iTechArt-Lab-2018/login': {
+  [applicationRoutes.loginRoute]: {
     value: 2,
     showMenu: true
   },
-  '/iTechArt-Lab-2018/login-redux': {
+  [applicationRoutes.loginReduxRoute]: {
     value: 3,
     showMenu: true
   },
-  '/iTechArt-Lab-2018/login-redux/success': {
+  [applicationRoutes.loginReduxSuccessRoute]: {
     value: 3,
     showMenu: true
   },
-  '/iTechArt-Lab-2018/': {
+  [applicationRoutes.loginReduxFormRoute]: {
+    value: 4,
+    showMenu: true
+  },
+  [applicationRoutes.loginReduxFormSuccessRoute]: {
+    value: 4,
+    showMenu: true
+  },
+  [applicationRoutes.startPageRoute]: {
     value: false,
     showMenu: true
   },
-  '/': {
+  [applicationRoutes.defaultRoute]: {
     value: false,
     showMenu: true
   },
-  'default': {
+  [applicationRoutes.errorRoute]: {
     value: false,
     showMenu: false
   }
@@ -42,7 +51,7 @@ class MenuContainer extends React.Component {
     super(props);
     this.state = {
       ...(tabsActiveLinkStates[this.props.history.location.pathname] ||
-        tabsActiveLinkStates['default'])
+        tabsActiveLinkStates[applicationRoutes.errorRoute])
     };
   }
 

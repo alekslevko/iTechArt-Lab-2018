@@ -3,6 +3,7 @@ import { onMailChange, onPasswordChange, handleSubmit } from '../actions';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Login from '../views/Login';
+import { applicationRoutes } from '../Constants';
 
 class LoginReduxContainer extends React.Component{
 
@@ -24,7 +25,7 @@ class LoginReduxContainer extends React.Component{
     const {mailValid, passwordValid} = this.props;
     if(mailValid && passwordValid){
       this.props.history.push(
-        `${this.props.history.location.pathname}/success`);     
+        applicationRoutes.loginReduxSuccessRoute);     
     }   
   }
 
@@ -46,7 +47,7 @@ const mapStateToProps = (state) => {
   return {
     ...state.mail,
     ...state.password,
-    ...state.form
+    ...state.formReducer
   }
 };
 
