@@ -21,7 +21,6 @@ namespace task1.Controllers
             {
                 return BadRequest(ModelState);
             }
-            
         }        
     }
 }
