@@ -1,0 +1,74 @@
+{
+	"info": {
+		"_postman_id": "3853c621-7b0e-46c4-af73-5a2b1a348af2",
+		"name": "task1",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"_postman_id": "e76998aa-916e-49cd-a914-87664bfb2b5e",
+			"name": "Both params are  normal",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "9bac772b-2963-4968-a6d2-31638dc7752f",
+			"name": "first param is negative",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "208336b2-42ae-4795-b3c9-ba067dd70748",
+			"name": "Second param is positive",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "6bae31b0-2619-4766-8944-10a5c1b271a6",
+			"name": "Both params are not a number",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "420e67e2-d2cb-465a-83de-41fd72c68d0c",
+			"name": "There are no params",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		}
+	]
+}
