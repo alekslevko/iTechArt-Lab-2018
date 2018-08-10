@@ -6,66 +6,250 @@
 	},
 	"item": [
 		{
-			"_postman_id": "e76998aa-916e-49cd-a914-87664bfb2b5e",
 			"name": "Both params are  normal",
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/xml"
+					}
+				],
 				"body": {},
 				"url": {
-					"raw": ""
+					"raw": "http://localhost:50070/api/values?a=5&b=-1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "50070",
+					"path": [
+						"api",
+						"values"
+					],
+					"query": [
+						{
+							"key": "a",
+							"value": "5"
+						},
+						{
+							"key": "b",
+							"value": "-1"
+						}
+					]
 				}
 			},
 			"response": []
 		},
 		{
-			"_postman_id": "9bac772b-2963-4968-a6d2-31638dc7752f",
 			"name": "first param is negative",
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/xml"
+					}
+				],
 				"body": {},
 				"url": {
-					"raw": ""
+					"raw": "http://localhost:50070/api/values?a=-5&b=-1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "50070",
+					"path": [
+						"api",
+						"values"
+					],
+					"query": [
+						{
+							"key": "a",
+							"value": "-5"
+						},
+						{
+							"key": "b",
+							"value": "-1"
+						}
+					]
 				}
 			},
 			"response": []
 		},
 		{
-			"_postman_id": "208336b2-42ae-4795-b3c9-ba067dd70748",
 			"name": "Second param is positive",
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/xml"
+					}
+				],
 				"body": {},
 				"url": {
-					"raw": ""
+					"raw": "http://localhost:50070/api/values?a=5&b=6",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "50070",
+					"path": [
+						"api",
+						"values"
+					],
+					"query": [
+						{
+							"key": "a",
+							"value": "5"
+						},
+						{
+							"key": "b",
+							"value": "6"
+						}
+					]
 				}
 			},
 			"response": []
 		},
 		{
-			"_postman_id": "6bae31b0-2619-4766-8944-10a5c1b271a6",
 			"name": "Both params are not a number",
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/xml"
+					}
+				],
 				"body": {},
 				"url": {
-					"raw": ""
+					"raw": "http://localhost:50070/api/values?a=qwd&b=qw",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "50070",
+					"path": [
+						"api",
+						"values"
+					],
+					"query": [
+						{
+							"key": "a",
+							"value": "qwd"
+						},
+						{
+							"key": "b",
+							"value": "qw"
+						}
+					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Both params are not a number",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/xml"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:50070/api/values?a=qwd&b=qw",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "50070",
+							"path": [
+								"api",
+								"values"
+							],
+							"query": [
+								{
+									"key": "a",
+									"value": "qwd"
+								},
+								{
+									"key": "b",
+									"value": "qw"
+								}
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "xml",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/xml; charset=utf-8",
+							"name": "Content-Type",
+							"description": "The mime type of this content"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 10 Aug 2018 11:10:11 GMT",
+							"name": "Date",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"key": "Server",
+							"value": "Kestrel",
+							"name": "Server",
+							"description": "A name for the server"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked",
+							"name": "Transfer-Encoding",
+							"description": "The form of encoding used to safely transfer the entity to the user. Currently defined methods are: chunked, compress, deflate, gzip, identity."
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "ASP.NET",
+							"name": "X-Powered-By",
+							"description": "Specifies the technology (ASP.NET, PHP, JBoss, e.g.) supporting the web application (version details are often in X-Runtime, X-Version, or X-AspNet-Version)"
+						},
+						{
+							"key": "X-SourceFiles",
+							"value": "=?UTF-8?B?RDpcZ2l0XGlUZWNoQXJ0LUxhYi0yMDE4XHRhc2tfbmV0Y29yZVx0YXNrMVx0YXNrMVxhcGlcdmFsdWVz?=",
+							"name": "X-SourceFiles",
+							"description": "Custom header"
+						}
+					],
+					"cookie": [],
+					"body": "<Error><A>The value 'qwd' is not valid for A.</A><B>The value 'qw' is not valid for B.</B></Error>"
+				}
+			]
 		},
 		{
-			"_postman_id": "420e67e2-d2cb-465a-83de-41fd72c68d0c",
 			"name": "There are no params",
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/xml"
+					}
+				],
 				"body": {},
 				"url": {
-					"raw": ""
+					"raw": "http://localhost:50070/api/values",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "50070",
+					"path": [
+						"api",
+						"values"
+					]
 				}
 			},
 			"response": []
