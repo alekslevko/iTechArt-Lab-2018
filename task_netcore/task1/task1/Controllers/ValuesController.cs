@@ -9,12 +9,12 @@ namespace task1.Controllers
         [HttpGet]
         public ActionResult Get(SumRequestViewModel model)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && model.A.HasValue && model.B.HasValue)
             {
-                var A = model.A.Value;
-                var B = model.B.Value;
+                var a = model.A.Value;
+                var b = model.B.Value;
 
-                return Ok(new SumResponseModel { A = A, B = B, Sum = A + B });
+                return Ok(new SumResponseModel { A = a, B = b, Sum = a + b });
             }
 
             return BadRequest(ModelState);
