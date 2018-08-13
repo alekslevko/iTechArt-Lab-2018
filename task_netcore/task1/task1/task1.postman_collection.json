@@ -1,0 +1,258 @@
+{
+	"info": {
+		"_postman_id": "3853c621-7b0e-46c4-af73-5a2b1a348af2",
+		"name": "task1",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Both params are  normal",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/xml"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:50070/api/values?a=5&b=-1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "50070",
+					"path": [
+						"api",
+						"values"
+					],
+					"query": [
+						{
+							"key": "a",
+							"value": "5"
+						},
+						{
+							"key": "b",
+							"value": "-1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "first param is negative",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/xml"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:50070/api/values?a=-5&b=-1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "50070",
+					"path": [
+						"api",
+						"values"
+					],
+					"query": [
+						{
+							"key": "a",
+							"value": "-5"
+						},
+						{
+							"key": "b",
+							"value": "-1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Second param is positive",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/xml"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:50070/api/values?a=5&b=6",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "50070",
+					"path": [
+						"api",
+						"values"
+					],
+					"query": [
+						{
+							"key": "a",
+							"value": "5"
+						},
+						{
+							"key": "b",
+							"value": "6"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Both params are not a number",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/xml"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:50070/api/values?a=qwd&b=qw",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "50070",
+					"path": [
+						"api",
+						"values"
+					],
+					"query": [
+						{
+							"key": "a",
+							"value": "qwd"
+						},
+						{
+							"key": "b",
+							"value": "qw"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Both params are not a number",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/xml"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:50070/api/values?a=qwd&b=qw",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "50070",
+							"path": [
+								"api",
+								"values"
+							],
+							"query": [
+								{
+									"key": "a",
+									"value": "qwd"
+								},
+								{
+									"key": "b",
+									"value": "qw"
+								}
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "xml",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/xml; charset=utf-8",
+							"name": "Content-Type",
+							"description": "The mime type of this content"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 10 Aug 2018 11:10:11 GMT",
+							"name": "Date",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"key": "Server",
+							"value": "Kestrel",
+							"name": "Server",
+							"description": "A name for the server"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked",
+							"name": "Transfer-Encoding",
+							"description": "The form of encoding used to safely transfer the entity to the user. Currently defined methods are: chunked, compress, deflate, gzip, identity."
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "ASP.NET",
+							"name": "X-Powered-By",
+							"description": "Specifies the technology (ASP.NET, PHP, JBoss, e.g.) supporting the web application (version details are often in X-Runtime, X-Version, or X-AspNet-Version)"
+						},
+						{
+							"key": "X-SourceFiles",
+							"value": "=?UTF-8?B?RDpcZ2l0XGlUZWNoQXJ0LUxhYi0yMDE4XHRhc2tfbmV0Y29yZVx0YXNrMVx0YXNrMVxhcGlcdmFsdWVz?=",
+							"name": "X-SourceFiles",
+							"description": "Custom header"
+						}
+					],
+					"cookie": [],
+					"body": "<Error><A>The value 'qwd' is not valid for A.</A><B>The value 'qw' is not valid for B.</B></Error>"
+				}
+			]
+		},
+		{
+			"name": "There are no params",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/xml"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:50070/api/values",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "50070",
+					"path": [
+						"api",
+						"values"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
