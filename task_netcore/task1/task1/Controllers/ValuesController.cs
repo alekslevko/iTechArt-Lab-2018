@@ -7,16 +7,17 @@ namespace task1.Controllers
     public class ValuesController : Controller
     {
         [HttpGet]
-        public ActionResult Get(SumModel model)
+        public ActionResult Get(SumRequestViewModel model)
         {
             if (ModelState.IsValid)
             {
-                return Ok(new SumModel { A = model.A, B = model.B, Sum = (int)(model.A + model.B) });
+                var A = model.A.Value;
+                var B = model.B.Value;
+
+                return Ok(new SumResponseModel { A = A, B = B, Sum = A + B });
             }
-            else
-            {
-                return BadRequest(ModelState);
-            }
-        }        
+
+            return BadRequest(ModelState);
+        }
     }
 }
