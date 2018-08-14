@@ -1,18 +1,21 @@
 ﻿using AutoMapper;
+using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using System.Net;
 using System.Threading.Tasks;
+using task2.Interfaces;
 using task2.Models;
 
 namespace task2.Services
 {
     public class DataService : IDataService
     {
-        private string url = "https://swapi.co/api/starships/";
-        private readonly IMapper mapper;
-        public DataService(IMapper mapper)
+        private string url;
+        private readonly IMapper _mapper;
+        public DataService(IMapper mapper, IConfiguration configuration)
         {
-            this.mapper = mapper;
+            _mapper = mapper;
+            url = configuration["url"];
         }
 
         public ResponseModel GetInfo()
@@ -30,7 +33,7 @@ namespace task2.Services
                 }
             }
 
-            return mapper.Map<ForeignModel, ResponseModel>(response);
+            return _mapper.Map<ForeignModel, ResponseModel>(response);
         }
 
         public async Task<ResponseModel> GetInfoAsync()
@@ -40,8 +43,6 @@ namespace task2.Services
 
             using (WebClient client = new WebClient())
             {
-                var content = await client.DownloadStringTaskAsync(url);
-
                 while (url != null)
                 {
                     var nextContent = await client.DownloadStringTaskAsync(url);
@@ -59,7 +60,7 @@ namespace task2.Services
                 response.Count = index;
             }
 
-            return mapper.Map<ForeignModel, ResponseModel>(response);
+            return _mapper.Map<ForeignModel, ResponseModel>(response);
         }
     }
 }
