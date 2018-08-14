@@ -1,0 +1,127 @@
+{
+	"info": {
+		"_postman_id": "e5142174-382d-4e85-9953-3807518aae9c",
+		"name": "task3",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Add",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/xml"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Kingsman\",\n\t\"year\": 2015,\n\t\"country\": \"USA\",\n\t\"producer\": \"Adam Boling\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:65230/api/data/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "65230",
+					"path": [
+						"api",
+						"data",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 1,\n    \"name\": \"Suits\",\n    \"year\": 2011,\n    \"country\": \"USA\",\n    \"producer\": \"Gene Klein\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:65230/api/data/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "65230",
+					"path": [
+						"api",
+						"data",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/xml"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:65230/api/data/3005",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "65230",
+					"path": [
+						"api",
+						"data",
+						"3005"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/xml"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:65230/api/data/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "65230",
+					"path": [
+						"api",
+						"data",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
