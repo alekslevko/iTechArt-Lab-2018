@@ -20,15 +20,15 @@ namespace task2.Services
 
         public ResponseModel GetInfo()
         {
-            ForeignModel foreignModel = new ForeignModel();
+            ForeignModel foreignModel;
 
-            using (WebClient client = new WebClient())
+            using (var client = new WebClient())
             {
                 var content = client.DownloadString(url);
                 foreignModel = JsonConvert.DeserializeObject<ForeignModel>(content);
             }
 
-            ResponseModel responseModel = _mapper.Map<ForeignModel, ResponseModel>(foreignModel);
+            var responseModel = _mapper.Map<ForeignModel, ResponseModel>(foreignModel);
 
             SetIndexField(responseModel);
 
@@ -37,9 +37,9 @@ namespace task2.Services
 
         public async Task<ResponseModel> GetInfoAsync()
         {
-            ForeignModel foreignModel = new ForeignModel();
+            var foreignModel = new ForeignModel();
 
-            using (WebClient client = new WebClient())
+            using (var client = new WebClient())
             {
                 while (url != null)
                 {
@@ -52,7 +52,7 @@ namespace task2.Services
                 foreignModel.Count = foreignModel.Results.Count;
             }
 
-            ResponseModel responseModel = _mapper.Map<ForeignModel, ResponseModel>(foreignModel);
+            var responseModel = _mapper.Map<ForeignModel, ResponseModel>(foreignModel);
 
             SetIndexField(responseModel);
 
@@ -61,7 +61,7 @@ namespace task2.Services
 
         private void SetIndexField(ResponseModel model)
         {
-            for(int i =0; i< model.Results.Count; i++)
+            for(var i = 0; i< model.Results.Count; i++)
             {
                 model.Results[i].Index = i + 1;
             }
