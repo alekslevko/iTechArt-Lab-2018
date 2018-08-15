@@ -31,7 +31,7 @@ namespace task3.Controllers
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
-            Movie movie = _dataService.GetDataById(id);
+            var movie = _dataService.GetDataById(id);
 
             if(movie != null)
             {
@@ -46,7 +46,7 @@ namespace task3.Controllers
         {
             if(ModelState.IsValid)
             {
-                Movie movie = _mapper.Map<MovieModel, Movie>(movieModel);
+                var movie = _mapper.Map<MovieModel, Movie>(movieModel);
                 _dataService.AddData(movie);
                 return Ok(movie);
             }
@@ -59,8 +59,9 @@ namespace task3.Controllers
         {
             if (ModelState.IsValid)
             {
-                Movie movie = _mapper.Map<MovieModel, Movie>(movieModel);
+                var movie = _mapper.Map<MovieModel, Movie>(movieModel);
                 _dataService.UpdateData(movie);
+
                 return Ok(movie);
             }
 
@@ -70,7 +71,7 @@ namespace task3.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            Movie movie = _dataService.DeleteData(id);
+            var movie = _dataService.DeleteData(id);
 
             if (movie != null)
             {

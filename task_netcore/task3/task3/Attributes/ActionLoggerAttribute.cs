@@ -5,15 +5,16 @@ namespace task3.Attributes
 {
     public class ActionLoggerAttribute: ActionFilterAttribute
     {
-        IActionLogger logger;
+        private IActionLogger _logger;
+
         public ActionLoggerAttribute(IActionLogger logger)
         {
-            this.logger = logger;
+            _logger = logger;
         }
 
         public override void OnActionExecuting(ActionExecutingContext context)
         {
-            logger.Log(context);
+            _logger.Log(context);
         }
     }
 }

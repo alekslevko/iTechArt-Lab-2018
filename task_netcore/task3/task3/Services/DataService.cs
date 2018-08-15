@@ -14,6 +14,7 @@ namespace task3.Services
         public DataService(MoviesContext context)
         {
             _context = context;
+
             if (!context.Movies.Any())
             {
                 context.Movies.Add(new Movie { Name = "Suits", Country = "USA", Producer = "Gene Klein", Year = 2011 });
@@ -29,7 +30,7 @@ namespace task3.Services
 
         public Movie GetDataById(int id)
         {
-            Movie movie = _context.Movies.FirstOrDefault(x => x.Id == id);
+            var movie = _context.Movies.FirstOrDefault(x => x.Id == id);
 
             return movie;
         }
@@ -52,7 +53,7 @@ namespace task3.Services
 
         public Movie DeleteData(int id)
         {
-            Movie movie = _context.Movies.FirstOrDefault(x => x.Id == id);
+            var movie = _context.Movies.FirstOrDefault(x => x.Id == id);
             _context.Movies.Remove(movie);
             _context.SaveChanges();
 
