@@ -27,10 +27,7 @@ namespace task2.Services
                 var content = client.DownloadString(url);
                 response = JsonConvert.DeserializeObject<ForeignModel>(content);
 
-                for (int i = 0; i < response.Results.Count; i++)
-                {
-                    response.Results[i].Index = i + 1;
-                }
+                Counter(response);
             }
 
             return _mapper.Map<ForeignModel, ResponseModel>(response);
@@ -38,7 +35,6 @@ namespace task2.Services
 
         public async Task<ResponseModel> GetInfoAsync()
         {
-            int index = 0;
             ForeignModel response = new ForeignModel();
 
             using (WebClient client = new WebClient())
@@ -51,16 +47,20 @@ namespace task2.Services
                     response.Results.AddRange(nextInfo.Results);
                 }
 
-                for (int i = 0; i < response.Results.Count; i++)
-                {
-                    index++;
-                    response.Results[i].Index = i + 1;
-                }
+                Counter(response);
 
-                response.Count = index;
+                response.Count = response.Results.Count;
             }
 
             return _mapper.Map<ForeignModel, ResponseModel>(response);
+        }
+
+        private void Counter(ForeignModel model)
+        {
+            for(int i =0; i< model.Results.Count; i++)
+            {
+                model.Results[i].Index = i + 1;
+            }
         }
     }
 }
