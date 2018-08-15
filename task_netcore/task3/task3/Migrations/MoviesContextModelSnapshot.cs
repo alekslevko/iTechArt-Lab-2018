@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using task3.Data;
 
 namespace task3.Migrations
@@ -17,7 +18,7 @@ namespace task3.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("task3.Models.Movie", b =>
+            modelBuilder.Entity("task3.Data.Entities.Movie", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -34,6 +35,11 @@ namespace task3.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Movies");
+
+                    b.HasData(
+                        new { Id = 1, Country = "USA", Name = "Suits", Producer = "Gene Klein", Year = 2011 },
+                        new { Id = 2, Country = "USA", Name = "Thor", Producer = "Kevin Feige", Year = 2011 }
+                    );
                 });
 #pragma warning restore 612, 618
         }

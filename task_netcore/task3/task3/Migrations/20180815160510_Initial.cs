@@ -22,6 +22,16 @@ namespace task3.Migrations
                 {
                     table.PrimaryKey("PK_Movies", x => x.Id);
                 });
+
+            migrationBuilder.InsertData(
+                table: "Movies",
+                columns: new[] { "Id", "Country", "Name", "Producer", "Year" },
+                values: new object[] { 1, "USA", "Suits", "Gene Klein", 2011 });
+
+            migrationBuilder.InsertData(
+                table: "Movies",
+                columns: new[] { "Id", "Country", "Name", "Producer", "Year" },
+                values: new object[] { 2, "USA", "Thor", "Kevin Feige", 2011 });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
