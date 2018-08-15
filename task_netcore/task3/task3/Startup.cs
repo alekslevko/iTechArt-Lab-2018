@@ -46,10 +46,7 @@ namespace task3
             if (env.IsDevelopment())
             {               
                 app.UseDeveloperExceptionPage();
-                DbInitializer.Seed(app);
-            }
-
-            
+            }          
 
             app.UseMvc();
         }
