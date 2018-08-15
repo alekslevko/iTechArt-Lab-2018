@@ -1,0 +1,63 @@
+{
+	"info": {
+		"_postman_id": "899da9bf-24d8-4e8b-9f0e-997e85b84934",
+		"name": "task2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "getinfosync",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/xml"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:52220/api/data/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "52220",
+					"path": [
+						"api",
+						"data",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getinfoasync",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/xml"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:52220/api/data/async",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "52220",
+					"path": [
+						"api",
+						"data",
+						"async"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
