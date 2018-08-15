@@ -31,8 +31,7 @@ namespace task3
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().AddXmlDataContractSerializerFormatters();
-            string con = "Server=(localdb)\\mssqllocaldb;Database=moviesdbstore;Trusted_Connection=True;MultipleActiveResultSets=true";
-            services.AddDbContext<MoviesContext>(options => options.UseSqlServer(con));
+            services.AddDbContext<MoviesContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddTransient<IDataService, DataService>();
             services.AddAutoMapper();
             services.AddSingleton<IActionLogger, ActionLogger>();
@@ -45,9 +44,12 @@ namespace task3
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
-            {
+            {               
                 app.UseDeveloperExceptionPage();
+                DbInitializer.Seed(app);
             }
+
+            
 
             app.UseMvc();
         }

@@ -14,13 +14,6 @@ namespace task3.Services
         public DataService(MoviesContext context)
         {
             _context = context;
-
-            if (!context.Movies.Any())
-            {
-                context.Movies.Add(new Movie { Name = "Suits", Country = "USA", Producer = "Gene Klein", Year = 2011 });
-                context.Movies.Add(new Movie { Name = "Thor", Country = "USA", Producer = "Kevin Feige", Year = 2011 });
-                context.SaveChanges();
-            }
         }
 
         public IEnumerable<Movie> GetData()
