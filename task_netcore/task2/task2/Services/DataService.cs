@@ -20,22 +20,24 @@ namespace task2.Services
 
         public ResponseModel GetInfo()
         {
-            ForeignModel response = new ForeignModel();
+            ForeignModel foreignModel = new ForeignModel();
 
             using (WebClient client = new WebClient())
             {
                 var content = client.DownloadString(url);
-                response = JsonConvert.DeserializeObject<ForeignModel>(content);
-
-                Counter(response);
+                foreignModel = JsonConvert.DeserializeObject<ForeignModel>(content);
             }
 
-            return _mapper.Map<ForeignModel, ResponseModel>(response);
+            ResponseModel responseModel = _mapper.Map<ForeignModel, ResponseModel>(foreignModel);
+
+            SetIndexField(responseModel);
+
+            return responseModel;
         }
 
         public async Task<ResponseModel> GetInfoAsync()
         {
-            ForeignModel response = new ForeignModel();
+            ForeignModel foreignModel = new ForeignModel();
 
             using (WebClient client = new WebClient())
             {
@@ -44,18 +46,20 @@ namespace task2.Services
                     var nextContent = await client.DownloadStringTaskAsync(url);
                     ForeignModel nextInfo = JsonConvert.DeserializeObject<ForeignModel>(nextContent);
                     url = nextInfo.Next;
-                    response.Results.AddRange(nextInfo.Results);
+                    foreignModel.Results.AddRange(nextInfo.Results);
                 }
 
-                Counter(response);
-
-                response.Count = response.Results.Count;
+                foreignModel.Count = foreignModel.Results.Count;
             }
 
-            return _mapper.Map<ForeignModel, ResponseModel>(response);
+            ResponseModel responseModel = _mapper.Map<ForeignModel, ResponseModel>(foreignModel);
+
+            SetIndexField(responseModel);
+
+            return responseModel;
         }
 
-        private void Counter(ForeignModel model)
+        private void SetIndexField(ResponseModel model)
         {
             for(int i =0; i< model.Results.Count; i++)
             {
