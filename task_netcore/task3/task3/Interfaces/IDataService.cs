@@ -1,18 +1,19 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Linq;
 using task3.Data.Entities;
 
 namespace task3.Interfaces
 {
     public interface IDataService
     {
-        IEnumerable<Movie> GetData();
+        IQueryable<Movie> GetData();
 
         Movie GetDataById(int id);
 
-        Movie AddData([FromBody]Movie movie);
+        Movie AddData(Movie movie);
 
-        Movie UpdateData([FromBody]Movie movie);
+        Movie UpdateData(Movie movie);
 
         Movie DeleteData(int id);
     }

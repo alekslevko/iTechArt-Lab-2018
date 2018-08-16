@@ -5,7 +5,7 @@ namespace task3.Attributes
 {
     public class ExceptionLoggerAttribute: ExceptionFilterAttribute
     {
-        private IActionLogger _logger;
+        private readonly IActionLogger _logger;
 
         public ExceptionLoggerAttribute(IActionLogger logger)
         {

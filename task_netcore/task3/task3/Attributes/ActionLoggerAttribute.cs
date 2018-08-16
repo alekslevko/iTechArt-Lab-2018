@@ -5,7 +5,7 @@ namespace task3.Attributes
 {
     public class ActionLoggerAttribute: ActionFilterAttribute
     {
-        private IActionLogger _logger;
+        private readonly IActionLogger _logger;
 
         public ActionLoggerAttribute(IActionLogger logger)
         {

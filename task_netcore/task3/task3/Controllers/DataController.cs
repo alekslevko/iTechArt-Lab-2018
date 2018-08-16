@@ -23,9 +23,9 @@ namespace task3.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<Movie> Get()
+        public IActionResult Get()
         {
-            return _dataService.GetData();
+            return Ok(_dataService.GetData());
         }
 
         [HttpGet("{id}")]
@@ -44,28 +44,29 @@ namespace task3.Controllers
         [HttpPost]
         public IActionResult Post([FromBody]MovieModel movieModel)
         {
-            if(ModelState.IsValid)
+            if(!ModelState.IsValid)
             {
-                var movie = _mapper.Map<MovieModel, Movie>(movieModel);
-                _dataService.AddData(movie);
-                return Ok(movie);
+                return BadRequest(ModelState);
             }
 
-            return BadRequest(ModelState);
+            var movie = _mapper.Map<MovieModel, Movie>(movieModel);
+            _dataService.AddData(movie);
+
+            return Ok(movie);
         }
 
         [HttpPut]
         public IActionResult Put([FromBody]MovieModel movieModel)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                var movie = _mapper.Map<MovieModel, Movie>(movieModel);
-                _dataService.UpdateData(movie);
-
-                return Ok(movie);
+                return BadRequest(ModelState);
             }
 
-            return BadRequest(ModelState);
+            var movie = _mapper.Map<MovieModel, Movie>(movieModel);
+            _dataService.UpdateData(movie);
+
+            return Ok(movie);            
         }
 
         [HttpDelete("{id}")]

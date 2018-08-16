@@ -9,16 +9,17 @@ namespace task3.Services
 {
     public class DataService: IDataService
     {
-        MoviesContext _context;
+        private readonly MoviesContext _context;
 
         public DataService(MoviesContext context)
         {
             _context = context;
         }
 
-        public IEnumerable<Movie> GetData()
+        public IQueryable<Movie> GetData()
         {
-            return _context.Movies.ToList();
+            IQueryable<Movie> movies = _context.Movies;
+            return movies;
         }
 
         public Movie GetDataById(int id)
@@ -28,7 +29,7 @@ namespace task3.Services
             return movie;
         }
 
-        public Movie AddData([FromBody]Movie movie)
+        public Movie AddData(Movie movie)
         {
             _context.Movies.Add(movie);
             _context.SaveChanges();
@@ -36,7 +37,7 @@ namespace task3.Services
             return movie;
         }
 
-        public Movie UpdateData([FromBody]Movie movie)
+        public Movie UpdateData(Movie movie)
         {
             _context.Update(movie);
             _context.SaveChanges();
@@ -47,6 +48,10 @@ namespace task3.Services
         public Movie DeleteData(int id)
         {
             var movie = _context.Movies.FirstOrDefault(x => x.Id == id);
+            if(movie == null)
+            {
+                return null;
+            }
             _context.Movies.Remove(movie);
             _context.SaveChanges();
 
