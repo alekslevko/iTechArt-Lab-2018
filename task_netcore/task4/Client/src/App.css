@@ -1,0 +1,11 @@
+.App {
+  text-align: center;
+}
+.movieContainer{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+
