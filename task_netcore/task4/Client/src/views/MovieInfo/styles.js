@@ -8,7 +8,7 @@ const styles = theme => ({
         paddingRight: '10px',
 		width: '1000px',
         '@media (max-width: 1070px)': {
-            width: '600px',
+            width: '600px'
         },
         '@media (max-width: 650px)': {
             width: '350px',
@@ -20,7 +20,7 @@ const styles = theme => ({
         float: 'left',
         marginRight: '20px',
         '@media (max-width: 650px)': {
-            width: '100%',
+            width: '100%'
         }
     },
     name: {

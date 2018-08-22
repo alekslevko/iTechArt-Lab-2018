@@ -79,7 +79,7 @@ Header.propTypes = {
   logOut: PropTypes.func,
   open: PropTypes.bool,
   path: PropTypes.string,
-  isAuth: PropTypes.string,
+  isAuth: PropTypes.bool,
   userName: PropTypes.string
 };
 

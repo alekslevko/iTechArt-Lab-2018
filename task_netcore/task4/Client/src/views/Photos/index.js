@@ -1,27 +1,28 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import GridList from '@material-ui/core/GridList';
-import GridListTile from '@material-ui/core/GridListTile';
 import styles from './styles';
+import Gallery from 'react-grid-gallery';
 
 const Photos = ({ photos, classes }) => {
-    return (
-        <div className={classes.root}>
-      <GridList className={classes.gridList} cols={2}>
-        {photos.map(tile => (
-          <GridListTile key={tile.pi}>
-            <img src={tile.pictureUrl} alt='Movie' />   
-          </GridListTile>
-        ))}
-      </GridList>
+  return (
+    <div className={classes.galeryContainer}>
+      <div className={classes.galery}>
+        <Gallery
+          enableImageSelection={false}
+          images={photos.map(photo => ({
+            src: photo.pictureUrl,
+            thumbnail: photo.pictureUrl,
+            thumbnailHeight: 180
+          }))} />
+      </div>
     </div>
-    );
+  );
 }
 
 Photos.propTypes = {
-    classes: PropTypes.object.isRequired,
-    photos: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
+  photos: PropTypes.array
 };
 
 export default withStyles(styles)(Photos);
