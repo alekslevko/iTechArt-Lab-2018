@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { isAuth, saveUserNameFromForm } from '../actions/index';
+import { isAuth, showErrorMessage, clearErrorMessage } from '../actions/index';
 import { validateUserName, validatePassword } from '../Validation';
 import RegisterReduxForm from '../views/RegisterReduxForm';
 import { errorMessagesEnum } from '../Constants';
@@ -19,25 +19,43 @@ class RegisterReduxFormContainer extends React.Component {
     if (this.currentPath() === applicationRoutes.registerReduxFormRoute) {
       axios.post(`http://localhost:50834/account/register`, user)
         .then(response => {
-          this.setToken(response.data);          
+          this.onSuccess(response, user);
         })
+        .catch(errors => {
+          this.onFail(errors);
+        });
     }
 
     if (this.currentPath() === applicationRoutes.loginReduxFormRoute) {
       axios.post(`http://localhost:50834/account/login`, user)
         .then(response => {
-          this.setToken(response.data);  
+          this.onSuccess(response, user);
+        })
+        .catch(errors => {
+          this.onFail(errors);
         });
     }
-    
-    this.props.isAuth();
-    this.props.saveUserNameFromForm(user.username);
-    this.props.history.push(
-      applicationRoutes.moviesRoute);
   };
 
-  setToken = (response) => {
-    sessionStorage.setItem('token', response);
+  onSuccess = (response, user) => {
+    sessionStorage.setItem('token', response.data);
+    sessionStorage.setItem('user', user.username)
+    this.props.isAuth();
+    this.props.clearErrorMessage();
+    this.props.history.push(
+      applicationRoutes.moviesRoute);
+  }
+
+  onFail = (errors) => {
+    let value;
+
+    if (errors.response !== undefined) {
+      value = errors.response.data;
+    } else {
+      value = "Server is not responding "
+    }
+
+    this.props.showErrorMessage(value);
   }
 
   currentPath = () => {
@@ -63,8 +81,12 @@ class RegisterReduxFormContainer extends React.Component {
   };
 
   render() {
+    const { haveErrors, errorMessage } = this.props;
+
     return (
       <RegisterReduxForm
+        haveErrors={haveErrors}
+        errorMessage={errorMessage}
         currentPath={this.currentPath()}
         onSubmit={this.handleSubmit}
         validate={this.Validation} />
@@ -75,7 +97,8 @@ class RegisterReduxFormContainer extends React.Component {
 const mapDispatchToProps = (dispatch) => {
   return {
     isAuth: bindActionCreators(isAuth, dispatch),
-    saveUserNameFromForm: bindActionCreators(saveUserNameFromForm, dispatch)
+    showErrorMessage: bindActionCreators(showErrorMessage, dispatch),
+    clearErrorMessage: bindActionCreators(clearErrorMessage, dispatch)
   }
 };
 
@@ -83,7 +106,7 @@ const mapStateToProps = (state) => {
   return {
     formState: { ...state.form.register },
     ...state.isAuth,
-    ...state.user
+    ...state.errors
   }
 }
 

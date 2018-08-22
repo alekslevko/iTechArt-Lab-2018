@@ -7,15 +7,13 @@ import Gallery from 'react-grid-gallery';
 const Photos = ({ photos, classes }) => {
   return (
     <div className={classes.galeryContainer}>
-      <div className={classes.galery}>
-        <Gallery
-          enableImageSelection={false}
-          images={photos.map(photo => ({
-            src: photo.pictureUrl,
-            thumbnail: photo.pictureUrl,
-            thumbnailHeight: 180
-          }))} />
-      </div>
+          <Gallery
+            enableImageSelection={false}
+            images={photos.map(photo => ({
+              src: photo.pictureUrl,
+              thumbnail: photo.pictureUrl,
+              thumbnailHeight: 180
+            }))} />
     </div>
   );
 }

@@ -13,7 +13,7 @@ using task4.Models;
 
 namespace task4.Services
 {
-    public class AccountService : IAccountService
+    public class AccountService: IAccountService
     {
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
@@ -26,7 +26,7 @@ namespace task4.Services
             _configuration = configuration;
         }
 
-        public async Task<object> Register(RegisterViewModel model)
+        public async Task<ResultAccountModel> Register(RegisterViewModel model)
         {  
             var user = new IdentityUser
             {
@@ -34,28 +34,54 @@ namespace task4.Services
             };
 
             var result = await _userManager.CreateAsync(user, model.Password);
+            var resultModel = new ResultAccountModel();
 
             if (result.Succeeded)
             {
                 await _signInManager.SignInAsync(user, false);
-                return GenerateJwtToken(model.UserName, user);
+
+                resultModel.Token = GenerateJwtToken(model.UserName, user);
+
+                return resultModel;
+            }
+            else
+            {
+                resultModel.Errors = new List<string>();
+
+                foreach (var error in result.Errors)
+                {
+                    resultModel.Errors.Add(error.Description);
+                }
+
+                return resultModel;
             }
 
             throw new ApplicationException("UNKNOWN_ERROR");
-
         }
 
-        public async Task<object> Login(LoginViewModel model)
+        public async Task<ResultAccountModel> Login(LoginViewModel model)
         {
             var result = await _signInManager.PasswordSignInAsync(model.UserName, model.Password, false, false);
+            var resultModel = new ResultAccountModel();
 
             if (result.Succeeded)
-            {
+            {                               
                 var appUser = _userManager.Users.SingleOrDefault(r => r.UserName == model.UserName);
-                return GenerateJwtToken(model.UserName, appUser);
+
+                resultModel.Token = GenerateJwtToken(model.UserName, appUser);
+
+                return resultModel;
+            }
+            else
+            {
+                resultModel.Errors = new List<string>();
+
+                resultModel.Errors.Add("Incorrect login or password");
+
+                return resultModel;
             }
 
-            throw new ApplicationException("INVALID_LOGIN_ATTEMPT");
+            throw new ApplicationException("UNKNOWN_ERROR");
         }
 
         private object GenerateJwtToken(string userName, IdentityUser user)
@@ -81,7 +107,5 @@ namespace task4.Services
 
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
-
-
     }
 }

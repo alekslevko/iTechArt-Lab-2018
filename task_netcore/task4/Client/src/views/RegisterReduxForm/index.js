@@ -19,7 +19,7 @@ const renderField = ({ input, label, type, meta: { touched, error }, margin }) =
 	</div>
 );
 
-let RegisterReduxForm = ({ handleSubmit, classes, currentPath }) => {
+let RegisterReduxForm = ({ handleSubmit, classes, currentPath, errorMessage, haveErrors }) => {
 	return (
 		<div>
 			<Paper className={classes.paperContainer} >
@@ -31,9 +31,14 @@ let RegisterReduxForm = ({ handleSubmit, classes, currentPath }) => {
 					<Button type="submit" variant="outlined">
 						{currentPath === applicationRoutes.registerReduxFormRoute && 'Register'}
 						{currentPath === applicationRoutes.loginReduxFormRoute && 'Login'}
-            		</Button>
+					</Button>
 				</form>
 			</Paper>
+			{
+				haveErrors && <Paper className={classes.errorMessage}>
+					{errorMessage}
+				</Paper>
+			}
 		</div>
 	);
 }

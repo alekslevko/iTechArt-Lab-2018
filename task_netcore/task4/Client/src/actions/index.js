@@ -1,11 +1,4 @@
-import { SAVE_USERNAME_FROM_FORM, HEADER_HANDLE_CLOSE, HEADER_HANDLE_MENU, IS_AUTH, LOG_OUT } from './types';
-
-export const saveUserNameFromForm = (userName) => {
-  return {
-    type: SAVE_USERNAME_FROM_FORM,
-    userName
-  }
-};
+import { CLEAR_ERROR_MESSAGE, HEADER_HANDLE_CLOSE, HEADER_HANDLE_MENU, IS_AUTH, SHOW_ERROR_MESSAGE, LOG_OUT } from './types';
 
 export const headerHandleMenu = (anchorEl) => {
   return {
@@ -29,5 +22,18 @@ export const isAuth = () => {
 export const logOut = () => {
   return {
     type: LOG_OUT    
+  }
+}
+
+export const showErrorMessage = (errorMessage) => {
+  return {
+    type: SHOW_ERROR_MESSAGE,
+    errorMessage    
+  }
+}
+
+export const clearErrorMessage = () => {
+  return {
+    type: CLEAR_ERROR_MESSAGE
   }
 }

@@ -9,6 +9,11 @@ const styles = theme => ({
     },
     fieldContainer: {
         margin: '10px'
+    },
+    errorMessage: {
+        display: 'inline-block',
+        backgroundColor: 'red',
+        padding: '10px 20px'
     }     
 });
 

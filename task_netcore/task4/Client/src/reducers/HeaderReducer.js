@@ -12,10 +12,10 @@ const headerReducer = (state = InitialState, action) => {
                 anchorEl: action.anchorEl
             };
         case HEADER_HANDLE_CLOSE:
-        return {
-            ...state,
-            anchorEl: null
-        };
+            return {
+                ...state,
+                anchorEl: null
+            };
         default:
             return state;
     }

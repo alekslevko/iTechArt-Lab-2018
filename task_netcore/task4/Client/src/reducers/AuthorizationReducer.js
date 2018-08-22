@@ -1,7 +1,7 @@
 import { IS_AUTH, LOG_OUT } from '../actions/types';
 
 const InitialState = {
-    isAuth: false
+    isAuth: Boolean(sessionStorage.getItem('token'))
 }
 
 const authorizationReducer = (state = InitialState, action) => {
@@ -9,12 +9,12 @@ const authorizationReducer = (state = InitialState, action) => {
         case IS_AUTH:
             return {
                 ...state,
-                isAuth: true
+                isAuth: Boolean(sessionStorage.getItem('token'))
             };
         case LOG_OUT:
             return {
                 ...state,
-                isAuth: false
+                isAuth: Boolean(sessionStorage.getItem('token'))
             };
         default:
             return state;

@@ -21,13 +21,15 @@ class HeaderContainer extends React.Component {
 
   logOut = () => {
     sessionStorage.removeItem('token');
+    sessionStorage.removeItem('user');
     this.props.logOut();
   }
   
   render() {
-    const {anchorEl, isAuth, userName} = this.props;
+    const { anchorEl, isAuth } = this.props;
+    const userName = sessionStorage.getItem('user');
     const open = Boolean(anchorEl);
-
+  
     return (
       <Header
         handleMenu={this.headerHandleMenu}
@@ -53,8 +55,7 @@ const mapDispatchToProps = (dispatch) => {
 const mapStateToProps = (state) => {
   return {
     ...state.header,
-    ...state.isAuth,
-    ...state.user
+    ...state.isAuth
   }
 }
 

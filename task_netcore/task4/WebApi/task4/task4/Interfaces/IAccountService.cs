@@ -5,8 +5,8 @@ namespace task4.Interfaces
 {
     public interface IAccountService
     {
-        Task<object> Register(RegisterViewModel model);
+        Task<ResultAccountModel> Register(RegisterViewModel model);
 
-        Task<object> Login(LoginViewModel model);
+        Task<ResultAccountModel> Login(LoginViewModel model);
     }
 }

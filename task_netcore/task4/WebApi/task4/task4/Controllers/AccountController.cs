@@ -23,14 +23,32 @@ namespace task4.Controllers
                 return BadRequest(ModelState);
             }
 
-            return (await _accountService.Register(model));
+            var resultModel = await _accountService.Register(model);
 
+            if(resultModel.Errors != null)
+            {
+                return BadRequest(resultModel.Errors);
+            }
+
+            return resultModel.Token;
         }
 
         [HttpPost]
         public async Task<object> Login([FromBody] LoginViewModel model)
         {
-            return (await _accountService.Login(model));
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var resultModel = await _accountService.Login(model);
+
+            if (resultModel.Errors != null)
+            {
+                return BadRequest(resultModel.Errors);
+            }
+
+            return resultModel.Token;
         }
     }
 }
