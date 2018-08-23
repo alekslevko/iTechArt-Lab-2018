@@ -84,7 +84,7 @@ namespace task4.Services
             throw new ApplicationException("UNKNOWN_ERROR");
         }
 
-        private object GenerateJwtToken(string userName, IdentityUser user)
+        private string GenerateJwtToken(string userName, IdentityUser user)
         {
             var claims = new List<Claim>
             {

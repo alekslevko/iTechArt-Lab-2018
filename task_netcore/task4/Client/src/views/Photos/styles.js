@@ -7,7 +7,7 @@ const styles = theme => ({
             width: '600px'
         },
         '@media (max-width: 650px)': {
-            width: '350px'
+            width: '300px'
         }
     }
 });

@@ -29,7 +29,7 @@ Movies.propTypes = {
     year: PropTypes.number,
     rating: PropTypes.number,
     picture: PropTypes.string,
-    id: PropTypes.number,
+    id: PropTypes.number
 };
 
 export default withStyles(styles)(Movies);

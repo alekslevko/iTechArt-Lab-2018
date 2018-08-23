@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
+using AutoMapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -49,6 +50,8 @@ namespace task4
 
             services.AddCors();
 
+            services.AddAutoMapper();
+
             AutoMapper.Mapper.Initialize(c =>
             {
                 c.CreateMap<CommentModel, Comment>();
@@ -68,10 +71,13 @@ namespace task4
                     cfg.SaveToken = true;
                     cfg.TokenValidationParameters = new TokenValidationParameters
                     {
-                        ValidIssuer = Configuration["JwtIssuer"],
+                        ValidateIssuer = true,
+                        ValidIssuer = Configuration["JwtIssuer"],                        
+                        ValidateAudience = true,
                         ValidAudience = Configuration["JwtIssuer"],
+                        ValidateLifetime = true,
                         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JwtKey"])),
-                        ClockSkew = TimeSpan.Zero
+                        ValidateIssuerSigningKey = true
                     };
                 });
 
@@ -84,8 +90,8 @@ namespace task4
             app.UseDefaultFiles();
             app.UseStaticFiles();
             app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod().AllowCredentials());
-            app.UseMvc();
             app.UseAuthentication();
+            app.UseMvc();            
         }
     }
 }

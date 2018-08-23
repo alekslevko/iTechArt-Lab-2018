@@ -34,8 +34,7 @@ class MoviesContainer extends React.Component{
             {this.state.movies.map(this.eachMovie)}
             </div>
         )
-    }
-    
+    }    
 }
 
 export default MoviesContainer;

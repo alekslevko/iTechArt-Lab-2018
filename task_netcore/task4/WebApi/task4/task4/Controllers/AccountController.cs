@@ -16,7 +16,7 @@ namespace task4.Controllers
         }
 
         [HttpPost]
-        public async Task<object> Register([FromBody]RegisterViewModel model)
+        public async Task<ActionResult> Register([FromBody]RegisterViewModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -30,11 +30,11 @@ namespace task4.Controllers
                 return BadRequest(resultModel.Errors);
             }
 
-            return resultModel.Token;
+            return Ok(resultModel.Token);
         }
 
         [HttpPost]
-        public async Task<object> Login([FromBody] LoginViewModel model)
+        public async Task<ActionResult> Login([FromBody] LoginViewModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -48,7 +48,7 @@ namespace task4.Controllers
                 return BadRequest(resultModel.Errors);
             }
 
-            return resultModel.Token;
+            return Ok(resultModel.Token);
         }
     }
 }

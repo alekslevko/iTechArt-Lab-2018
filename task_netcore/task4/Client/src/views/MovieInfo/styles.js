@@ -11,7 +11,7 @@ const styles = theme => ({
             width: '600px'
         },
         '@media (max-width: 650px)': {
-            width: '350px',
+            width: '300px',
             paddingRight: '0'
         }
     },
@@ -26,7 +26,7 @@ const styles = theme => ({
     name: {
         margin: '10px auto',
         fontSize: '28px',
-        color: '#696969',
+        color: '#696969'
     },
     addInfoContainer: {
         marginBottom: '10px'
@@ -55,7 +55,7 @@ const styles = theme => ({
             width: '600px'
         },
         '@media (max-width: 650px)': {
-            width: '350px',
+            width: '300px',
         }        
     }
 });

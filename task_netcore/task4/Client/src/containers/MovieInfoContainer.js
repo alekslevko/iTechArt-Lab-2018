@@ -2,6 +2,7 @@ import React from 'react';
 import MovieInfo from '../views/MovieInfo';
 import axios from 'axios';
 import PhotosContainer from './PhotosContainer';
+import CommentContainer from './CommentContainer';
 
 class MovieInfoContainer extends React.Component {
     state = {
@@ -32,6 +33,7 @@ class MovieInfoContainer extends React.Component {
                     picture={pictureUrl}
                     ratingChanged={this.ratingChanged} />
                 <PhotosContainer id={this.state.id} />
+                <CommentContainer id={this.state.id} />
             </div>
         )
     }

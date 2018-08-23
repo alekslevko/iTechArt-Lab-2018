@@ -1,4 +1,4 @@
-import { CLEAR_ERROR_MESSAGE, HEADER_HANDLE_CLOSE, HEADER_HANDLE_MENU, IS_AUTH, SHOW_ERROR_MESSAGE, LOG_OUT } from './types';
+import { CLEAR_ERROR_MESSAGE, HEADER_HANDLE_CLOSE, HEADER_HANDLE_MENU, IS_AUTH, SHOW_ERROR_MESSAGE, LOG_OUT, CLEAR_COMMENT_FIELD, ON_COMMENT_CHANGE } from './types';
 
 export const headerHandleMenu = (anchorEl) => {
   return {
@@ -35,5 +35,18 @@ export const showErrorMessage = (errorMessage) => {
 export const clearErrorMessage = () => {
   return {
     type: CLEAR_ERROR_MESSAGE
+  }
+}
+
+export const clearCommentField = () => {
+  return {
+    type: CLEAR_COMMENT_FIELD
+  }
+}
+
+export const onCommentChange = (comment) => {
+  return {
+    type: ON_COMMENT_CHANGE,
+    comment
   }
 }
