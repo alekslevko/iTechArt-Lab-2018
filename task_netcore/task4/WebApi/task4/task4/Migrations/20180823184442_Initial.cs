@@ -56,7 +56,8 @@ namespace task4.Migrations
                     Message = table.Column<string>(nullable: true),
                     MovieId = table.Column<int>(nullable: false),
                     UserId = table.Column<string>(nullable: true),
-                    UserName = table.Column<string>(nullable: true)
+                    UserName = table.Column<string>(nullable: true),
+                    Date = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {

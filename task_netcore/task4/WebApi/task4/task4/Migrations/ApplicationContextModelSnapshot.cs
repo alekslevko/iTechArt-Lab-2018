@@ -186,6 +186,8 @@ namespace task4.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<DateTime>("Date");
+
                     b.Property<string>("Message");
 
                     b.Property<int>("MovieId");

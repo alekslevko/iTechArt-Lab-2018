@@ -28,7 +28,10 @@ namespace task4.Services
         }
 
         public Comment AddComment(Comment comment)
-        {   
+        {
+            var user = _context.Users.FirstOrDefault(x => x.Id == comment.UserId);
+
+            comment.UserName = user.UserName;
             _context.Comments.Add(comment);
             _context.SaveChanges();
 

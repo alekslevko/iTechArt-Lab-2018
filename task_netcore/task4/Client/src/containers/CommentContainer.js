@@ -13,7 +13,7 @@ class CommentContainer extends React.Component {
         id: this.props.id
     }
 
-    /*componentDidMount() {
+    componentDidMount() {
         this.getComments();
     }
 
@@ -50,7 +50,7 @@ class CommentContainer extends React.Component {
             this.props.history.push(applicationRoutes.loginReduxFormRoute);
         }
         else {
-            send(comment);
+            this.send(comment);
         }        
     }    
 
@@ -59,8 +59,7 @@ class CommentContainer extends React.Component {
 			<Comment
 				userName={i.userName}
                 message={i.message}
-                onSubmit={this.onSubmit}
-                currentUser={currentUser} />
+                onSubmit={this.onSubmit} />
 		);
 	};  
     
@@ -71,16 +70,10 @@ class CommentContainer extends React.Component {
             </div>
         )
     }
-}*/
-
-render() {        
-    return (
-        <Comment />
-    )
-}
 }
 
-/*const mapDispatchToProps = (dispatch) => {
+
+const mapDispatchToProps = (dispatch) => {
     return {
         clearCommentField: bindActionCreators(clearCommentField, dispatch),
         onCommentChange: bindActionCreators(onCommentChange, dispatch)
@@ -92,8 +85,6 @@ const mapStateToProps = (state) => {
         ...state.isAuth,
         ...state.comment
     }
-}*/
+}
 
-//export default withRouter(connect(mapStateToProps, mapDispatchToProps)(CommentContainer));
-export default CommentContainer;
-
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(CommentContainer));

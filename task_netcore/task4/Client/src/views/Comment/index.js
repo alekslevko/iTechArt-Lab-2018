@@ -5,29 +5,27 @@ import SendIcon from '@material-ui/icons/Send';
 import { Typography, withStyles, Card, Button, TextField, Avatar } from '@material-ui/core';
 import PersonPinIcon from '@material-ui/icons/PersonPin';
 
-const Comment = ({ classes, message, userName, onSubmit }) => {
+const Comment = ({ classes, message, userName, onSubmit, comments }) => {
     return (
-        <Card onSubmit={onSubmit} className={classes.commentContainer}>
+        <Card className={classes.commentContainer}>
             <Typography className={classes.title}>
                 Tell your opinion about the film
             </Typography>
-            <form className={classes.commentForm}>
+            <form onSubmit={onSubmit} className={classes.commentForm}>
                 <TextField
                     required
                     label="Comment" />
-                <Button color='primary' variant='outlined' className={classes.button}>
+                <Button color='primary' variant='outlined' className={classes.button} type="submit">
                     <SendIcon className={classes.sendIcon} />
                 </Button>
             </form>
-            {
-                message && <Card>
-                    <Avatar>
-                        <PersonPinIcon />
-                    </Avatar>
-                    <Typography className={classes.userName}>{userName}</Typography>
-                    <Typography className={classes.message}>{message}</Typography>
-                </Card>
-            }
+            <Card>
+                <Avatar>
+                    <PersonPinIcon />
+                </Avatar>
+                <Typography className={classes.userName}>{userName}</Typography>
+                <Typography className={classes.message}>{message}</Typography>
+            </Card>
             {
                 !message && <Card className={classes.noComments}>
                     <Typography>
