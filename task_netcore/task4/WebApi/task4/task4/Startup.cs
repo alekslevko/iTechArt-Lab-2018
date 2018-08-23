@@ -10,7 +10,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using task4.Data;
+using task4.Data.Entities;
 using task4.Interfaces;
+using task4.Models;
 using task4.Services;
 
 namespace task4
@@ -41,9 +43,16 @@ namespace task4
 
             services.AddTransient<IAccountService, AccountService>();
 
+            services.AddTransient<ICommentService, CommentService>();
+
             services.AddMvc();
 
             services.AddCors();
+
+            AutoMapper.Mapper.Initialize(c =>
+            {
+                c.CreateMap<CommentModel, Comment>();
+            });
 
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
             services

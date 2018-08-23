@@ -8,7 +8,6 @@ namespace task4.Controllers
     {
         private readonly IPhotoService _photoService;
 
-
         public PhotoController(IPhotoService photoService)
         {
             _photoService = photoService;

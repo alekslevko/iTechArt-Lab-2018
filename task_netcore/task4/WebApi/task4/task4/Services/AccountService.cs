@@ -30,7 +30,7 @@ namespace task4.Services
         {  
             var user = new IdentityUser
             {
-                UserName = model.UserName,
+                UserName = model.UserName
             };
 
             var result = await _userManager.CreateAsync(user, model.Password);
