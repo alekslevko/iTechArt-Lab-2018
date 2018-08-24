@@ -1,9 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using System;
+﻿using AutoMapper;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using task4.Data;
 using task4.Data.Entities;
 using task4.Interfaces;
@@ -20,11 +17,11 @@ namespace task4.Services
             _context = context;
         }
 
-        public IQueryable<Comment> GetComments(int movieId)
+        public IList<CommentResponseModel> GetComments(int movieId)
         {
-            var comments = _context.Comments.Where(c => c.MovieId == movieId);
+            var comments = _context.Comments.Where(c => c.MovieId == movieId).ToList();
 
-            return comments;
+            return Mapper.Map<IList<Comment>, IList<CommentResponseModel>>(comments);
         }
 
         public Comment AddComment(Comment comment)

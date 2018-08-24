@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
-using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -47,7 +45,7 @@ namespace task4.Controllers
              var comment = Mapper.Map<CommentModel, Comment>(commentModel);
             
              comment.UserId = HttpContext.User.Claims.Where(claim => claim.Type == ClaimTypes.NameIdentifier).FirstOrDefault().Value;
-             comment.Date = DateTime.Now;
+             comment.Date = DateTime.Now.ToString();
              _commentService.AddComment(comment);
 
             return Ok(comment);

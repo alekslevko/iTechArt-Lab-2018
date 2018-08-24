@@ -52,9 +52,10 @@ namespace task4
 
             services.AddAutoMapper();
 
-            AutoMapper.Mapper.Initialize(c =>
+            Mapper.Initialize(c =>
             {
                 c.CreateMap<CommentModel, Comment>();
+                c.CreateMap<Comment, CommentResponseModel>();
             });
 
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();

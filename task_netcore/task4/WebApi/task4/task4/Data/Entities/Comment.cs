@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace task4.Data.Entities
+﻿namespace task4.Data.Entities
 {
     public class Comment
     {
@@ -14,6 +12,6 @@ namespace task4.Data.Entities
 
         public string UserName { get; set; }
 
-        public DateTime Date { get; set; }
+        public string Date { get; set; }
     }
 }

@@ -1,5 +1,5 @@
 const styles = theme => ({
-    commentContainer: {
+    commentFormContainer: {
         maxWidth: '1000px',
         margin: '20px auto',
         '@media (max-width: 1070px)': {
@@ -27,22 +27,6 @@ const styles = theme => ({
         '@media (max-width: 650px)': {
             fontSize: '18px'
         }
-    },
-    noComments: {
-        display: 'inline-block',
-        fontSize: '22px',
-        color: '#696969',
-        margin: '20px auto',
-        '@media (max-width: 650px)': {
-            fontSize: '16px',
-            width: '250px'
-        }
-    },
-    userName: {
-
-    },
-    message: {
-
     }
 });
 

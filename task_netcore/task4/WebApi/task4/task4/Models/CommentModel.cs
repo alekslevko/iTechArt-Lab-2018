@@ -1,5 +1,4 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace task4.Models
 {
@@ -10,7 +9,5 @@ namespace task4.Models
 
         [Required]
         public int MovieId { get; set; }
-
-        public DateTime Date { get; set; }
     }
 }

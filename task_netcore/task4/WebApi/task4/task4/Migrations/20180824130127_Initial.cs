@@ -57,7 +57,7 @@ namespace task4.Migrations
                     MovieId = table.Column<int>(nullable: false),
                     UserId = table.Column<string>(nullable: true),
                     UserName = table.Column<string>(nullable: true),
-                    Date = table.Column<DateTime>(nullable: false)
+                    Date = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {

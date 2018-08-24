@@ -44,9 +44,9 @@ export const clearCommentField = () => {
   }
 }
 
-export const onCommentChange = (comment) => {
+export const onCommentChange = (message) => {
   return {
     type: ON_COMMENT_CHANGE,
-    comment
+    message
   }
 }

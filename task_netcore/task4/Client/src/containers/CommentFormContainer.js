@@ -1,17 +1,35 @@
 import React from 'react';
-import Comment from '../views/Comment';
+import CommentForm from '../views/CommentForm';
 import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { onCommentChange, clearCommentField } from '../actions'
 import { applicationRoutes } from '../Constants';
 import axios from 'axios';
+import CommentContentContainer from './CommentContentContainer';
 
-class CommentContainer extends React.Component {
+class CommentFormContainer extends React.Component {
     state = {
         comments: [],
         id: this.props.id
     }
+    send = (comment) => {
+        axios.post(`http://localhost:50834/comment/addcomment`, comment, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + sessionStorage.getItem('token')
+            }
+        })
+            .then(response => {
+                this.props.clearCommentField();
+                this.getComments();
+            })
+    }
+
+    onCommentChange = (event) => {
+        let value = event.target.value;
+        this.props.onCommentChange(value);
+    };
 
     componentDidMount() {
         this.getComments();
@@ -24,26 +42,13 @@ class CommentContainer extends React.Component {
             })
     }
 
-    send = (comment) => {
-        axios.post(`http://localhost:50834/comment/addcomment`, comment )
-            .then(response => {
-                this.props.clearCommentField();
-                this.getComments();
-            })
-    }
-
-    onCommentChange = (event) => {
-        let value = event.target.value;
-        this.props.onCommentChange(value);
-    };
-
     onSubmit = (event) => {
         event.preventDefault();
 
         const { isAuth, message } = this.props;
         const comment = {
             message: message,
-            movieId: this.state.id
+            movieid: this.props.id
         }
 
         if (!isAuth) {
@@ -51,22 +56,18 @@ class CommentContainer extends React.Component {
         }
         else {
             this.send(comment);
-        }        
-    }    
+        }
+    }
 
-    eachComment = i => {
-		return (
-			<Comment
-				userName={i.userName}
-                message={i.message}
-                onSubmit={this.onSubmit} />
-		);
-	};  
-    
-    render() {        
+    render() {
         return (
-            <div> 
-            {this.state.comments.map(this.eachComment)}
+            <div>
+                <CommentForm
+                    onSubmit={this.onSubmit}
+                    onCommentChange={this.onCommentChange}
+                    message={this.props.message} />
+                <CommentContentContainer
+                     comments={this.state.comments} />
             </div>
         )
     }
@@ -87,4 +88,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(CommentContainer));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(CommentFormContainer));
