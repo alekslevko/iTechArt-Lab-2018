@@ -279,6 +279,23 @@ namespace task4.Migrations
                     );
                 });
 
+            modelBuilder.Entity("task4.Data.Entities.Rating", b =>
+                {
+                    b.Property<int>("RatingId")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("MovieId");
+
+                    b.Property<string>("UserId");
+
+                    b.Property<decimal>("Value");
+
+                    b.HasKey("RatingId");
+
+                    b.ToTable("Ratings");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole")

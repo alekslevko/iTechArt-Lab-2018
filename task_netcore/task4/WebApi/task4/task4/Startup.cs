@@ -46,6 +46,8 @@ namespace task4
 
             services.AddTransient<ICommentService, CommentService>();
 
+            services.AddTransient<IRatingService, RatingService>();
+
             services.AddMvc();
 
             services.AddCors();
@@ -56,6 +58,8 @@ namespace task4
             {
                 c.CreateMap<CommentModel, Comment>();
                 c.CreateMap<Comment, CommentResponseModel>();
+                c.CreateMap<RatingModel, Rating>();
+                c.CreateMap<Rating, RatingResponseModel>();
             });
 
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();

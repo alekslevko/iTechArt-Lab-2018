@@ -13,7 +13,6 @@ class CommentContentContainer extends React.Component {
     };
 
     render() {
-        console.log(this.state);
         return (
             <div>
                 {this.props.comments.map(this.eachComment)}

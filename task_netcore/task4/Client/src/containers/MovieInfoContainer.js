@@ -14,11 +14,11 @@ class MovieInfoContainer extends React.Component {
         axios.get(`http://localhost:50834/movie/getmovie/` + this.state.id)
             .then(response => {
                 this.setState({ movieInfo: response.data });
-            })
+            });
     }
 
     render() {
-        const { id, name, year, genre, description, country, rating, producer, pictureUrl } = this.state.movieInfo;
+        const { id, name, year, genre, description, country, producer, pictureUrl } = this.state.movieInfo;
         return (
             <div>
                 <MovieInfo
@@ -28,10 +28,8 @@ class MovieInfoContainer extends React.Component {
                     genre={genre}
                     description={description}
                     country={country}
-                    rating={rating}
                     producer={producer}
-                    picture={pictureUrl}
-                    ratingChanged={this.ratingChanged} />
+                    picture={pictureUrl} />
                 <PhotosContainer id={this.state.id} />
                 <CommentFormContainer id={this.state.id} />
             </div>

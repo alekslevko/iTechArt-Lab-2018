@@ -13,6 +13,8 @@ namespace task4.Data
 
         public DbSet<Comment> Comments { get; set; }
 
+        public DbSet<Rating> Ratings { get; set; }
+
         public ApplicationContext(DbContextOptions<ApplicationContext> options)
             : base(options)
         { }
@@ -28,6 +30,7 @@ namespace task4.Data
                     Country = "USA",
                     Producer = "Kevin Feige",
                     Year = 2011,
+                    Rating = 0,
                     Genre = "Fantasy",
                     PictureUrl = "https://media.kg-portal.ru/movies/t/thor/posters/thor_7.jpg",
                     Description = "An epic adventure takes place, both on our planet," +
@@ -44,6 +47,7 @@ namespace task4.Data
                     Country = "France",
                     Producer = "Virginie Besson-Silla",
                     Year = 2014,
+                    Rating = 0,
                     Genre = "Thriller",
                     PictureUrl = "http://lostfilm.info/images/poster/545/5447501.jpg",
                     Description = "Yesterday she was just a sexy blonde, and today is the most dangerous and" +
@@ -59,6 +63,7 @@ namespace task4.Data
                     Country = "UK",
                     Producer = "Joel Silver",
                     Year = 2011,
+                    Rating = 0,
                     Genre = "Thriller",
                     PictureUrl = "https://www.movieposter.com/posters/archive/main/119/MPW-59897",
                     Description = "This film tells about a man who, after awakening from a coma," +
@@ -74,6 +79,7 @@ namespace task4.Data
                     Country = "USA",
                     Producer = "Gene Klein",
                     Year = 2011,
+                    Rating = 0,
                     Genre = "Drama",
                     PictureUrl = "https://st.kp.yandex.net/im/poster/2/4/0/kinopoisk.ru-Suits-2405451.jpg",
                     Description = "Raging after an unsuccessful attempt to sell drugs," +
@@ -88,6 +94,7 @@ namespace task4.Data
                     Country = "USA",
                     Producer = "Martin McDonagh",
                     Year = 2017,
+                    Rating = 0,
                     Genre = "Drama",
                     PictureUrl = "https://fanart.tv/fanart/movies/359940/movieposter/three-billboards-outside-ebbing-missouri-5a84165c374d4.jpg",
                     Description = "A few months after the murder of the daughter of Mildred Hayes," +
@@ -104,6 +111,7 @@ namespace task4.Data
                     Country = "Sweden",
                     Producer = "Hannes Holm",
                     Year = 2015,
+                    Rating = 0,
                     Genre = "Drama",
                     PictureUrl = "http://cinecinema.org/uploads/posts/2016-07/1469737425_en-man-som-heter-ove.jpg",
                     Description = "Who is he, this Uwe? Aging thorough grumbler, reaching neighbors with endless trailers." +

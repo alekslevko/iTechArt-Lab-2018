@@ -8,5 +8,7 @@ namespace task4.Interfaces
         IQueryable<Movie> GetMovies();
 
         Movie GetMovieInfo(int id);
+
+        decimal GetAverageRating(int id);
     }
 }

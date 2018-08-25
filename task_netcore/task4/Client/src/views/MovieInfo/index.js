@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './styles';
 import { Typography, withStyles, Card } from '@material-ui/core';
-import ReactStars from 'react-stars';
+import RatingContainer from '../../containers/RatingContainer';
 
-const MovieInfo = ({ classes, year, name, genre, rating, picture, country, producer, description, ratingChanged }) => {
+const MovieInfo = ({ classes, year, name, genre, picture, country, producer, description, id }) => {
     return (
         <div className={classes.movieInfoContainer}>
             <Card className={classes.card}>
@@ -15,14 +15,8 @@ const MovieInfo = ({ classes, year, name, genre, rating, picture, country, produ
                     <Typography className={classes.addInfo}>Year: {year}</Typography>
                     <Typography className={classes.addInfo}>Country: {country}</Typography>
                     <Typography className={classes.addInfo}>Producer: {producer}</Typography>
-                    <Typography className={classes.addInfo}>Raiting: {rating === 0 && 'No rating'}
-                        {rating !== 0 && rating}
-                        <ReactStars
-                            count={10}
-                            onChange={ratingChanged}
-                            size={24}
-                            color2={'#ffd700'} />
-                    </Typography>
+                    <RatingContainer
+                        id={id} />
                 </div>
                 <Typography className={classes.description}>{description}</Typography>
             </Card>

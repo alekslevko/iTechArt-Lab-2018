@@ -10,7 +10,7 @@ using task4.Data;
 namespace task4.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20180824130127_Initial")]
+    [Migration("20180825161743_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -279,6 +279,23 @@ namespace task4.Migrations
                         new { Id = 23, MovieId = 6, pictureUrl = "https://www.kino-teatr.ru/movie/kadr/120115/665898.jpg" },
                         new { Id = 24, MovieId = 6, pictureUrl = "https://www.kino-teatr.ru/movie/kadr/120115/665897.jpg" }
                     );
+                });
+
+            modelBuilder.Entity("task4.Data.Entities.Rating", b =>
+                {
+                    b.Property<int>("RatingId")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("MovieId");
+
+                    b.Property<string>("UserId");
+
+                    b.Property<decimal>("Value");
+
+                    b.HasKey("RatingId");
+
+                    b.ToTable("Ratings");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

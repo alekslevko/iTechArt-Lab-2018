@@ -38,7 +38,6 @@ class RegisterReduxFormContainer extends React.Component {
   };
 
   onSuccess = (response, user) => {
-    console.log(response);
     sessionStorage.setItem('token', response.data);
     sessionStorage.setItem('user', user.username)
     this.props.isAuth();
