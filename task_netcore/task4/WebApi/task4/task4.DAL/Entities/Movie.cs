@@ -1,8 +1,10 @@
-﻿namespace task4.Data.Entities
+﻿using System.Collections.Generic;
+
+namespace task4.DAL.Entities
 {
     public class Movie
     {
-        public int Id { get; set; }
+        public int MovieId { get; set; }
 
         public string Name { get; set; }
 
@@ -19,5 +21,11 @@
         public string Producer { get; set; }
 
         public string Description { get; set; }
+
+        public ICollection<Comment> Comments { get; set; }
+
+        public ICollection<Photo> Photos { get; set; }
+
+        public ICollection<Rating> Ratings { get; set; }
     }
 }

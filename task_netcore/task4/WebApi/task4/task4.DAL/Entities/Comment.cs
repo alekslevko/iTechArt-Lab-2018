@@ -1,8 +1,8 @@
-﻿namespace task4.Data.Entities
+﻿namespace task4.DAL.Entities
 {
     public class Comment
     {
-        public int Id { get; set; }
+        public int CommentId { get; set; }
 
         public string Message { get; set; }
 
@@ -10,7 +10,7 @@
 
         public string UserId { get; set; }
 
-        public string UserName { get; set; }
+        public User User { get; set; }
 
         public string Date { get; set; }
     }
