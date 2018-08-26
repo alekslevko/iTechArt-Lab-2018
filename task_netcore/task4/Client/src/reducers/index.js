@@ -4,13 +4,15 @@ import headerReducer from './HeaderReducer';
 import authorizationReducer from './AuthorizationReducer';
 import errorReducer from './ErrorReducer';
 import commentReducer from './CommentReducer';
+import errorRatingReducer from './ErrorRatingReducer'
 
 const reducer = combineReducers({
     comment: commentReducer,
     isAuth: authorizationReducer,
     header: headerReducer,
     form: reduxFormReducer,
-    errors: errorReducer    
+    errors: errorReducer,
+    errorsRating: errorRatingReducer  
 });
 
 export default reducer;

@@ -29,9 +29,14 @@ namespace task4.Controllers
         {
             var rating = Mapper.Map<RatingModel, Rating>(ratingModel);
             rating.UserId = HttpContext.User.Claims.Where(claim => claim.Type == ClaimTypes.NameIdentifier).FirstOrDefault().Value;
-            _ratingService.AddRating(rating);
+            var response = _ratingService.AddRating(rating);
+            
+            if(response.Errors != null)
+            {
+                return BadRequest(response.Errors);
+            }
 
-            return Ok(rating);
+            return Ok(response);
         }
 
         [Authorize]

@@ -9,7 +9,7 @@ namespace task4.Interfaces
 {
     public interface IRatingService
     {
-        Rating AddRating(Rating rating);
+        RatingResponseModel AddRating(Rating rating);
 
         RatingResponseModel GetUserRating(string userId, int movieId);
 

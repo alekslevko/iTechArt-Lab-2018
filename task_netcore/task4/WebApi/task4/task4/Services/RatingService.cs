@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
@@ -20,12 +21,23 @@ namespace task4.Services
             _context = context;
         }
 
-        public Rating AddRating(Rating rating)
-        {                     
+        public RatingResponseModel AddRating(Rating rating)
+        {
+            var rat = _context.Ratings.FirstOrDefault(r => r.MovieId == rating.MovieId && r.UserId == rating.UserId);
+            var ratingResponceModel = new RatingResponseModel();
+
+            if(rat != null)
+            {
+                ratingResponceModel.Errors = new List<string>();
+                ratingResponceModel.Errors.Add("You can't rate again");
+
+                return ratingResponceModel;
+            }
+
             _context.Ratings.Add(rating);
             _context.SaveChanges();
 
-            return rating;
+            return ratingResponceModel;
         }
 
         public RatingResponseModel GetUserRating(string userId, int movieId)

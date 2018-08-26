@@ -7,6 +7,15 @@ const styles = theme => ({
             fontSize: '14px',
             padding: '0 10px'
         }
+    },
+    errorMessage: {
+        fontSize: '18px',
+        color: 'red',
+        textAlign: 'left',
+        '@media (max-width: 650px)': {
+            fontSize: '14px',
+            padding: '0 10px'
+        }
     }
 });
 

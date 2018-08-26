@@ -19,6 +19,7 @@ class MovieInfoContainer extends React.Component {
 
     render() {
         const { id, name, year, genre, description, country, producer, pictureUrl } = this.state.movieInfo;
+
         return (
             <div>
                 <MovieInfo

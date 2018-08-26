@@ -32,10 +32,18 @@ namespace task4.Services
         public decimal GetAverageRating(int id)
         {
             var movie = _context.Movies.FirstOrDefault(x => x.Id == id);
-
+            var rating = _context.Ratings.FirstOrDefault(x => x.MovieId == id);
             if(movie != null)
             {
-                movie.Rating = _context.Ratings.Where(x => x.MovieId == id).Average(x => x.Value);
+                if(rating != null)
+                {
+                    movie.Rating = _context.Ratings.Where(x => x.MovieId == id).Average(x => x.Value);
+                }
+                else
+                {
+                    movie.Rating = 0;
+                }
+               
             }
            
             _context.SaveChanges();
