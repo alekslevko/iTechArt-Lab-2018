@@ -8,17 +8,13 @@ import { applicationRoutes } from '../Constants';
 import axios from 'axios';
 
 class RatingContainer extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            rating: {
-                alreadyRated: false
-            },
-            averageRating: 0,
-            id: this.props.match.params.id
-        };
-    }
+    state = {
+        rating: {
+            alreadyRated: false
+        },
+        averageRating: 0,
+        id: this.props.match.params.id
+    };
 
     componentDidMount() {
         this.getAverageRating();
@@ -48,7 +44,7 @@ class RatingContainer extends React.Component {
                     this.getUserRating();
                 }
             })
-    }
+    }    
 
     onFail = (errors) => {
         let value;

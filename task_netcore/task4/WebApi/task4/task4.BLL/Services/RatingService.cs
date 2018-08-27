@@ -12,11 +12,13 @@ namespace task4.BLL.Services
     {
         private readonly IUnitOfWork dataBase;
         private readonly IMapper _mapper;
+        private readonly IMovieService _movieService;
 
         public RatingService(IUnitOfWork uow, IMapper mapper, IMovieService movieService)
         {
             dataBase = uow;
             _mapper = mapper;
+            _movieService = movieService;
         }
 
         public async Task<RatingResultModel> AddRatingAsync(RatingModel ratingModel)
@@ -38,6 +40,8 @@ namespace task4.BLL.Services
 
             await dataBase.RatingRepository.AddRatingAsync(rating);
             await dataBase.SaveAsync();
+
+            await _movieService.UpdateMovieRatingAsync(rating.MovieId);
 
             return ratingResultModel;
         }
