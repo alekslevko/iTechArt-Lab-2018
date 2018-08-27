@@ -14,7 +14,7 @@ class CommentFormContainer extends React.Component {
         id: this.props.id
     }
     send = (comment) => {
-        axios.post(`http://localhost:50834/comment/addcomment`, comment, {
+        axios.post(`http://localhost:49448/comment/addcomment`, comment, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + sessionStorage.getItem('token')
@@ -36,7 +36,7 @@ class CommentFormContainer extends React.Component {
     }
 
     getComments = () => {
-        axios.get(`http://localhost:50834/comment/getcomments/` + this.state.id)
+        axios.get(`http://localhost:49448/comment/getcomments/` + this.state.id)
             .then(response => {
                 this.setState({ comments: response.data });
             })

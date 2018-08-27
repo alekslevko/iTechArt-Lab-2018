@@ -25,5 +25,10 @@ namespace task4.DAL.Repositories
         {
             return await _context.Ratings.FirstOrDefaultAsync(r => r.MovieId == movieId && r.UserId == userId);
         }
+
+        public async Task AddRatingAsync(Rating rating)
+        {
+            await _context.AddAsync(rating);
+        }
     }
 }

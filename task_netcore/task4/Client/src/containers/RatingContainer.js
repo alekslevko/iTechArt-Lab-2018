@@ -12,7 +12,9 @@ class RatingContainer extends React.Component {
         super(props);
 
         this.state = {
-            rating: {},
+            rating: {
+                alreadyRated: false
+            },
             averageRating: 0,
             id: this.props.match.params.id
         };
@@ -27,7 +29,7 @@ class RatingContainer extends React.Component {
     }
 
     getUserRating = () => {
-        axios.get(`http://localhost:50834/rating/getuserrating/` + this.state.id, {
+        axios.get(`http://localhost:49448/rating/getuserrating/` + this.state.id, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + sessionStorage.getItem('token')
@@ -39,7 +41,7 @@ class RatingContainer extends React.Component {
     }
 
     getAverageRating = () => {
-        axios.get(`http://localhost:50834/rating/getaveragerating/` + this.state.id)
+        axios.get(`http://localhost:49448/rating/getaveragerating/` + this.state.id)
             .then(response => {
                 this.setState({ averageRating: response.data });
                 if (this.props.isAuth) {
@@ -72,7 +74,7 @@ class RatingContainer extends React.Component {
             value: newRating
         }
 
-        axios.post(`http://localhost:50834/rating/addrating`, sendRating, {
+        axios.post(`http://localhost:49448/rating/addrating`, sendRating, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + sessionStorage.getItem('token')
@@ -93,7 +95,7 @@ class RatingContainer extends React.Component {
         const { value, alreadyRated } = this.state.rating;
         const { averageRating } = this.state;
         const { haveErrors, errorMessage } = this.props;
-
+        console.log(this.state);
         return (
             <Rating
                 haveErrors={haveErrors}

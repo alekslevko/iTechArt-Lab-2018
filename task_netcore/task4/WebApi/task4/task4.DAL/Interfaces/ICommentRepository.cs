@@ -7,5 +7,7 @@ namespace task4.DAL.Interfaces
     public interface ICommentRepository
     {
         Task<IList<Comment>> GetCommentsByMovieIdAsync(int movieId);
+
+        Task AddCommentAsync(Comment comment);
     }
 }

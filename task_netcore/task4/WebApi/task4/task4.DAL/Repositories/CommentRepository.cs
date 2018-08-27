@@ -21,5 +21,10 @@ namespace task4.DAL.Repositories
         {
             return await _context.Comments.Include(c => c.User).Where(c => c.MovieId == movieId).ToListAsync();
         }
+
+        public async Task AddCommentAsync(Comment comment)
+        {
+            await _context.AddAsync(comment);
+        }
     }
 }

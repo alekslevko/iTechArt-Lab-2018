@@ -6,20 +6,21 @@ import CommentFormContainer from './CommentFormContainer';
 
 class MovieInfoContainer extends React.Component {
     state = {
-        movieInfo: [],
+        movieInfo: {
+            photos: []
+        },
         id: this.props.match.params.id
     }
 
     componentDidMount() {
-        axios.get(`http://localhost:50834/movie/getmovie/` + this.state.id)
+        axios.get(`http://localhost:49448/movie/getmovie/` + this.state.id)
             .then(response => {
                 this.setState({ movieInfo: response.data });
             });
     }
 
     render() {
-        const { id, name, year, genre, description, country, producer, pictureUrl } = this.state.movieInfo;
-
+        const { id, name, year, genre, description, country, producer, pictureUrl, photos } = this.state.movieInfo;
         return (
             <div>
                 <MovieInfo
@@ -31,7 +32,9 @@ class MovieInfoContainer extends React.Component {
                     country={country}
                     producer={producer}
                     picture={pictureUrl} />
-                <PhotosContainer id={this.state.id} />
+                <PhotosContainer
+                    id={this.state.id}
+                    photos={photos} />
                 <CommentFormContainer id={this.state.id} />
             </div>
         )

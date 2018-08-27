@@ -12,12 +12,12 @@ import axios from 'axios';
 class RegisterReduxFormContainer extends React.Component {
   handleSubmit = (values) => {
     const user = {
-      username: values.userName,
-      password: values.password
+      userName: values.userName,
+      passWord: values.password
     };
 
     if (this.currentPath() === applicationRoutes.registerReduxFormRoute) {
-      axios.post(`http://localhost:50834/account/register`, user)
+      axios.post(`http://localhost:49448/account/register`, user)
         .then(response => {
           this.onSuccess(response, user);
         })
@@ -27,7 +27,7 @@ class RegisterReduxFormContainer extends React.Component {
     }
 
     if (this.currentPath() === applicationRoutes.loginReduxFormRoute) {
-      axios.post(`http://localhost:50834/account/login`, user)
+      axios.post(`http://localhost:49448/account/login`, user)
         .then(response => {
           this.onSuccess(response, user);
         })
@@ -39,7 +39,7 @@ class RegisterReduxFormContainer extends React.Component {
 
   onSuccess = (response, user) => {
     sessionStorage.setItem('token', response.data);
-    sessionStorage.setItem('user', user.username)
+    sessionStorage.setItem('user', user.userName)
     this.props.isAuth();
     this.props.clearErrorMessage();
     this.props.history.push(

@@ -8,7 +8,7 @@ class MoviesContainer extends React.Component{
     }
 
     componentDidMount() {
-        axios.get(`http://localhost:50834/movie/getmovies`)
+        axios.get(`http://localhost:49448/movie/getmovies`)
           .then(response => {
             this.setState({ movies: response.data });
           })
@@ -19,7 +19,7 @@ class MoviesContainer extends React.Component{
 			<MoviesAll
 				name={i.name}
 				picture={i.pictureUrl}
-                id={i.id}
+                id={i.movieId}
                 country={i.country}
                 rating={i.rating}
                 genre={i.genre}

@@ -11,5 +11,7 @@ namespace task4.DAL.Interfaces
         Task<decimal> GetAverageRatingByMovieIdAsync(int movieId);
 
         Task<Rating> GetUserRatingByMovieIdandUserIdAsync(int movieId, string userId);
+
+        Task AddRatingAsync(Rating rating);
     }
 }
