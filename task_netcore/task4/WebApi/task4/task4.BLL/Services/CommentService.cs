@@ -41,7 +41,7 @@ namespace task4.BLL.Services
             comment.User = user;
             comment.Movie = movie;
 
-            dataBase.CommentRepository.Add(comment);
+            dataBase.CommentRepository.Insert(comment);
             dataBase.Commit();
         }
     }

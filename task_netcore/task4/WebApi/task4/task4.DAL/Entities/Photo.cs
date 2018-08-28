@@ -4,10 +4,10 @@
     {
         public int Id { get; set; }
 
-        public string pictureUrl { get; set; }
+        public string PictureUrl { get; set; }
 
         public int MovieId { get; set; }
 
-        public Movie Movie { get; set; }
+        public virtual Movie Movie { get; set; }
     }
 }

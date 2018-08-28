@@ -224,7 +224,7 @@ namespace task4.DAL.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    pictureUrl = table.Column<string>(nullable: true),
+                    PictureUrl = table.Column<string>(nullable: true),
                     MovieId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -280,7 +280,7 @@ namespace task4.DAL.Migrations
 
             migrationBuilder.InsertData(
                 table: "Photos",
-                columns: new[] { "Id", "MovieId", "pictureUrl" },
+                columns: new[] { "Id", "MovieId", "PictureUrl" },
                 values: new object[,]
                 {
                     { 1, 1, "https://www.kino-teatr.ru/movie/kadr/48244/208943.jpg" },

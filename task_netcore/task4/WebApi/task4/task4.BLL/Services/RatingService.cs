@@ -39,7 +39,7 @@ namespace task4.BLL.Services
             rating.User = dataBase.UserRepository.GetById(ratingModel.UserId);
             rating.Movie = dataBase.MovieRepository.GetById(ratingModel.MovieId);
 
-            dataBase.RatingRepository.Add(rating);
+            dataBase.RatingRepository.Insert(rating);
             dataBase.Commit();
 
             _movieService.UpdateMovieRating(rating.Movie.Id);
