@@ -16,6 +16,7 @@ using task4.DAL.EF;
 using task4.DAL.Entities;
 using task4.DAL.Interfaces;
 using task4.DAL.Repositories;
+using static task4.DAL.Entities.User;
 
 namespace task4.WEB
 {
@@ -34,7 +35,7 @@ namespace task4.WEB
             services.AddDbContext<ApplicationContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddIdentity<User, IdentityRole>()
+            services.AddIdentity<User, Role>()
                 .AddEntityFrameworkStores<ApplicationContext>()
                 .AddEntityFrameworkStores<ApplicationContext>()
                 .AddDefaultTokenProviders();

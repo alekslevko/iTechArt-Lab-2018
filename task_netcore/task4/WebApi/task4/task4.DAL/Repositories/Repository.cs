@@ -26,11 +26,6 @@ namespace task4.DAL.Repositories
             return _dbSet.Find(id);
         }
 
-        public T GetById(string id)
-        {
-            return _dbSet.Find(id);
-        }
-
         public void Add(T TEntity)
         {
             _dbSet.Add(TEntity);

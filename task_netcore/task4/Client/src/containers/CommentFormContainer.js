@@ -3,16 +3,16 @@ import CommentForm from '../views/CommentForm';
 import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { onCommentChange, clearCommentField } from '../actions'
+import { onCommentChange, clearCommentField, loadComments } from '../actions'
 import { applicationRoutes } from '../Constants';
 import axios from 'axios';
 import CommentContentContainer from './CommentContentContainer';
 
 class CommentFormContainer extends React.Component {
     state = {
-        comments: [],
         id: this.props.id
-    }
+    };
+
     send = (comment) => {
         axios.post(`http://localhost:49448/comment/addcomment`, comment, {
             headers: {
@@ -38,7 +38,7 @@ class CommentFormContainer extends React.Component {
     getComments = () => {
         axios.get(`http://localhost:49448/comment/getcomments/` + this.state.id)
             .then(response => {
-                this.setState({ comments: response.data });
+                this.props.loadComments(response.data);
             })
     }
 
@@ -48,7 +48,7 @@ class CommentFormContainer extends React.Component {
         const { isAuth, message } = this.props;
         const comment = {
             message: message,
-            movieid: this.props.id
+            movieid: this.state.id
         }
 
         if (!isAuth) {
@@ -60,14 +60,16 @@ class CommentFormContainer extends React.Component {
     }
 
     render() {
+        const {message, comments} = this.props;
+
         return (
             <div>
                 <CommentForm
                     onSubmit={this.onSubmit}
                     onCommentChange={this.onCommentChange}
-                    message={this.props.message} />
+                    message={message} />
                 <CommentContentContainer
-                     comments={this.state.comments} />
+                     comments={comments} />
             </div>
         )
     }
@@ -77,14 +79,16 @@ class CommentFormContainer extends React.Component {
 const mapDispatchToProps = (dispatch) => {
     return {
         clearCommentField: bindActionCreators(clearCommentField, dispatch),
-        onCommentChange: bindActionCreators(onCommentChange, dispatch)
+        onCommentChange: bindActionCreators(onCommentChange, dispatch),
+        loadComments: bindActionCreators(loadComments, dispatch)
     }
 };
 
 const mapStateToProps = (state) => {
     return {
         ...state.isAuth,
-        ...state.comment
+        ...state.commentForm,
+        ...state.comments
     }
 }
 

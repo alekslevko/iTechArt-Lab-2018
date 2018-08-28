@@ -23,7 +23,7 @@ namespace task4.BLL.Services
 
         public RatingResultModel AddRating(RatingModel ratingModel)
         {
-            var userRating = dataBase.RatingRepository.GetQueryableAll().FirstOrDefault(r => r.UserId == ratingModel.UserId && r.MovieId == ratingModel.MovieId);
+            var userRating = dataBase.RatingRepository.GetQueryableAll().FirstOrDefault(r => r.User.Id == ratingModel.UserId && r.Movie.Id == ratingModel.MovieId);
             var ratingResultModel = new RatingResultModel();
 
             if (userRating != null)
@@ -37,32 +37,39 @@ namespace task4.BLL.Services
             var rating = _mapper.Map<RatingModel, Rating>(ratingModel);
 
             rating.User = dataBase.UserRepository.GetById(ratingModel.UserId);
+            rating.Movie = dataBase.MovieRepository.GetById(ratingModel.MovieId);
 
             dataBase.RatingRepository.Add(rating);
             dataBase.Commit();
 
-            _movieService.UpdateMovieRating(rating.MovieId);
+            _movieService.UpdateMovieRating(rating.Movie.Id);
 
             return ratingResultModel;
         }
 
-        public RatingResultModel GetUserRating(string userId, int movieId)
+        public RatingResultModel GetUserRating(int userId, int movieId)
         {
-            var rating = dataBase.RatingRepository.GetQueryableAll().FirstOrDefault(r => r.UserId == userId && r.MovieId == movieId);
+            var rating = dataBase.RatingRepository.GetQueryableAll().FirstOrDefault(r => r.User.Id == userId && r.Movie.Id == movieId);
             var movie = dataBase.MovieRepository.GetById(movieId);
             var ratingResultModel = _mapper.Map<Rating, RatingResultModel>(rating);
 
             if (rating != null && movie != null)
             {
                 ratingResultModel.AlreadyRated = true;
+
+                return ratingResultModel;
             }
+
+            ratingResultModel = new RatingResultModel();
+
+            ratingResultModel.AlreadyRated = false;
 
             return ratingResultModel;
         }
 
         public decimal GetAverageRating(int movieId)
         {
-            var ratings = dataBase.RatingRepository.GetQueryableAll().Where(r => r.MovieId == movieId).ToList();
+            var ratings = dataBase.RatingRepository.GetQueryableAll().Where(r => r.Movie.Id == movieId).ToList();
 
             if (ratings.Count != 0)
             {

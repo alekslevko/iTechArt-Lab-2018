@@ -21,7 +21,7 @@ namespace task4.BLL.Services
 
         public IList<PhotoModel> GetPhotos(int movieId)
         {
-            var photos = dataBase.PhotoRepository.GetQueryableAll().Where(p => p.MovieId == movieId).ToList();
+            var photos = dataBase.PhotoRepository.GetQueryableAll().Where(p => p.Movie.Id == movieId).ToList();
             var photosModel = _mapper.Map<IList<Photo>, IList<PhotoModel>>(photos);
 
             return photosModel;

@@ -4,7 +4,7 @@ namespace task4.BLL.Models
 {
     public class MovieInfoModel
     {
-        public int MovieId { get; set; }
+        public int Id { get; set; }
 
         public string Name { get; set; }
 

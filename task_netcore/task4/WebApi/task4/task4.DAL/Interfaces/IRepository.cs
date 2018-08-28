@@ -8,8 +8,6 @@ namespace task4.DAL.Interfaces
 
         T GetById(int id);
 
-        T GetById(string id);
-
         void Add(T TEntity);
 
         void Update(T TEntity);

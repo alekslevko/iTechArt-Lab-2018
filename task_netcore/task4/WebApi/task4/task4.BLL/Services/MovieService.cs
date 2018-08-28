@@ -32,9 +32,17 @@ namespace task4.BLL.Services
         {
             var movie = dataBase.MovieRepository.GetQueryableAll().Select(x => new Movie()
             {
-                MovieId = x.MovieId, Country = x.Country, Description = x.Description, Genre = x.Genre, Name = x.Name,
-                PictureUrl = x.PictureUrl, Photos = x.Photos, Producer = x.Producer, Rating = x.Rating, Year = x.Year
-            }).FirstOrDefault(x => x.MovieId == movieId);
+                Id = x.Id,
+                Country = x.Country,
+                Description = x.Description,
+                Genre = x.Genre,
+                Name = x.Name,
+                PictureUrl = x.PictureUrl,
+                Photos = x.Photos,
+                Producer = x.Producer,
+                Rating = x.Rating,
+                Year = x.Year
+            }).FirstOrDefault(x => x.Id == movieId);
 
             var movieInfoModel = _mapper.Map<Movie, MovieInfoModel>(movie);
 
@@ -44,7 +52,7 @@ namespace task4.BLL.Services
         public decimal UpdateMovieRating(int movieId)
         {
             var movie = dataBase.MovieRepository.GetById(movieId);
-            var rating = dataBase.RatingRepository.GetQueryableAll().Where(r => r.MovieId == movieId).Average(r => r.Value);
+            var rating = dataBase.RatingRepository.GetQueryableAll().Where(r => r.Movie.Id == movieId).Average(r => r.Value);
 
             if (movie != null)
             {

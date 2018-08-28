@@ -15,7 +15,6 @@ const Rating = ({ classes, onRatingChange, alreadyRated, value, averageRating, h
                 count={10}
                 onChange={onRatingChange}
                 size={24}
-                edit={!alreadyRated}
                 value={averageRating}
                 color2={'#ffd700'} />
             {

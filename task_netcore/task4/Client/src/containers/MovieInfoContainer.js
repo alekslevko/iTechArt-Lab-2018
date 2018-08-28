@@ -3,24 +3,25 @@ import MovieInfo from '../views/MovieInfo';
 import axios from 'axios';
 import PhotosContainer from './PhotosContainer';
 import CommentFormContainer from './CommentFormContainer';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { loadMovieInfo } from '../actions/index';
 
 class MovieInfoContainer extends React.Component {
     state = {
-        movieInfo: {
-            photos: []
-        },
         id: this.props.match.params.id
     }
 
     componentDidMount() {
         axios.get(`http://localhost:49448/movie/getmovie/` + this.state.id)
             .then(response => {
-                this.setState({ movieInfo: response.data });
+                this.props.loadMovieInfo(response.data);
             });
     }
 
     render() {
-        const { id, name, year, genre, description, country, producer, pictureUrl, photos } = this.state.movieInfo;
+        const { id, name, year, genre, description, country, producer, pictureUrl, photos } = this.props.movieInfo;
+
         return (
             <div>
                 <MovieInfo
@@ -42,4 +43,16 @@ class MovieInfoContainer extends React.Component {
 
 }
 
-export default MovieInfoContainer;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        loadMovieInfo: bindActionCreators(loadMovieInfo, dispatch)
+    }
+};
+
+const mapStateToProps = (state) => {
+    return {
+        ...state.movieInfo
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MovieInfoContainer);

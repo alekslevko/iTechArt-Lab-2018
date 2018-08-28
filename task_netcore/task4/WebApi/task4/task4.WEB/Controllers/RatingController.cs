@@ -6,6 +6,7 @@ using task4.BLL.Interfaces;
 using task4.BLL.Models;
 using task4.WEB.Models;
 using task4.WEB.Common;
+using System;
 
 namespace task4.WEB.Controllers
 {
@@ -27,7 +28,7 @@ namespace task4.WEB.Controllers
         {
             var rating = _mapper.Map<RatingViewModel, RatingModel>(ratingViewModel);
 
-            rating.UserId = HttpContext.GetUserIdByHttpContext();
+            rating.UserId = Convert.ToInt32(HttpContext.GetUserIdByHttpContext());
 
             var ratingResult = _ratingService.AddRating(rating);
 
@@ -43,7 +44,7 @@ namespace task4.WEB.Controllers
         [HttpGet("{id}")]
         public IActionResult GetUserRating(int id)
         {
-            var userId = HttpContext.GetUserIdByHttpContext();
+            var userId = Convert.ToInt32(HttpContext.GetUserIdByHttpContext());
             var responceRaitingModel = _ratingService.GetUserRating(userId, id);
 
             return Ok(responceRaitingModel);

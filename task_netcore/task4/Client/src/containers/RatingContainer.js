@@ -3,16 +3,12 @@ import { withRouter } from 'react-router-dom';
 import Rating from '../views/Rating';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { showErrorMessage, clearErrorMessage } from '../actions';
+import { showErrorMessage, clearErrorMessage, loadAverageRating, loadUserRating } from '../actions';
 import { applicationRoutes } from '../Constants';
 import axios from 'axios';
 
 class RatingContainer extends React.Component {
     state = {
-        rating: {
-            alreadyRated: false
-        },
-        averageRating: 0,
         id: this.props.match.params.id
     };
 
@@ -32,14 +28,14 @@ class RatingContainer extends React.Component {
             }
         })
             .then(response => {
-                this.setState({ rating: response.data });
+                this.props.loadUserRating(response.data);
             })
     }
 
     getAverageRating = () => {
         axios.get(`http://localhost:49448/rating/getaveragerating/` + this.state.id)
             .then(response => {
-                this.setState({ averageRating: response.data });
+                this.props.loadAverageRating(response.data);
                 if (this.props.isAuth) {
                     this.getUserRating();
                 }
@@ -83,15 +79,14 @@ class RatingContainer extends React.Component {
             .catch(errors => {
                 this.onFail(errors);
             });
-
     }
 
-
     render() {
-        const { value, alreadyRated } = this.state.rating;
-        const { averageRating } = this.state;
+        const { value, alreadyRated } = this.props.rating;
+        const { averageRating } = this.props;
         const { haveErrors, errorMessage } = this.props;
-        
+        console.log(this.props)
+
         return (
             <Rating
                 haveErrors={haveErrors}
@@ -107,14 +102,18 @@ class RatingContainer extends React.Component {
 const mapDispatchToProps = (dispatch) => {
     return {
         showErrorMessage: bindActionCreators(showErrorMessage, dispatch),
-        clearErrorMessage: bindActionCreators(clearErrorMessage, dispatch)
+        clearErrorMessage: bindActionCreators(clearErrorMessage, dispatch),
+        loadUserRating: bindActionCreators(loadUserRating, dispatch),
+        loadAverageRating: bindActionCreators(loadAverageRating, dispatch),
     }
 };
 
 const mapStateToProps = (state) => {
     return {
         ...state.isAuth,
-        ...state.errorsRating
+        ...state.errorsRating,
+        ...state.userRating,
+        ...state.averageRating
     }
 }
 

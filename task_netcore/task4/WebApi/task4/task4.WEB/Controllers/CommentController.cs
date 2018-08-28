@@ -46,7 +46,7 @@ namespace task4.WEB.Controllers
 
             var comment = _mapper.Map<CommentViewModel, CommentModel>(commentViewModel);
 
-            comment.UserId = HttpContext.GetUserIdByHttpContext();
+            comment.UserId = Convert.ToInt32(HttpContext.GetUserIdByHttpContext());
             comment.Date = DateTime.Now.ToString();
 
             _commentService.AddComment(comment);

@@ -4,7 +4,7 @@ const InitialState = {
     message: ''
 }
 
-const commentReducer = (state = InitialState, action) => {
+const commentFormReducer = (state = InitialState, action) => {
     switch (action.type) {
         case ON_COMMENT_CHANGE:
             return {
@@ -20,4 +20,4 @@ const commentReducer = (state = InitialState, action) => {
     }
 }
 
-export default (commentReducer);
+export default (commentFormReducer);
