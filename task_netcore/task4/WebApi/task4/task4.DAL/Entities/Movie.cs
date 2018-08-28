@@ -22,10 +22,10 @@ namespace task4.DAL.Entities
 
         public string Description { get; set; }
 
-        public ICollection<Comment> Comments { get; set; }
+        public virtual ICollection<Comment> Comments { get; set; }
 
-        public ICollection<Photo> Photos { get; set; }
+        public virtual ICollection<Photo> Photos { get; set; }
 
-        public ICollection<Rating> Ratings { get; set; }
+        public virtual ICollection<Rating> Ratings { get; set; }
     }
 }

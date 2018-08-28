@@ -11,37 +11,74 @@ namespace task4.DAL.Repositories
 {
     public class UnitOfWork : IUnitOfWork
     {
-        public UnitOfWork(
-            ApplicationContext applicationContext,
+        private readonly ApplicationContext _context;
+
+        private IRepository<Movie> movieRepository;
+        private IRepository<User> userRepository;
+        private IRepository<Photo> photoRepository;
+        private IRepository<Comment> commentRepository;
+        private IRepository<Rating> ratingRepository;
+
+        public UnitOfWork (ApplicationContext context,
             UserManager<User> userManager,
-            SignInManager<User> signInManager,
-            IMovieRepository movieRepository,
-            IUserRepository userRepository,
-            IPhotoRepository photoRepository,
-            ICommentRepository commentRepository,
-            IRatingRepository ratingRepository)
+            SignInManager<User> signInManager)
         {
-            ApplicationContext = applicationContext;
+            _context = context;
             UserManager = userManager;
             SignInManager = signInManager;
-            MovieRepository = movieRepository;
-            UserRepository = userRepository;
-            PhotoRepository = photoRepository;
-            CommentRepository = commentRepository;
-            RatingRepository = ratingRepository;
         }
 
-        public ApplicationContext ApplicationContext { get; }
         public UserManager<User> UserManager { get; }
         public SignInManager<User> SignInManager { get; }
-        public IMovieRepository MovieRepository { get; }
-        public IUserRepository UserRepository { get; }
-        public IPhotoRepository PhotoRepository { get; }
-        public ICommentRepository CommentRepository { get; }
-        public IRatingRepository RatingRepository { get; }
-        public async Task SaveAsync()
+        public IRepository<Movie> MovieRepository
         {
-            await ApplicationContext.SaveChangesAsync();
+            get
+            {
+                if (movieRepository == null)
+                    movieRepository = new Repository<Movie>(_context);
+                return movieRepository;
+            }
+        }
+        public IRepository<User> UserRepository
+        {
+            get
+            {
+                if (userRepository == null)
+                    userRepository = new Repository<User>(_context);
+                return userRepository;
+            }
+        }
+        public IRepository<Photo> PhotoRepository
+        {
+            get
+            {
+                if (photoRepository == null)
+                    photoRepository = new Repository<Photo>(_context);
+                return photoRepository;
+            }
+        }
+        public IRepository<Comment> CommentRepository
+        {
+            get
+            {
+                if (commentRepository == null)
+                    commentRepository = new Repository<Comment>(_context);
+                return commentRepository;
+            }
+        }
+        public IRepository<Rating> RatingRepository
+        {
+            get
+            {
+                if (ratingRepository == null)
+                    ratingRepository = new Repository<Rating>(_context);
+                return ratingRepository;
+            }            
+        }
+
+        public void Commit()
+        {
+            _context.SaveChanges();
         }
 
         private bool disposed = false;
@@ -52,7 +89,7 @@ namespace task4.DAL.Repositories
             {
                 if (disposing)
                 {
-                    ApplicationContext.Dispose();
+                    _context.Dispose();
                 }
                 disposed = true;
             }

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -24,9 +23,9 @@ namespace task4.WEB.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetComments(int id)
+        public IActionResult GetComments(int id)
         {
-            var comments = await _commentService.GetCommentsByMovieIdAsync(id);
+            var comments = _commentService.GetCommentsByMovieId(id);
 
             if (comments == null)
             {
@@ -38,7 +37,7 @@ namespace task4.WEB.Controllers
 
         [Authorize]
         [HttpPost]
-        public async Task<IActionResult> AddComment([FromBody] CommentViewModel commentViewModel)
+        public IActionResult AddComment([FromBody] CommentViewModel commentViewModel)
         {
             if (!ModelState.IsValid)
             {
@@ -50,7 +49,7 @@ namespace task4.WEB.Controllers
             comment.UserId = HttpContext.GetUserIdByHttpContext();
             comment.Date = DateTime.Now.ToString();
 
-            await _commentService.AddCommentAsync(comment);
+            _commentService.AddComment(comment);
 
             return Ok(comment);
         }

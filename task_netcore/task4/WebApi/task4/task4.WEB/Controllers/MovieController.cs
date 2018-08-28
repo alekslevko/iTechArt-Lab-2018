@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using task4.BLL.Interfaces;
 
 namespace task4.WEB.Controllers
@@ -15,15 +14,15 @@ namespace task4.WEB.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetMovies()
+        public IActionResult GetMovies()
         {
-            return Ok(await _movieService.GetMoviesAsync());
+            return Ok(_movieService.GetMovies());
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetMovie(int id)
+        public IActionResult GetMovie(int id)
         {
-            var movie = await _movieService.GetMovieInfoByIdAsync(id);
+            var movie = _movieService.GetMovieInfoById(id);
 
             if (movie == null)
             {

@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using System.Collections.Generic;
-using System.Threading.Tasks;
+using System.Linq;
 using task4.BLL.Interfaces;
 using task4.BLL.Models;
 using task4.DAL.Entities;
@@ -19,9 +19,9 @@ namespace task4.BLL.Services
             _mapper = mapper;
         }
 
-        public async Task<IList<PhotoModel>> GetPhotosAsync(int movieId)
+        public IList<PhotoModel> GetPhotos(int movieId)
         {
-            var photos = await dataBase.PhotoRepository.GetPhotosByMovieIdAsync(movieId);
+            var photos = dataBase.PhotoRepository.GetQueryableAll().Where(p => p.MovieId == movieId).ToList();
             var photosModel = _mapper.Map<IList<Photo>, IList<PhotoModel>>(photos);
 
             return photosModel;

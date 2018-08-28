@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using System.Collections.Generic;
-using System.Threading.Tasks;
+using System.Linq;
 using task4.BLL.Interfaces;
 using task4.BLL.Models;
 using task4.DAL.Entities;
@@ -21,9 +21,9 @@ namespace task4.BLL.Services
             _movieService = movieService;
         }
 
-        public async Task<RatingResultModel> AddRatingAsync(RatingModel ratingModel)
+        public RatingResultModel AddRating(RatingModel ratingModel)
         {
-            var userRating = await dataBase.RatingRepository.GetUserRatingByMovieIdandUserIdAsync(ratingModel.MovieId, ratingModel.UserId);
+            var userRating = dataBase.RatingRepository.GetQueryableAll().FirstOrDefault(r => r.UserId == ratingModel.UserId && r.MovieId == ratingModel.MovieId);
             var ratingResultModel = new RatingResultModel();
 
             if (userRating != null)
@@ -36,20 +36,20 @@ namespace task4.BLL.Services
 
             var rating = _mapper.Map<RatingModel, Rating>(ratingModel);
 
-            rating.User = await dataBase.UserRepository.GetUserByIdAsync(ratingModel.UserId);
+            rating.User = dataBase.UserRepository.GetById(ratingModel.UserId);
 
-            await dataBase.RatingRepository.AddRatingAsync(rating);
-            await dataBase.SaveAsync();
+            dataBase.RatingRepository.Add(rating);
+            dataBase.Commit();
 
-            await _movieService.UpdateMovieRatingAsync(rating.MovieId);
+            _movieService.UpdateMovieRating(rating.MovieId);
 
             return ratingResultModel;
         }
 
-        public async Task<RatingResultModel> GetUserRatingAsync(string userId, int movieId)
+        public RatingResultModel GetUserRating(string userId, int movieId)
         {
-            var rating = await dataBase.RatingRepository.GetUserRatingByMovieIdandUserIdAsync(movieId, userId);
-            var movie = await dataBase.MovieRepository.GetMovieByIdAsync(movieId);
+            var rating = dataBase.RatingRepository.GetQueryableAll().FirstOrDefault(r => r.UserId == userId && r.MovieId == movieId);
+            var movie = dataBase.MovieRepository.GetById(movieId);
             var ratingResultModel = _mapper.Map<Rating, RatingResultModel>(rating);
 
             if (rating != null && movie != null)
@@ -60,11 +60,18 @@ namespace task4.BLL.Services
             return ratingResultModel;
         }
 
-        public async Task<decimal> GetAverageRatingAsync(int movieId)
+        public decimal GetAverageRating(int movieId)
         {
-            var rating = await dataBase.RatingRepository.GetAverageRatingByMovieIdAsync(movieId);
+            var ratings = dataBase.RatingRepository.GetQueryableAll().Where(r => r.MovieId == movieId).ToList();
 
-            return rating;
+            if (ratings.Count != 0)
+            {
+                var rating = ratings.Average(r => r.Value);
+
+                return rating;
+            }
+
+            return 0;
         }
     }
 }

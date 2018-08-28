@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Linq;
 using task4.BLL.Interfaces;
 using task4.BLL.Models;
 using task4.DAL.Entities;
@@ -19,23 +20,24 @@ namespace task4.BLL.Services
             _mapper = mapper;
         }
 
-        public async Task<IList<CommentModel>> GetCommentsByMovieIdAsync(int movieId)
+        public IList<CommentModel> GetCommentsByMovieId(int movieId)
         {
-            var comments = await dataBase.CommentRepository.GetCommentsByMovieIdAsync(movieId);
+            var comments = dataBase.CommentRepository.GetQueryableAll().Where(c => c.MovieId == movieId).Select(x => new Comment()
+            { Date = x.Date, Message = x.Message, User = x.User}).ToList();
 
             return _mapper.Map<IList<Comment>, IList<CommentModel>>(comments);
         }
 
-        public async Task AddCommentAsync(CommentModel commentModel)
+        public void AddComment(CommentModel commentModel)
         {
-            var user = await dataBase.UserRepository.GetUserByIdAsync(commentModel.UserId);
+            var user = dataBase.UserRepository.GetById(commentModel.UserId);
 
             var comment = _mapper.Map<CommentModel, Comment>(commentModel);
 
-            comment.User = await dataBase.UserRepository.GetUserByIdAsync(commentModel.UserId);
+            comment.User = dataBase.UserRepository.GetById(commentModel.UserId);
 
-            await dataBase.CommentRepository.AddCommentAsync(comment);
-            await dataBase.SaveAsync();
+            dataBase.CommentRepository.Add(comment);
+            dataBase.Commit();
         }
     }
 }

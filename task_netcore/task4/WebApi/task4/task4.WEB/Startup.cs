@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IdentityModel.Tokens.Jwt;
-using System.Text;
 using AutoMapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -49,16 +48,6 @@ namespace task4.WEB
             services.AddTransient<ICommentService, CommentService>();
 
             services.AddTransient<IRatingService, RatingService>();
-
-            services.AddTransient<IRatingRepository, RatingRepository>();
-
-            services.AddTransient<IMovieRepository, MovieRepository>();
-
-            services.AddTransient<IUserRepository, UserRepository>();
-
-            services.AddTransient<ICommentRepository, CommentRepository>();
-
-            services.AddTransient<IPhotoRepository, PhotoRepository>();
 
             services.AddTransient<IUnitOfWork, UnitOfWork>();
 

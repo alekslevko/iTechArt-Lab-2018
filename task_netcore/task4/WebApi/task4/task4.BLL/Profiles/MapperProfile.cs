@@ -9,7 +9,7 @@ namespace task4.BLL.Profiles
         public MapperProfile()
         {
             CreateMap<CommentModel, Comment>();
-            CreateMap<Comment, CommentModel>();
+            CreateMap<Comment, CommentModel>().ForMember(c => c.UserName, c => c.MapFrom(u => u.User.UserName));
             CreateMap<Movie, MovieModel>();
             CreateMap<Movie, MovieInfoModel>();
             CreateMap<Photo, PhotoModel>();

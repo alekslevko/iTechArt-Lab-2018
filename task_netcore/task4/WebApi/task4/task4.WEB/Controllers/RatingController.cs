@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -24,13 +23,13 @@ namespace task4.WEB.Controllers
 
         [Authorize]
         [HttpPost]
-        public async Task<IActionResult> AddRating([FromBody] RatingViewModel ratingViewModel)
+        public IActionResult AddRating([FromBody] RatingViewModel ratingViewModel)
         {
             var rating = _mapper.Map<RatingViewModel, RatingModel>(ratingViewModel);
 
             rating.UserId = HttpContext.GetUserIdByHttpContext();
 
-            var ratingResult = await _ratingService.AddRatingAsync(rating);
+            var ratingResult = _ratingService.AddRating(rating);
 
             if (ratingResult.Errors != null)
             {
@@ -42,18 +41,18 @@ namespace task4.WEB.Controllers
 
         [Authorize]
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetUserRating(int id)
+        public IActionResult GetUserRating(int id)
         {
             var userId = HttpContext.GetUserIdByHttpContext();
-            var responceRaitingModel = await _ratingService.GetUserRatingAsync(userId, id);
+            var responceRaitingModel = _ratingService.GetUserRating(userId, id);
 
             return Ok(responceRaitingModel);
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetAverageRating(int id)
+        public IActionResult GetAverageRating(int id)
         {
-            return Ok(await _ratingService.GetAverageRatingAsync(id));
+            return Ok(_ratingService.GetAverageRating(id));
         }
     }
 }

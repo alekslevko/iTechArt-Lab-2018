@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using task4.BLL.Interfaces;
 
 namespace task4.WEB.Controllers
@@ -15,9 +14,9 @@ namespace task4.WEB.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetPhotos(int id)
+        public IActionResult GetPhotos(int id)
         {
-            var photos = await _photoService.GetPhotosAsync(id);
+            var photos = _photoService.GetPhotos(id);
 
             if (photos == null)
             {

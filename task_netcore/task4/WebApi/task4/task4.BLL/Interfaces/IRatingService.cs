@@ -1,14 +1,13 @@
-﻿using System.Threading.Tasks;
-using task4.BLL.Models;
+﻿using task4.BLL.Models;
 
 namespace task4.BLL.Interfaces
 {
     public interface IRatingService
     {
-        Task<RatingResultModel> AddRatingAsync(RatingModel rating);
+        RatingResultModel AddRating(RatingModel rating);
 
-        Task<RatingResultModel> GetUserRatingAsync(string userId, int movieId);
+        RatingResultModel GetUserRating(string userId, int movieId);
 
-        Task<decimal> GetAverageRatingAsync(int MovieId);
+        decimal GetAverageRating(int MovieId);
     }
 }

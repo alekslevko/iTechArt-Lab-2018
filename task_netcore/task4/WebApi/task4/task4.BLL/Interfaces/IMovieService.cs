@@ -1,15 +1,14 @@
 ﻿using System.Collections.Generic;
-using System.Threading.Tasks;
 using task4.BLL.Models;
 
 namespace task4.BLL.Interfaces
 {
     public interface IMovieService
     {
-        Task<IList<MovieModel>> GetMoviesAsync();
+        IList<MovieModel> GetMovies();
 
-        Task<MovieInfoModel> GetMovieInfoByIdAsync(int movieId);
+        MovieInfoModel GetMovieInfoById(int movieId);
 
-        Task<decimal> UpdateMovieRatingAsync(int movieId);
+        decimal UpdateMovieRating(int movieId);
     }
 }

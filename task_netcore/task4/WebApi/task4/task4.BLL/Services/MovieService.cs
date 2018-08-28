@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
+using System.Linq;
 using task4.BLL.Interfaces;
 using task4.BLL.Models;
 using task4.DAL.Entities;
@@ -20,26 +20,31 @@ namespace task4.BLL.Services
             _mapper = mapper;
         }
 
-        public async Task<IList<MovieModel>> GetMoviesAsync()
+        public IList<MovieModel> GetMovies()
         {
-            var movies = await dataBase.MovieRepository.GetMoviesAsync();
+            var movies = dataBase.MovieRepository.GetQueryableAll().ToList();
             var moviesModel = _mapper.Map<IList<Movie>, IList<MovieModel>>(movies);
 
             return moviesModel;
         }
 
-        public async Task<MovieInfoModel> GetMovieInfoByIdAsync(int movieId)
+        public MovieInfoModel GetMovieInfoById(int movieId)
         {
-            var movie = await dataBase.MovieRepository.GetMovieByIdAsync(movieId);
+            var movie = dataBase.MovieRepository.GetQueryableAll().Select(x => new Movie()
+            {
+                MovieId = x.MovieId, Country = x.Country, Description = x.Description, Genre = x.Genre, Name = x.Name,
+                PictureUrl = x.PictureUrl, Photos = x.Photos, Producer = x.Producer, Rating = x.Rating, Year = x.Year
+            }).FirstOrDefault(x => x.MovieId == movieId);
+
             var movieInfoModel = _mapper.Map<Movie, MovieInfoModel>(movie);
 
             return movieInfoModel;
         }
 
-        public async Task<decimal> UpdateMovieRatingAsync(int movieId)
+        public decimal UpdateMovieRating(int movieId)
         {
-            var movie = await dataBase.MovieRepository.GetMovieByIdAsync(movieId);
-            var rating = await dataBase.RatingRepository.GetAverageRatingByMovieIdAsync(movieId);
+            var movie = dataBase.MovieRepository.GetById(movieId);
+            var rating = dataBase.RatingRepository.GetQueryableAll().Where(r => r.MovieId == movieId).Average(r => r.Value);
 
             if (movie != null)
             {
@@ -54,7 +59,7 @@ namespace task4.BLL.Services
 
             }
 
-            await dataBase.SaveAsync();
+            dataBase.Commit();
 
             return Math.Round(movie.Rating, 1);
         }
