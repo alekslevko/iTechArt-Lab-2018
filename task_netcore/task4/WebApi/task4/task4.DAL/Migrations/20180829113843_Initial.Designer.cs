@@ -10,7 +10,7 @@ using task4.DAL.EF;
 namespace task4.DAL.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20180828165628_Initial")]
+    [Migration("20180829113843_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -86,7 +86,7 @@ namespace task4.DAL.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("MovieId");
+                    b.Property<int?>("MovieId");
 
                     b.Property<string>("PictureUrl");
 

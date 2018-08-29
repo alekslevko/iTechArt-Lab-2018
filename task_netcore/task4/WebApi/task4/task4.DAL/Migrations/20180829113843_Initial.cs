@@ -225,7 +225,7 @@ namespace task4.DAL.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     PictureUrl = table.Column<string>(nullable: true),
-                    MovieId = table.Column<int>(nullable: false)
+                    MovieId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {

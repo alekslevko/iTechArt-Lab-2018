@@ -84,7 +84,7 @@ namespace task4.DAL.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("MovieId");
+                    b.Property<int?>("MovieId");
 
                     b.Property<string>("PictureUrl");
 

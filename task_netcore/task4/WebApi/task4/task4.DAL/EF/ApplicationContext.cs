@@ -131,146 +131,146 @@ namespace task4.DAL.EF
             );
 
             modelBuilder.Entity<Photo>().HasData(
-                new Photo
+                new
                 {
                     Id = 1,
                     MovieId = 1,
                     PictureUrl = "https://www.kino-teatr.ru/movie/kadr/48244/208943.jpg"
                 },
-                new Photo
+                new
                 {
                     Id = 2,
                     MovieId = 1,
                     PictureUrl = "https://www.kino-teatr.ru/movie/kadr/48244/572581.jpg"
                 },
-                new Photo
+                new
                 {
                     Id = 3,
                     MovieId = 1,
                     PictureUrl = "https://www.kino-teatr.ru/movie/kadr/48244/208942.jpg"
                 },
-                new Photo
+                new
                 {
                     Id = 4,
                     MovieId = 1,
                     PictureUrl = "https://www.kino-teatr.ru/movie/kadr/48244/208940.jpg"
                 },
-                 new Photo
-                 {
+                new
+                {
                      Id = 5,
                      MovieId = 2,
                      PictureUrl = "https://www.kino-teatr.ru/movie/kadr/108477/739108.jpg"
-                 },
-                new Photo
+                },
+                new
                 {
                     Id = 6,
                     MovieId = 2,
                     PictureUrl = "https://www.kino-teatr.ru/movie/kadr/108477/739110.jpg"
                 },
-                new Photo
+                new
                 {
                     Id = 7,
                     MovieId = 2,
                     PictureUrl = "https://www.kino-teatr.ru/movie/kadr/108477/739111.jpg"
                 },
-                new Photo
+                new
                 {
                     Id = 8,
                     MovieId = 2,
                     PictureUrl = "https://www.kino-teatr.ru/movie/kadr/108477/739113.jpg"
                 },
-                new Photo
+                new
                 {
                     Id = 9,
                     MovieId = 3,
                     PictureUrl = "https://www.kino-teatr.ru/movie/kadr/91794/190675.jpg"
                 },
-                new Photo
+                new
                 {
                     Id = 10,
                     MovieId = 3,
                     PictureUrl = "https://www.kino-teatr.ru/movie/kadr/91794/190674.jpg"
                 },
-                new Photo
+                new
                 {
                     Id = 11,
 
                     MovieId = 3,
                     PictureUrl = "https://www.kino-teatr.ru/movie/kadr/91794/190673.jpg"
                 },
-                new Photo
+                new
                 {
                     Id = 12,
                     MovieId = 3,
                     PictureUrl = "https://www.kino-teatr.ru/movie/kadr/91794/190670.jpg"
                 },
-                new Photo
+                new
                 {
                     Id = 13,
                     MovieId = 4,
                     PictureUrl = "https://www.kino-teatr.ru/movie/kadr/96533/245756.jpg"
                 },
-                new Photo
+                new
                 {
                     Id = 14,
                     MovieId = 4,
                     PictureUrl = "https://www.kino-teatr.ru/movie/kadr/96533/554509.jpg"
                 },
-                new Photo
+                new
                 {
                     Id = 15,
                     MovieId = 4,
                     PictureUrl = "https://www.kino-teatr.ru/movie/kadr/96533/554512.jpg"
                 },
-                new Photo
+                new
                 {
                     Id = 16,
                     MovieId = 4,
                     PictureUrl = "https://www.kino-teatr.ru/movie/kadr/96533/554510.jpg"
                 },
-                new Photo
+                new
                 {
                     Id = 17,
                     MovieId = 5,
                     PictureUrl = "https://www.kino-teatr.ru/movie/kadr/125987/751751.jpg"
                 },
-                new Photo
+                new
                 {
                     Id = 18,
                     MovieId = 5,
                     PictureUrl = "https://www.kino-teatr.ru/movie/kadr/125987/751750.jpg"
                 },
-                new Photo
+                new
                 {
                     Id = 19,
                     MovieId = 5,
                     PictureUrl = "https://www.kino-teatr.ru/movie/kadr/125987/751752.jpg"
                 },
-                new Photo
+                new
                 {
                     Id = 20,
                     MovieId = 5,
                     PictureUrl = "https://www.kino-teatr.ru/movie/kadr/125987/751749.jpg"
                 },
-                new Photo
+                new
                 {
                     Id = 21,
                     MovieId = 6,
                     PictureUrl = "https://www.kino-teatr.ru/movie/kadr/120115/665900.jpg"
                 },
-                new Photo
+                new
                 {
                     Id = 22,
                     MovieId = 6,
                     PictureUrl = "https://www.kino-teatr.ru/movie/kadr/120115/665899.jpg"
                 },
-                new Photo
+                new
                 {
                     Id = 23,
                     MovieId = 6,
                     PictureUrl = "https://www.kino-teatr.ru/movie/kadr/120115/665898.jpg"
                 },
-                new Photo
+                new
                 {
                     Id = 24,
                     MovieId = 6,
