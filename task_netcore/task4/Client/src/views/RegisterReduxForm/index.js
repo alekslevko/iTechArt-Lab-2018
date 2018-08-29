@@ -19,7 +19,7 @@ const renderField = ({ input, label, type, meta: { touched, error }, margin }) =
 	</div>
 );
 
-let RegisterReduxForm = ({ handleSubmit, classes, currentPath, errorMessage, haveErrors }) => {
+let RegisterReduxForm = ({ handleSubmit, classes, currentPath, errorMessage, haveAccountErrors }) => {
 	return (
 		<div>
 			<Paper className={classes.paperContainer} >
@@ -35,7 +35,7 @@ let RegisterReduxForm = ({ handleSubmit, classes, currentPath, errorMessage, hav
 				</form>
 			</Paper>
 			{
-				haveErrors && <Paper className={classes.errorMessage}>
+				haveAccountErrors && <Paper className={classes.errorMessage}>
 					{errorMessage}
 				</Paper>
 			}

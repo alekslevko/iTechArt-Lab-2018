@@ -19,6 +19,19 @@ namespace task4.WEB.Controllers
             return Ok(_movieService.GetMovies());
         }
 
+        [HttpGet("{movieName}")]
+        public IActionResult GetMoviesByName(string movieName)
+        {
+            var movies = _movieService.GetMoviesByName(movieName);
+
+            if (movies.Count == 0)
+            {
+                return BadRequest("No one movie was found:(");
+            }
+
+            return Ok(movies);
+        }
+
         [HttpGet("{id}")]
         public IActionResult GetMovie(int id)
         {

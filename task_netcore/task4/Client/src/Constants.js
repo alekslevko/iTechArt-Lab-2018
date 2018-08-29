@@ -12,6 +12,7 @@ export const applicationRoutes = {
     registerReduxFormRoute: '/account/register',
     loginReduxFormRoute: '/account/login',
     moviesRoute: '/movies',
+    moviesSearchResultRoute: '/movies-result',
     movieInfoRoute: '/movies/:id',
     notFoundRoute: '/404',
     defaultRoute: '/',
@@ -29,5 +30,6 @@ export const webApiRoutes = {
     addCommentRoute: domainName + '/comment/addcomment',
     addRatingRoute: domainName + '/rating/addrating',
     loadAverageRatingRoute: domainName + '/rating/getaveragerating/',
-    loadUserRatingRoute: domainName + '/rating/getuserrating/'
+    loadUserRatingRoute: domainName + '/rating/getuserrating/',
+    searchMoviesRoute: domainName + '/movie/getmoviesbyname/'
 }

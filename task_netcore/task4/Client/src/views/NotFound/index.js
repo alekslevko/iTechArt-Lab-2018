@@ -3,18 +3,25 @@ import PropTypes from 'prop-types';
 import styles from './styles'
 import { Paper, Typography, withStyles } from '@material-ui/core';
 
-const NotFound = ({classes}) => {
-    return(
+const NotFound = ({ classes, errorMessage, haveMovieErrors }) => {
+    return (
         <Paper className={classes.notfound}>
-            <Typography variant="display1">
-                404 – страница не найдена
-            </Typography>
+            {
+                !haveMovieErrors && <Typography variant="display1">
+                    404 – страница не найдена
+                </Typography>
+            }
+            {
+                haveMovieErrors && <Typography variant="display1">
+                    {errorMessage}
+                </Typography>
+            }
         </Paper>
     );
 }
 
 NotFound.propTypes = {
     classes: PropTypes.object.isRequired
-  };
+};
 
 export default withStyles(styles)(NotFound);

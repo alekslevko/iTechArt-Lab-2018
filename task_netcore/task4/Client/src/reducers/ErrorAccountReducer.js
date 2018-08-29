@@ -1,16 +1,16 @@
 import { SHOW_ERROR_MESSAGE, CLEAR_ERROR_MESSAGE } from '../actions/types';
 
 const InitialState = {
-    haveRatingErrors: false,
+    haveAccountErrors: false,
     errorMessage: ''
 }
 
-const errorRatingReducer = (state = InitialState, action) => {
+const errorAccountReducer = (state = InitialState, action) => {
     switch (action.type) {
         case SHOW_ERROR_MESSAGE:
             return {
                 ...state,
-                haveRatingErrors: true,
+                haveAccountErrors: true,
                 errorMessage: action.errorMessage
             };
         case CLEAR_ERROR_MESSAGE:
@@ -22,4 +22,4 @@ const errorRatingReducer = (state = InitialState, action) => {
     }
 }
 
-export default (errorRatingReducer);
+export default (errorAccountReducer);

@@ -3,6 +3,7 @@ import { Switch, Route, Redirect } from 'react-router-dom'
 import NotFound from '../NotFound';
 import RegisterReduxFormContainer from '../../containers/RegisterReduxFormContainer';
 import { applicationRoutes } from '../../Constants';
+import MovieSearchResultContainer from '../../containers/MovieSearchResultContainer';
 import Movies from '../Movies';
 
 const Main = () => (
@@ -12,7 +13,8 @@ const Main = () => (
             <Route path={applicationRoutes.registerReduxFormRoute} component={RegisterReduxFormContainer} />
             <Route path={applicationRoutes.loginReduxFormRoute} component={RegisterReduxFormContainer} />
             <Route path={applicationRoutes.notFoundRoute} component={NotFound} />
-            <Route path={applicationRoutes.moviesRoute} component={Movies} /> 
+            <Route path={applicationRoutes.moviesRoute} component={Movies} />
+            <Route path={applicationRoutes.moviesSearchResultRoute} component={MovieSearchResultContainer} /> 
             <Route path={applicationRoutes.errorRoute} >
                 <Redirect to={applicationRoutes.notFoundRoute} />
             </Route>

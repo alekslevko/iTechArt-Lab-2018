@@ -23,9 +23,15 @@ namespace task4.BLL.Services
         public IList<MovieModel> GetMovies()
         {
             var movies = dataBase.MovieRepository.GetQueryableAll().ToList();
-            var moviesModel = _mapper.Map<IList<Movie>, IList<MovieModel>>(movies);
 
-            return moviesModel;
+            return _mapper.Map<IList<Movie>, IList<MovieModel>>(movies);
+        }
+
+        public IList<MovieModel> GetMoviesByName(string movieName)
+        {
+            var movies = dataBase.MovieRepository.GetQueryableAll().Where(m => m.Name.Contains(movieName)).ToList();
+
+            return _mapper.Map<IList<Movie>, IList<MovieModel>>(movies); ;
         }
 
         public MovieInfoModel GetMovieInfoById(int movieId)
@@ -44,9 +50,7 @@ namespace task4.BLL.Services
                 Year = x.Year
             }).FirstOrDefault(x => x.Id == movieId);
 
-            var movieInfoModel = _mapper.Map<Movie, MovieInfoModel>(movie);
-
-            return movieInfoModel;
+            return _mapper.Map<Movie, MovieInfoModel>(movie); ;
         }
 
         public decimal UpdateMovieRating(int movieId)

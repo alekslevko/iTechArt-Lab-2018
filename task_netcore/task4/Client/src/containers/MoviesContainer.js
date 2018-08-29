@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 import { loadMovies } from '../actions/index';
 import MoviesAll from '../views/MoviesAll';
 import { webApiRoutes } from '../Constants';
+import MovieSearchFormContainer from './MovieSearchFormContainer';
 
 class MoviesContainer extends React.Component {
     componentDidMount() {
@@ -24,16 +25,20 @@ class MoviesContainer extends React.Component {
                 rating={i.rating}
                 genre={i.genre}
                 year={i.year}
-                description={i.description} />
+                description={i.description}
+                key={i + i.id} />
         );
     };
 
     render() {
         const { movies } = this.props;
-        console.log(movies);
+
         return (
-            <div className='movieContainer'>
-                {movies.map(this.eachMovie)}
+            <div>
+                <MovieSearchFormContainer />
+                <div className='movieContainer'>
+                    {movies.map(this.eachMovie)}
+                </div>
             </div>
         )
     }

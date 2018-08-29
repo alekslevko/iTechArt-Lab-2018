@@ -84,12 +84,11 @@ class RatingContainer extends React.Component {
     render() {
         const { value, alreadyRated } = this.props.rating;
         const { averageRating } = this.props;
-        const { haveErrors, errorMessage } = this.props;
-        console.log(this.props)
+        const { haveRatingErrors, errorMessage } = this.props;
 
         return (
             <Rating
-                haveErrors={haveErrors}
+                haveRatingErrors={haveRatingErrors}
                 errorMessage={errorMessage}
                 onRatingChange={this.onRatingChange}
                 value={value}

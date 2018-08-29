@@ -7,6 +7,8 @@ namespace task4.BLL.Interfaces
     {
         IList<MovieModel> GetMovies();
 
+        IList<MovieModel> GetMoviesByName(string movieName);
+
         MovieInfoModel GetMovieInfoById(int movieId);
 
         decimal UpdateMovieRating(int movieId);

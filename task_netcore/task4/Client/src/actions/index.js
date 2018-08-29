@@ -1,5 +1,5 @@
 import { CLEAR_ERROR_MESSAGE, HEADER_HANDLE_CLOSE, HEADER_HANDLE_MENU, IS_AUTH, SHOW_ERROR_MESSAGE,
-   LOG_OUT, CLEAR_COMMENT_FIELD, ON_COMMENT_CHANGE, LOAD_MOVIES, LOAD_MOVIE_INFO, LOAD_COMMENTS, LOAD_USER_RATING, LOAD_AVERAGE_RATING } from './types';
+   LOG_OUT, CLEAR_COMMENT_FIELD, ON_COMMENT_CHANGE, LOAD_MOVIES, LOAD_MOVIE_INFO, LOAD_COMMENTS, LOAD_USER_RATING, LOAD_AVERAGE_RATING, CLEAR_MOVIE_SEARCH_FIELD, ON_MOVIE_SEARCH_CHANGE, LOAD_SEARCH_RESULT_MOVIES } from './types';
 
 export const headerHandleMenu = (anchorEl) => {
   return {
@@ -84,5 +84,25 @@ export const loadAverageRating = (averageRating) => {
   return {
     type: LOAD_AVERAGE_RATING,
     averageRating
+  }
+}
+
+export const clearMovieSearchField = () => {
+  return {
+    type: CLEAR_MOVIE_SEARCH_FIELD
+  }
+}
+
+export const onMovieSearchChange = (movie) => {
+  return {
+    type: ON_MOVIE_SEARCH_CHANGE,
+    movie
+  }
+}
+
+export const loadSearchResultMovies = (movies) => {
+  return {
+    type: LOAD_SEARCH_RESULT_MOVIES,
+    movies
   }
 }

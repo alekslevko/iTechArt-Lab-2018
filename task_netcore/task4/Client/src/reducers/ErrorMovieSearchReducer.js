@@ -1,16 +1,16 @@
 import { SHOW_ERROR_MESSAGE, CLEAR_ERROR_MESSAGE } from '../actions/types';
 
 const InitialState = {
-    haveErrors: false,
+    haveMovieErrors: false,
     errorMessage: ''
 }
 
-const errorReducer = (state = InitialState, action) => {
+const errorMovieSearchReducer = (state = InitialState, action) => {
     switch (action.type) {
         case SHOW_ERROR_MESSAGE:
             return {
                 ...state,
-                haveErrors: true,
+                haveMovieErrors: true,
                 errorMessage: action.errorMessage
             };
         case CLEAR_ERROR_MESSAGE:
@@ -22,4 +22,4 @@ const errorReducer = (state = InitialState, action) => {
     }
 }
 
-export default (errorReducer);
+export default (errorMovieSearchReducer);

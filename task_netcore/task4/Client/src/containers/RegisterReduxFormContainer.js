@@ -83,11 +83,11 @@ class RegisterReduxFormContainer extends React.Component {
   };
 
   render() {
-    const { haveErrors, errorMessage } = this.props;
+    const { haveAccountErrors, errorMessage } = this.props;
 
     return (
       <RegisterReduxForm
-        haveErrors={haveErrors}
+        haveAccountErrors={haveAccountErrors}
         errorMessage={errorMessage}
         currentPath={this.currentPath()}
         onSubmit={this.handleSubmit}
@@ -108,7 +108,7 @@ const mapStateToProps = (state) => {
   return {
     formState: { ...state.form.register },
     ...state.isAuth,
-    ...state.errors
+    ...state.errorsAccount
   }
 }
 

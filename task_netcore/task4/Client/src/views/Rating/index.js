@@ -4,7 +4,7 @@ import styles from './styles';
 import { Typography, withStyles } from '@material-ui/core';
 import ReactStars from 'react-stars';
 
-const Rating = ({ classes, onRatingChange, alreadyRated, value, averageRating, haveErrors, errorMessage}) => {
+const Rating = ({ classes, onRatingChange, alreadyRated, value, averageRating, haveRatingErrors, errorMessage}) => {
     return (
         <div>
             <Typography className={classes.ratingInfo}>
@@ -23,7 +23,7 @@ const Rating = ({ classes, onRatingChange, alreadyRated, value, averageRating, h
                 </Typography>
             }
             {
-				haveErrors && <Typography className={classes.errorMessage}>
+				haveRatingErrors && <Typography className={classes.errorMessage}>
 					{errorMessage}
 				</Typography>
 			}
