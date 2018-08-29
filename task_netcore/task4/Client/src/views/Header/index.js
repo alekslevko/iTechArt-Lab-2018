@@ -43,7 +43,7 @@ const Header = ({ anchorEl, classes, open, handleMenu, handleClose, path, isAuth
             open={open}
             onClose={handleClose}>
             {
-              !isAuth && <div>
+              !isAuth ? <div>
                 <MenuItem onClick={handleClose}>
                   <Link to={applicationRoutes.registerReduxFormRoute} className={classes.loginItems}>
                   <Typography>Register</Typography>
@@ -54,10 +54,7 @@ const Header = ({ anchorEl, classes, open, handleMenu, handleClose, path, isAuth
                   <Typography>Login</Typography>
                   </Link>
                 </MenuItem>
-              </div>
-            }
-            {
-              isAuth && <div>
+              </div> : <div>
                 <MenuItem onClick={handleClose}>
                 <Typography>Hello: {userName}</Typography>
                 </MenuItem>

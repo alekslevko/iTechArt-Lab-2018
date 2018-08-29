@@ -1,11 +1,12 @@
-﻿using Microsoft.IdentityModel.Tokens;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
+using System.Text;
 using System.Threading.Tasks;
-using task4.BLL.Infastructure;
 using task4.BLL.Interfaces;
 using task4.BLL.Models;
 using task4.DAL.Entities;
@@ -16,10 +17,12 @@ namespace task4.BLL.Services
     public class AccountService: IAccountService
     {
         private readonly IUnitOfWork dataBase;
+        private readonly IConfiguration _configuration;
 
-        public AccountService(IUnitOfWork  uow)
+        public AccountService(IUnitOfWork  uow, IConfiguration configuration)
         {
             dataBase = uow;
+            _configuration = configuration;
         }
 
         public async Task<AccountResultModel> Register(AccountModel accountModel)
@@ -89,13 +92,13 @@ namespace task4.BLL.Services
                 new Claim(ClaimTypes.NameIdentifier, user.Id.ToString())
             };
 
-            var key = TokenSettings.GetSymmetricSecurityKey();
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JwtKey"]));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-            var expires = DateTime.Now.AddDays(Convert.ToDouble(TokenSettings.JwtExpireDays));
+            var expires = DateTime.Now.AddDays(Convert.ToDouble(_configuration["JwtExpireDays"]));
 
             var token = new JwtSecurityToken(
-                TokenSettings.JwtIssuer,
-                TokenSettings.JwtIssuer,
+                _configuration["JwtIssuer"],
+                _configuration["JwtIssuer"],
                 claims,
                 expires: expires,
                 signingCredentials: creds

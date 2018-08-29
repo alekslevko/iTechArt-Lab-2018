@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './styles';
-import SendIcon from '@material-ui/icons/Send';
+import SendIcon from '@material-ui/icons/Search';
 import { Typography, withStyles, Card, Button, TextField } from '@material-ui/core';
 
 const MovieSearchForm = ({ classes, movie, onSubmit, onMovieSearchChange  }) => {

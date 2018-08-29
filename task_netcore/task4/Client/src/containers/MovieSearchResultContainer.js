@@ -31,14 +31,11 @@ class MovieSearchResultContainer extends React.Component {
         return (
             <div>
                 {
-                    !haveMovieErrors && <div className='movieContainer'>
+                    !haveMovieErrors ? <div className='movieContainer'>
                         {this.props.movies.map(this.eachMovie)}
-                    </div>
-                }
-                {
-                    haveMovieErrors && <NotFound
-                    haveMovieErrors={haveMovieErrors} 
-                    errorMessage={errorMessage} />
+                    </div> : <NotFound
+                        haveMovieErrors={haveMovieErrors}
+                        errorMessage={errorMessage} />
                 }
             </div>
         )

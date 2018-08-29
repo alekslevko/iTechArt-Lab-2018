@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IdentityModel.Tokens.Jwt;
+using System.Text;
 using AutoMapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -11,7 +12,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using task4.BLL.Interfaces;
 using task4.BLL.Services;
-using task4.BLL.Infastructure;
 using task4.DAL.EF;
 using task4.DAL.Entities;
 using task4.DAL.Interfaces;
@@ -73,11 +73,11 @@ namespace task4.WEB
                     cfg.TokenValidationParameters = new TokenValidationParameters
                     {
                         ValidateIssuer = true,
-                        ValidIssuer = TokenSettings.JwtIssuer,
+                        ValidIssuer = Configuration["JwtIssuer"],
                         ValidateAudience = true,
-                        ValidAudience = TokenSettings.JwtIssuer,
+                        ValidAudience = Configuration["JwtIssuer"],
                         ValidateLifetime = true,
-                        IssuerSigningKey = TokenSettings.GetSymmetricSecurityKey(),
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JwtKey"])),
                         ValidateIssuerSigningKey = true
                     };
                 });

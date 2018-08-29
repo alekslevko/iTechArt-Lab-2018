@@ -6,6 +6,6 @@ namespace task4.BLL.Models
 {
     public class PhotoModel
     {
-        public string pictureUrl { get; set; }
+        public string PictureUrl { get; set; }
     }
 }

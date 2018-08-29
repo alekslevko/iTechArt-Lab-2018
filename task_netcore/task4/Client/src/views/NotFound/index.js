@@ -7,12 +7,9 @@ const NotFound = ({ classes, errorMessage, haveMovieErrors }) => {
     return (
         <Paper className={classes.notfound}>
             {
-                !haveMovieErrors && <Typography variant="display1">
+                !haveMovieErrors ? <Typography variant="display1">
                     404 – страница не найдена
-                </Typography>
-            }
-            {
-                haveMovieErrors && <Typography variant="display1">
+                </Typography> : <Typography variant="display1">
                     {errorMessage}
                 </Typography>
             }

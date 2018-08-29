@@ -8,6 +8,6 @@ namespace task4.BLL.Interfaces
 
         RatingResultModel GetUserRating(int userId, int movieId);
 
-        decimal GetAverageRating(int MovieId);
+        decimal GetAverageRating(int movieId);
     }
 }
