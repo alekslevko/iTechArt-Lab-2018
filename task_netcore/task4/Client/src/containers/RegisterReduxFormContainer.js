@@ -9,6 +9,7 @@ import { withRouter } from 'react-router-dom';
 import { applicationRoutes } from '../Constants';
 import axios from 'axios';
 import { webApiRoutes } from '../Constants';
+import { SessionService } from '../Services/SessionService';
 
 class RegisterReduxFormContainer extends React.Component {
   handleSubmit = (values) => {
@@ -39,8 +40,8 @@ class RegisterReduxFormContainer extends React.Component {
   };
 
   onSuccess = (response, user) => {
-    sessionStorage.setItem('token', response.data);
-    sessionStorage.setItem('user', user.userName);
+    SessionService.setItem('token', response.data);
+    SessionService.setItem('user', user.userName);
     
     this.props.isAuth();
     this.props.clearErrorMessage();

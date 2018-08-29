@@ -1,7 +1,8 @@
 import { IS_AUTH, LOG_OUT } from '../actions/types';
+import { SessionService } from '../Services/SessionService';
 
 const InitialState = {
-    isAuth: Boolean(sessionStorage.getItem('token'))
+    isAuth: SessionService.hasItem('token')
 }
 
 const authorizationReducer = (state = InitialState, action) => {
@@ -9,12 +10,12 @@ const authorizationReducer = (state = InitialState, action) => {
         case IS_AUTH:
             return {
                 ...state,
-                isAuth: Boolean(sessionStorage.getItem('token'))
+                isAuth: SessionService.hasItem('token')
             };
         case LOG_OUT:
             return {
                 ...state,
-                isAuth: Boolean(sessionStorage.getItem('token'))
+                isAuth: SessionService.hasItem('token')
             };
         default:
             return state;

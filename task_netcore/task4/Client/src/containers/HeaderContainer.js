@@ -3,7 +3,8 @@ import { withRouter } from 'react-router-dom';
 import Header from '../views/Header';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { headerHandleClose, headerHandleMenu, logOut } from '../actions'
+import { headerHandleClose, headerHandleMenu, logOut } from '../actions';
+import { SessionService } from '../Services/SessionService';
 
 class HeaderContainer extends React.Component {
   currentPath = () => {
@@ -20,14 +21,14 @@ class HeaderContainer extends React.Component {
   };
 
   logOut = () => {
-    sessionStorage.removeItem('token');
-    sessionStorage.removeItem('user');
+    SessionService.removeItem('token');
+    SessionService.removeItem('user');
     this.props.logOut();
   }
   
   render() {
     const { anchorEl, isAuth } = this.props;
-    const userName = sessionStorage.getItem('user');
+    const userName = SessionService.getItem('user');
     const open = Boolean(anchorEl);
   
     return (
