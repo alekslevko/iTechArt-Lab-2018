@@ -6,6 +6,7 @@ import CommentFormContainer from './CommentFormContainer';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { loadMovieInfo } from '../actions/index';
+import { webApiRoutes } from '../Constants';
 
 class MovieInfoContainer extends React.Component {
     state = {
@@ -13,7 +14,7 @@ class MovieInfoContainer extends React.Component {
     }
 
     componentDidMount() {
-        axios.get(`http://localhost:49448/movie/getmovie/` + this.state.id)
+        axios.get( webApiRoutes.loadMovieInfoRoute + this.state.id)
             .then(response => {
                 this.props.loadMovieInfo(response.data);
             });

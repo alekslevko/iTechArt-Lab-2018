@@ -4,10 +4,11 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { loadMovies } from '../actions/index';
 import MoviesAll from '../views/MoviesAll';
+import { webApiRoutes } from '../Constants';
 
 class MoviesContainer extends React.Component {
     componentDidMount() {
-        axios.get(`http://localhost:49448/movie/getmovies`)
+        axios.get(webApiRoutes.loadMoviesRoute)
             .then(response => {
                 this.props.loadMovies(response.data);
             })

@@ -8,6 +8,7 @@ import { errorMessagesEnum } from '../Constants';
 import { withRouter } from 'react-router-dom';
 import { applicationRoutes } from '../Constants';
 import axios from 'axios';
+import { webApiRoutes } from '../Constants';
 
 class RegisterReduxFormContainer extends React.Component {
   handleSubmit = (values) => {
@@ -17,7 +18,7 @@ class RegisterReduxFormContainer extends React.Component {
     };
 
     if (this.currentPath() === applicationRoutes.registerReduxFormRoute) {
-      axios.post(`http://localhost:49448/account/register`, user)
+      axios.post(webApiRoutes.registerRoute, user)
         .then(response => {
           this.onSuccess(response, user);
         })
@@ -27,7 +28,7 @@ class RegisterReduxFormContainer extends React.Component {
     }
 
     if (this.currentPath() === applicationRoutes.loginReduxFormRoute) {
-      axios.post(`http://localhost:49448/account/login`, user)
+      axios.post(webApiRoutes.loginRoute, user)
         .then(response => {
           this.onSuccess(response, user);
         })
@@ -39,7 +40,8 @@ class RegisterReduxFormContainer extends React.Component {
 
   onSuccess = (response, user) => {
     sessionStorage.setItem('token', response.data);
-    sessionStorage.setItem('user', user.userName)
+    sessionStorage.setItem('user', user.userName);
+    
     this.props.isAuth();
     this.props.clearErrorMessage();
     this.props.history.push(

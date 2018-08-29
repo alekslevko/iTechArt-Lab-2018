@@ -17,3 +17,17 @@ export const applicationRoutes = {
     defaultRoute: '/',
     errorRoute: '/*'
 };
+
+const domainName = 'http://localhost:49448';
+
+export const webApiRoutes = {
+    loadMoviesRoute: domainName + '/movie/getmovies',
+    loadMovieInfoRoute: domainName + '/movie/getmovie/',
+    registerRoute: domainName + '/account/register',
+    loginRoute: domainName + '/account/login',
+    loadCommentsRoute: domainName + '/comment/getcomments/',
+    addCommentRoute: domainName + '/comment/addcomment',
+    addRatingRoute: domainName + '/rating/addrating',
+    loadAverageRatingRoute: domainName + '/rating/getaveragerating/',
+    loadUserRatingRoute: domainName + '/rating/getuserrating/'
+}

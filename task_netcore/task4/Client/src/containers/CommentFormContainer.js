@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { onCommentChange, clearCommentField, loadComments } from '../actions'
-import { applicationRoutes } from '../Constants';
+import { applicationRoutes, webApiRoutes } from '../Constants';
 import axios from 'axios';
 import CommentContentContainer from './CommentContentContainer';
 
@@ -14,7 +14,7 @@ class CommentFormContainer extends React.Component {
     };
 
     send = (comment) => {
-        axios.post(`http://localhost:49448/comment/addcomment`, comment, {
+        axios.post(webApiRoutes.addCommentRoute, comment, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + sessionStorage.getItem('token')
@@ -36,7 +36,7 @@ class CommentFormContainer extends React.Component {
     }
 
     getComments = () => {
-        axios.get(`http://localhost:49448/comment/getcomments/` + this.state.id)
+        axios.get(webApiRoutes.loadCommentsRoute + this.state.id)
             .then(response => {
                 this.props.loadComments(response.data);
             })

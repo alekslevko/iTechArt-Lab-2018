@@ -4,7 +4,7 @@ import Rating from '../views/Rating';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { showErrorMessage, clearErrorMessage, loadAverageRating, loadUserRating } from '../actions';
-import { applicationRoutes } from '../Constants';
+import { applicationRoutes, webApiRoutes } from '../Constants';
 import axios from 'axios';
 
 class RatingContainer extends React.Component {
@@ -21,7 +21,7 @@ class RatingContainer extends React.Component {
     }
 
     getUserRating = () => {
-        axios.get(`http://localhost:49448/rating/getuserrating/` + this.state.id, {
+        axios.get(webApiRoutes.loadUserRatingRoute + this.state.id, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + sessionStorage.getItem('token')
@@ -33,7 +33,7 @@ class RatingContainer extends React.Component {
     }
 
     getAverageRating = () => {
-        axios.get(`http://localhost:49448/rating/getaveragerating/` + this.state.id)
+        axios.get(webApiRoutes.loadAverageRatingRoute + this.state.id)
             .then(response => {
                 this.props.loadAverageRating(response.data);
                 if (this.props.isAuth) {
@@ -66,7 +66,7 @@ class RatingContainer extends React.Component {
             value: newRating
         }
 
-        axios.post(`http://localhost:49448/rating/addrating`, sendRating, {
+        axios.post(webApiRoutes.addRatingRoute, sendRating, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + sessionStorage.getItem('token')
