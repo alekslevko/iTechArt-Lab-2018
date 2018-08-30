@@ -11,32 +11,32 @@ namespace task4.BLL.Services
 {
     public class MovieService: IMovieService
     {
-        private readonly IUnitOfWork dataBase;
+        private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
 
         public MovieService(IUnitOfWork uow, IMapper mapper)
         {
-            dataBase = uow;
+            _unitOfWork = uow;
             _mapper = mapper;
         }
 
         public IList<MovieModel> GetMovies()
         {
-            var movies = dataBase.MovieRepository.GetQueryableAll().ToList();
+            var movies = _unitOfWork.MovieRepository.GetQueryableAll().ToList();
 
             return _mapper.Map<IList<Movie>, IList<MovieModel>>(movies);
         }
 
         public IList<MovieModel> GetMoviesByName(string movieName)
         {
-            var movies = dataBase.MovieRepository.GetQueryableAll().Where(m => m.Name.Contains(movieName)).ToList();
+            var movies = _unitOfWork.MovieRepository.GetQueryableAll().Where(m => m.Name.Contains(movieName)).ToList();
 
             return _mapper.Map<IList<Movie>, IList<MovieModel>>(movies); ;
         }
 
         public MovieInfoModel GetMovieInfoById(int movieId)
         {
-            var movie = dataBase.MovieRepository.GetQueryableAll().Select(x => new Movie()
+            var movie = _unitOfWork.MovieRepository.GetQueryableAll().Select(x => new Movie()
             {
                 Id = x.Id,
                 Country = x.Country,
@@ -55,23 +55,15 @@ namespace task4.BLL.Services
 
         public decimal UpdateMovieRating(int movieId)
         {
-            var movie = dataBase.MovieRepository.GetById(movieId);
-            var rating = dataBase.RatingRepository.GetQueryableAll().Where(r => r.Movie.Id == movieId).Average(r => r.Value);
+            var movie = _unitOfWork.MovieRepository.GetById(movieId);
+            var rating = _unitOfWork.RatingRepository.GetQueryableAll().Where(r => r.Movie.Id == movieId).Average(r => r.Value);
 
             if (movie != null)
             {
-                if (rating != 0)
-                {
-                    movie.Rating = Math.Round(rating, 1);
-                }
-                else
-                {
-                    movie.Rating = 0;
-                }
-
+                movie.Rating = (rating != 0) ? Math.Round(rating, 1) : 0;
             }
 
-            dataBase.Commit();
+            _unitOfWork.Commit();
 
             return Math.Round(movie.Rating, 1);
         }

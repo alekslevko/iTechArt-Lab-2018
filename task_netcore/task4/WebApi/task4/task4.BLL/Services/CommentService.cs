@@ -10,18 +10,18 @@ namespace task4.BLL.Services
 {
     public class CommentService: ICommentService
     {
-        private readonly IUnitOfWork dataBase;
+        private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
 
         public CommentService(IUnitOfWork uow, IMapper mapper)
         {
-            dataBase = uow;
+            _unitOfWork = uow;
             _mapper = mapper;
         }
 
         public IList<CommentModel> GetCommentsByMovieId(int movieId)
         {
-            var comments = dataBase.CommentRepository.GetQueryableAll().Where(c => c.Movie.Id == movieId).Select(x => new Comment
+            var comments = _unitOfWork.CommentRepository.GetQueryableAll().Where(c => c.Movie.Id == movieId).Select(x => new Comment
             {
                 Date = x.Date,
                 Message = x.Message,
@@ -33,16 +33,16 @@ namespace task4.BLL.Services
 
         public void AddComment(CommentModel commentModel)
         {
-            var user = dataBase.UserRepository.GetById(commentModel.UserId);
-            var movie = dataBase.MovieRepository.GetById(commentModel.MovieId);
+            var user = _unitOfWork.UserRepository.GetById(commentModel.UserId);
+            var movie = _unitOfWork.MovieRepository.GetById(commentModel.MovieId);
 
             var comment = _mapper.Map<CommentModel, Comment>(commentModel);
 
             comment.User = user;
             comment.Movie = movie;
 
-            dataBase.CommentRepository.Insert(comment);
-            dataBase.Commit();
+            _unitOfWork.CommentRepository.Insert(comment);
+            _unitOfWork.Commit();
         }
     }
 }

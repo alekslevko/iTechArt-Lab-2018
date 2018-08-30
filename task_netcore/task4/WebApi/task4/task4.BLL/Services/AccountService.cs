@@ -16,12 +16,12 @@ namespace task4.BLL.Services
 {
     public class AccountService: IAccountService
     {
-        private readonly IUnitOfWork dataBase;
+        private readonly IUnitOfWork _unitOfWork;
         private readonly IConfiguration _configuration;
 
         public AccountService(IUnitOfWork  uow, IConfiguration configuration)
         {
-            dataBase = uow;
+            _unitOfWork = uow;
             _configuration = configuration;
         }
 
@@ -32,12 +32,12 @@ namespace task4.BLL.Services
                 UserName = accountModel.UserName
             };
 
-            var result = await dataBase.UserManager.CreateAsync(user, accountModel.Password);
+            var result = await _unitOfWork.UserManager.CreateAsync(user, accountModel.Password);
             var accountResultModel = new AccountResultModel();
 
             if (result.Succeeded)
             {
-                await dataBase.SignInManager.SignInAsync(user, false);
+                await _unitOfWork.SignInManager.SignInAsync(user, false);
 
                 accountResultModel.Token = GenerateJwtToken(accountModel.UserName, user);
 
@@ -54,18 +54,16 @@ namespace task4.BLL.Services
 
                 return accountResultModel;
             }
-
-            throw new ApplicationException("UNKNOWN_ERROR");
         }
 
         public async Task<AccountResultModel> Login(AccountModel accountModel)
         {
-            var result = await dataBase.SignInManager.PasswordSignInAsync(accountModel.UserName, accountModel.Password, false, false);
+            var result = await _unitOfWork.SignInManager.PasswordSignInAsync(accountModel.UserName, accountModel.Password, false, false);
             var accountResultModel = new AccountResultModel();
 
             if (result.Succeeded)
             {
-                var appUser = dataBase.UserManager.Users.SingleOrDefault(r => r.UserName == accountModel.UserName);
+                var appUser = _unitOfWork.UserManager.Users.SingleOrDefault(r => r.UserName == accountModel.UserName);
 
                 accountResultModel.Token = GenerateJwtToken(accountModel.UserName, appUser);
 
@@ -79,8 +77,6 @@ namespace task4.BLL.Services
 
                 return accountResultModel;
             }
-
-            throw new ApplicationException("UNKNOWN_ERROR");
         }
 
         private string GenerateJwtToken(string userName, User user)

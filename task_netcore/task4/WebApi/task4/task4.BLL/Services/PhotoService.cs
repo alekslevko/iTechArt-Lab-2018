@@ -10,18 +10,18 @@ namespace task4.BLL.Services
 {
     public class PhotoService: IPhotoService
     {
-        private readonly IUnitOfWork dataBase;
+        private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
 
         public PhotoService(IUnitOfWork uow, IMapper mapper)
         {
-            dataBase = uow;
+            _unitOfWork = uow;
             _mapper = mapper;
         }
 
         public IList<PhotoModel> GetPhotos(int movieId)
         {
-            var photos = dataBase.PhotoRepository.GetQueryableAll().Where(p => p.Movie.Id == movieId).ToList();
+            var photos = _unitOfWork.PhotoRepository.GetQueryableAll().Where(p => p.Movie.Id == movieId).ToList();
             var photosModel = _mapper.Map<IList<Photo>, IList<PhotoModel>>(photos);
 
             return photosModel;
