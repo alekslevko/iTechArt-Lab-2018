@@ -56,7 +56,10 @@ export const requestAuthentication = () => {
 
     return axios.post(webApiRoutes.registerRoute, user)
       .then(response => {
-        dispatch(requestAuthenticationSuccess(SessionService.setItem('token', response.data)));
+        dispatch(requestAuthenticationSuccess(
+          SessionService.setItem('token', response.data),
+          SessionService.setItem('token', response.data),
+          SessionService.setItem('user', user.userName)));
       })
       .catch(errors => {
         dispatch(requestAuthenticationError(errors.response.data));

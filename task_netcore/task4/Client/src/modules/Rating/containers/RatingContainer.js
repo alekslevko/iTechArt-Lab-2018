@@ -21,7 +21,7 @@ class RatingContainer extends React.Component {
 
     onRatingChange = (newRating) => {
         if (!this.props.isAuth) {
-            this.props.history.push(applicationRoutes.loginReduxFormRoute);
+            this.props.history.push(applicationRoutes.loginFormRoute);
 
             return;
         }
@@ -36,7 +36,7 @@ class RatingContainer extends React.Component {
 
     render() {
         const { value, alreadyRated } = this.props.rating;
-        const { averageRating } = this.props;
+        const { averageRating, loading } = this.props;
         const { haveRatingErrors, errorMessage } = this.props;
 
         return (
@@ -45,6 +45,7 @@ class RatingContainer extends React.Component {
                 errorMessage={errorMessage}
                 onRatingChange={this.onRatingChange}
                 value={value}
+                loading={loading}
                 alreadyRated={alreadyRated}
                 averageRating={averageRating} />
         );

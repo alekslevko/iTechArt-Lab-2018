@@ -49,10 +49,10 @@ export const requestUserRating = () => {
     }
 };
 
-export const requestUserRatingSuccess = (userRating) => {
+export const requestUserRatingSuccess = (rating) => {
     return {
         type: REQUESTED_USER_RATING_SUCCEEDED,
-        userRating
+        rating
     }
 };
 

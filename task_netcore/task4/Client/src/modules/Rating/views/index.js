@@ -3,30 +3,38 @@ import PropTypes from 'prop-types';
 import styles from './styles';
 import { Typography, withStyles } from '@material-ui/core';
 import ReactStars from 'react-stars';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
-const Rating = ({ classes, onRatingChange, alreadyRated, value, averageRating, haveRatingErrors, errorMessage}) => {
+const Rating = ({ classes, onRatingChange, alreadyRated, value, averageRating, haveRatingErrors, errorMessage, loading }) => {
     return (
         <div>
-            <Typography className={classes.ratingInfo}>
-                Raiting: {averageRating === 0 && 'No rating'}
-                        {averageRating !== 0 && averageRating}
-            </Typography>
-            <ReactStars
-                count={10}
-                onChange={onRatingChange}
-                size={24}
-                value={averageRating}
-                color2={'#ffd700'} />
             {
-                alreadyRated && <Typography className={classes.ratingInfo}>
-                    Your rating is: {value}
-                </Typography>
+                loading ? <CircularProgress /> :
+                    <div>
+                        <Typography className={classes.ratingInfo}>
+                            Raiting: {averageRating === 0 && 'No rating'}
+                            {averageRating !== 0 && averageRating}
+                        </Typography>
+                        <ReactStars
+                            count={10}
+                            onChange={onRatingChange}
+                            size={24}
+                            value={averageRating}
+                            color2={'#ffd700'} />
+                        {
+                            alreadyRated && <Typography className={classes.ratingInfo}>
+                                Your rating is: {value}
+                            </Typography>
+                        }
+                        {
+                            haveRatingErrors && <Typography className={classes.errorMessage}>
+                                {errorMessage}
+                            </Typography>
+                        }
+                    </div>
             }
-            {
-				haveRatingErrors && <Typography className={classes.errorMessage}>
-					{errorMessage}
-				</Typography>
-			}
+
+
         </div>
     );
 }
