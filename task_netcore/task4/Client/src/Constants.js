@@ -9,10 +9,10 @@ export const errorMessagesEnum = Object.freeze({
 });
 
 export const applicationRoutes = {
-    registerReduxFormRoute: '/account/register',
-    loginReduxFormRoute: '/account/login',
+    registerFormRoute: '/account/register',
+    loginFormRoute: '/account/login',
     moviesRoute: '/movies',
-    moviesSearchResultRoute: '/movies-result',
+    moviesSearchResultRoute: '/movie-results',
     movieInfoRoute: '/movies/:id',
     notFoundRoute: '/404',
     defaultRoute: '/',
