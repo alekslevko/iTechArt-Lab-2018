@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom';
 import Rating from '../views';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import {clearErrorMessage, axiosAverageRating, axiosSendRating, axiosUserRating } from '../actions';
+import {clearErrorMessage, getAverageRating, sendRating, getUserRating } from '../actions';
 import { applicationRoutes } from '../../../Constants';
 
 class RatingContainer extends React.Component {
@@ -12,9 +12,9 @@ class RatingContainer extends React.Component {
     };
 
     componentDidMount() {
-        axiosAverageRating(this.props.dispatch, this.state.id);
+        getAverageRating(this.props.dispatch, this.state.id);
         if (this.props.isAuth) {
-            axiosUserRating(this.props.dispatch, this.state.id);
+            getUserRating(this.props.dispatch, this.state.id);
         }
         this.props.clearErrorMessage();
     }
@@ -26,17 +26,17 @@ class RatingContainer extends React.Component {
             return;
         }
 
-        const sendRating = {
+        const rating = {
             movieId: this.state.id,
             value: newRating
         }
 
-        axiosSendRating(this.props.dispatch, sendRating, this.state.id)
+        sendRating(this.props.dispatch, rating, this.state.id)
     }
 
     render() {
         const { value, alreadyRated } = this.props.rating;
-        const { averageRating, loading } = this.props;
+        const { averageRating, isLoading } = this.props;
         const { haveRatingErrors, errorMessage } = this.props;
 
         return (
@@ -45,7 +45,7 @@ class RatingContainer extends React.Component {
                 errorMessage={errorMessage}
                 onRatingChange={this.onRatingChange}
                 value={value}
-                loading={loading}
+                isLoading={isLoading}
                 alreadyRated={alreadyRated}
                 averageRating={averageRating} />
         );

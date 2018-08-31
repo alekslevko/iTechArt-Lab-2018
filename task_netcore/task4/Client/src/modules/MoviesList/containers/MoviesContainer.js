@@ -1,18 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { axiosMovies } from '../actions/index';
-import Movies from '../views';
+import { getMovies } from '../actions/index';
+import Movie from '../views';
 import MovieSearchFormContainer from '../../MovieSearch/containers/MovieSearchFormContainer';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 class MoviesContainer extends React.Component {
     componentDidMount() {
-        axiosMovies(this.props.dispatch);
+        getMovies(this.props.dispatch);
     }
 
-    eachMovie = i => {
+    initMovieComponent = i => {
         return (
-            <Movies
+            <Movie
                 name={i.name}
                 picture={i.pictureUrl}
                 id={i.id}
@@ -26,18 +26,18 @@ class MoviesContainer extends React.Component {
     };
 
     render() {
-        const { movies, loading } = this.props;
+        const { movies, isLoading } = this.props;
 
         return (
             <div>
                 {
                     <div>
                         {
-                            loading ? <CircularProgress /> :                                
+                            isLoading ? <CircularProgress /> :                                
                                 <div>
                                     <MovieSearchFormContainer />
                                     <div className='movieContainer'>
-                                        {movies.map(this.eachMovie)}
+                                        {movies.map(this.initMovieComponent)}
                                     </div>
                                 </div>
                         }

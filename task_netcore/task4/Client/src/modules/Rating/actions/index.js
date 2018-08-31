@@ -4,6 +4,7 @@ import {
 } from './types';
 import { webApiRoutes } from '../../../Constants';
 import axios from 'axios';
+import { SessionService } from '../../../Services/SessionService';
 
 export const clearErrorMessage = () => {
     return {
@@ -31,7 +32,7 @@ export const requestAverageRatingError = (errorMessage) => {
     }
 };
 
-export const axiosAverageRating = (dispatch, id) => {
+export const getAverageRating = (dispatch, id) => {
     dispatch(requestAverageRating());
 
     return axios.get(webApiRoutes.loadAverageRatingRoute + id)
@@ -63,13 +64,13 @@ export const requestUserRatingError = (errorMessage) => {
     }
 };
 
-export const axiosUserRating = (dispatch, id) => {
-    dispatch(requestAverageRating());
+export const getUserRating = (dispatch, id) => {
+    dispatch(requestAverageRating()); 
 
     return axios.get(webApiRoutes.loadUserRatingRoute + id, {
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + sessionStorage.getItem('token')
+            'Authorization': 'Bearer ' + SessionService.getJsonItem('account').token
         }
     })
         .then(response => {
@@ -99,18 +100,18 @@ export const requestSendRatingError = (errorMessage) => {
     }
 };
 
-export const axiosSendRating = (dispatch, sendRating, id) => {
+export const sendRating = (dispatch, rating, id) => {
     dispatch(requestSendRating());
 
-    axios.post(webApiRoutes.addRatingRoute, sendRating, {
+    axios.post(webApiRoutes.addRatingRoute, rating, {
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + sessionStorage.getItem('token')
+            'Authorization': 'Bearer ' + SessionService.getJsonItem('account').token
         }
     })
         .then(response => {
-            axiosAverageRating(dispatch, id);
-            axiosUserRating(dispatch, id);
+            getAverageRating(dispatch, id);
+            getUserRating(dispatch, id);
         })
         .catch(errors => {
             dispatch(requestSendRatingError(errors.response.data));

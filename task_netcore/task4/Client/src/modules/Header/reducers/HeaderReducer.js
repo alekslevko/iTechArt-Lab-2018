@@ -1,4 +1,4 @@
-import { HEADER_HANDLE_MENU, HEADER_HANDLE_CLOSE } from '../actions/types';
+import { HANDLE_HEADER_CLOSE, HANDLE_HEADER_MENU } from '../actions/types';
 
 const InitialState = {
     anchorEl: null
@@ -6,12 +6,12 @@ const InitialState = {
 
 const headerReducer = (state = InitialState, action) => {
     switch (action.type) {
-        case HEADER_HANDLE_MENU:
+        case HANDLE_HEADER_MENU:
             return {
                 ...state,
                 anchorEl: action.anchorEl
             };
-        case HEADER_HANDLE_CLOSE:
+        case HANDLE_HEADER_CLOSE:
             return {
                 ...state,
                 anchorEl: null

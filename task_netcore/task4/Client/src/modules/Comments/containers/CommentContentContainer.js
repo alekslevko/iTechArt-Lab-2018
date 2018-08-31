@@ -2,7 +2,7 @@ import React from 'react';
 import CommentContent from '../views/CommentContent';
 
 class CommentContentContainer extends React.Component {
-    eachComment = i => {
+    initCommentComponent = i => {
         return (
             <CommentContent
                 userName={i.userName}
@@ -15,7 +15,7 @@ class CommentContentContainer extends React.Component {
     render() {
         return (
             <div>
-                {this.props.comments.map(this.eachComment)}
+                {this.props.comments.map(this.initCommentComponent)}
             </div>
         )
     }

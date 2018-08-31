@@ -50,10 +50,11 @@ namespace task4.BLL.Services
         {
             var rating = _unitOfWork.RatingRepository.GetQueryableAll().FirstOrDefault(r => r.User.Id == userId && r.Movie.Id == movieId);
             var movie = _unitOfWork.MovieRepository.GetById(movieId);
-            var ratingResultModel = _mapper.Map<Rating, RatingResultModel>(rating);
+            RatingResultModel ratingResultModel;
 
             if (rating != null && movie != null)
             {
+                ratingResultModel = _mapper.Map<Rating, RatingResultModel>(rating);
                 ratingResultModel.AlreadyRated = true;
 
                 return ratingResultModel;

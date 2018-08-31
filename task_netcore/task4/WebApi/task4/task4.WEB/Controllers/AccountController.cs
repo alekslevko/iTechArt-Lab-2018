@@ -35,7 +35,7 @@ namespace task4.WEB.Controllers
                 return BadRequest(resultModel.Errors);
             }
 
-            return Ok(resultModel.Token);
+            return Ok(new { resultModel.Token, accountViewModel.UserName });
         }
 
         [HttpPost]
@@ -54,7 +54,7 @@ namespace task4.WEB.Controllers
                 return BadRequest(resultModel.Errors);
             }
 
-            return Ok(resultModel.Token);
+            return Ok(new { resultModel.Token, accountViewModel.UserName });
         }
     }
 }

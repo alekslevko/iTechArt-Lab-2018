@@ -4,7 +4,7 @@ import styles from './styles'
 import { Typography, withStyles, Card, Button } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 
-const Movies = ({ classes, year, name, genre, rating, picture, country, id }) => {
+const Movie = ({ classes, year, name, genre, rating, picture, country, id }) => {
     return (
         <Card className={classes.card}>
             <img src={picture} className={classes.picture} alt='Poster' />
@@ -22,7 +22,7 @@ const Movies = ({ classes, year, name, genre, rating, picture, country, id }) =>
     );
 }
 
-Movies.propTypes = {
+Movie.propTypes = {
     classes: PropTypes.object.isRequired,
     genre: PropTypes.string,
     name: PropTypes.string,
@@ -32,4 +32,4 @@ Movies.propTypes = {
     id: PropTypes.number
 };
 
-export default withStyles(styles)(Movies);
+export default withStyles(styles)(Movie);

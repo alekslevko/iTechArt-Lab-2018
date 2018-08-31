@@ -25,9 +25,9 @@ const movieReducer = (state = InitialState, action) => {
                 errorMessage: action.errorMessage
             };
         case CLEAR_ERROR_MESSAGE: {
-            return{
+            return {
                 haveAccountErrors: false,
-                errorMessage: '' 
+                errorMessage: ''
             }
         }
         default:

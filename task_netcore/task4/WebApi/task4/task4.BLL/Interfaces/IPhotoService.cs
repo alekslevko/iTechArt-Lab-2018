@@ -5,6 +5,6 @@ namespace task4.BLL.Interfaces
 {
     public interface IPhotoService
     {
-        IList<PhotoModel> GetPhotos(int movieId);
+        IList<PhotoModel> GetPhotosByMovie(int movieId);
     }
 }

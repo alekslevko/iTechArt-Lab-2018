@@ -4,7 +4,7 @@ const InitialState = {
     movieInfo: {
         photos: []
     },
-    loading: false,
+    isLoading: false,
     error: false
 }
 
@@ -15,19 +15,19 @@ const movieReducer = (state = InitialState, action) => {
                 movieInfo: {
                     photos: []
                 },
-                loading: true,
+                isLoading: true,
                 error: false
             };
         case REQUESTED_MOVIE_INFO_SUCCEEDED:
             return {
                 movieInfo: action.movieInfo,
-                loading: false,
+                isLoading: false,
                 error: false
             };
         case REQUESTED_MOVIE_INFO_FAILED:
             return {
                 movieInfo: {},
-                loading: false,
+                isLoading: false,
                 error: true,
             };
         default:

@@ -3,7 +3,7 @@ import CommentForm from '../views/CommentForm';
 import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { onCommentChange, axiosComments, axiosSendComment } from '../actions'
+import { onCommentChange, loadComments, sendComment } from '../actions'
 import { applicationRoutes } from '../../../Constants';
 import CommentContentContainer from '../../Comments/containers/CommentContentContainer';
 
@@ -13,12 +13,11 @@ class CommentFormContainer extends React.Component {
     };
 
     onCommentChange = (event) => {
-        let value = event.target.value;
-        this.props.onCommentChange(value);
+        this.props.onCommentChange(event.target.value);
     };
 
     componentDidMount() {
-        axiosComments(this.props.dispatch, this.state.id);
+        loadComments(this.props.dispatch, this.state.id);
     }
 
     onSubmit = (event) => {
@@ -34,12 +33,12 @@ class CommentFormContainer extends React.Component {
             this.props.history.push(applicationRoutes.loginFormRoute);
         }
         else {
-            axiosSendComment(this.props.dispatch, comment, this.state.id);
+            sendComment(this.props.dispatch, comment, this.state.id);
         }
     }
 
     render() {
-        const {message, comments} = this.props;
+        const { message, comments } = this.props;
 
         return (
             <div>
@@ -48,7 +47,7 @@ class CommentFormContainer extends React.Component {
                     onCommentChange={this.onCommentChange}
                     message={message} />
                 <CommentContentContainer
-                     comments={comments} />
+                    comments={comments} />
             </div>
         )
     }

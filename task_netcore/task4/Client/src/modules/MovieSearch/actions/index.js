@@ -41,7 +41,7 @@ export const requestMovieSearch = () => {
     }
   }
   
-  export const axiosMovieSearch = (dispatch, movie) => {
+  export const searchMovies = (dispatch, movie) => {
     dispatch(requestMovieSearch());
 
     return axios.get(webApiRoutes.searchMoviesRoute + movie)

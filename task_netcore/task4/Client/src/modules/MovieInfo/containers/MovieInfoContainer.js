@@ -3,7 +3,7 @@ import MovieInfo from '../views';
 import PhotosContainer from '../../Photos/containers/PhotosContainer';
 import CommentFormContainer from '../../Comments/containers/CommentFormContainer';
 import { connect } from 'react-redux';
-import { axiosMovieInfo } from '../actions';
+import { getMovieInfo } from '../actions';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 class MovieInfoContainer extends React.Component {
@@ -12,17 +12,17 @@ class MovieInfoContainer extends React.Component {
     }
 
     componentDidMount() {
-        axiosMovieInfo(this.props.dispatch, this.state.id)
+        getMovieInfo(this.props.dispatch, this.state.id)
     }
 
     render() {
         const { id, name, year, genre, description, country, producer, pictureUrl, photos } = this.props.movieInfo;
-        const { loading } = this.props;
+        const { isLoading } = this.props;
         
         return (
             <div>
                 {
-                    loading ? <CircularProgress />
+                    isLoading ? <CircularProgress />
                         : <div>
                             <MovieInfo
                                 id={id}

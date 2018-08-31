@@ -22,7 +22,7 @@ export const requestMovies = () => {
     }
   };
   
-  export const axiosMovies = (dispatch) => {
+  export const getMovies = (dispatch) => {
     dispatch(requestMovies());
 
     return axios.get(webApiRoutes.loadMoviesRoute)

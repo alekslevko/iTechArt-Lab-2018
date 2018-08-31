@@ -4,6 +4,7 @@ import {
   REQUESTED_SEND_COMMENT, REQUESTED_SEND_COMMENT_SUCCEEDED, REQUESTED_SEND_COMMENT_FAILED, CLEAR_COMMENT_FIELD, ON_COMMENT_CHANGE,
   REQUESTED_COMMENTS, REQUESTED_COMMENTS_FAILED, REQUESTED_COMMENTS_SUCCEEDED
 } from './types';
+import { SessionService } from '../../../Services/SessionService';
 
 export const clearCommentField = () => {
   return {
@@ -37,19 +38,19 @@ export const requestSendCommentError = (errorMessage) => {
   }
 };
 
-export const axiosSendComment = (dispatch, comment, id) => {
+export const sendComment = (dispatch, comment, id) => {
   dispatch(requestSendComment());
 
   return axios.post(webApiRoutes.addCommentRoute, comment, {
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': 'Bearer ' + sessionStorage.getItem('token')
+      'Authorization': 'Bearer ' + SessionService.getJsonItem('account').token
     }
   })
     .then(response => {
       dispatch(requestSendCommentSuccess());
       dispatch(clearCommentField());
-      (axiosComments(dispatch, id));
+      loadComments(dispatch, id);
     })
     .catch(errors => {
       dispatch(requestSendCommentError(errors.data));
@@ -76,7 +77,7 @@ export const requestCommentsError = (errorMessage) => {
   }
 };
 
-export const axiosComments = (dispatch, id) => {
+export const loadComments = (dispatch, id) => {
   dispatch(requestComments());
 
   return axios.get(webApiRoutes.loadCommentsRoute + id)

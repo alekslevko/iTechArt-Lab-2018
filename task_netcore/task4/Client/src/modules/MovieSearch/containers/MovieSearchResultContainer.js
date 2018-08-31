@@ -1,5 +1,5 @@
 import React from 'react';
-import Movies from '../../MoviesList/views';
+import Movie from '../../MoviesList/views';
 import { connect } from 'react-redux';
 import NotFound from '../views/NotFound';
 import { clearErrorMessage } from '../actions';
@@ -10,9 +10,9 @@ class MovieSearchResultContainer extends React.Component {
         this.props.clearErrorMessage();
     }
 
-    eachMovie = i => {
+    initMovieComponent = i => {
         return (
-            <Movies
+            <Movie
                 name={i.name}
                 picture={i.pictureUrl}
                 id={i.id}
@@ -32,7 +32,7 @@ class MovieSearchResultContainer extends React.Component {
             <div>
                 {
                     !haveMovieSearchErrors ? <div className='movieContainer'>
-                        {this.props.movies.map(this.eachMovie)}
+                        {this.props.movies.map(this.initMovieComponent)}
                     </div> : <NotFound
                         haveMovieSearchErrors={haveMovieSearchErrors}
                         errorMessage={errorMessage} />

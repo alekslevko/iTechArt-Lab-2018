@@ -2,7 +2,7 @@ import { REQUESTED_MOVIES, REQUESTED_MOVIES_SUCCEEDED, REQUESTED_MOVIES_FAILED }
 
 const InitialState = {
     movies: [],
-    loading: false,
+    isLoading: false,
     error: false
 }
 
@@ -11,19 +11,19 @@ const movieReducer = (state = InitialState, action) => {
         case REQUESTED_MOVIES:
             return {
                 movies: [],
-                loading: true,
+                isLoading: true,
                 error: false,
             };
         case REQUESTED_MOVIES_SUCCEEDED:
             return {
                 movies: action.movies,
-                loading: false,
+                isLoading: false,
                 error: false,
             };
         case REQUESTED_MOVIES_FAILED:
             return {
                 movies: [],
-                loading: false,
+                isLoading: false,
                 error: true,
             };
         default:

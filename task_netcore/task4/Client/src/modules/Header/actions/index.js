@@ -1,26 +1,26 @@
-import { HEADER_HANDLE_CLOSE, HEADER_HANDLE_MENU, LOG_OUT, IS_AUTH } from './types'
+import { HANDLE_HEADER_CLOSE, HANDLE_HEADER_MENU, LOG_OUT, IS_AUTH } from './types'
 
-export const headerHandleMenu = (anchorEl) => {
-    return {
-      type: HEADER_HANDLE_MENU,
-      anchorEl
-    }
+export const handleHeaderMenu = (anchorEl) => {
+  return {
+    type: HANDLE_HEADER_MENU,
+    anchorEl
   }
-  
-  export const headerHandleClose = () => {
-    return {
-      type: HEADER_HANDLE_CLOSE
-    }
-  }
+}
 
-  export const logOut = () => {
-    return {
-      type: LOG_OUT
-    }
+export const handleHeaderClose = () => {
+  return {
+    type: HANDLE_HEADER_CLOSE
   }
+}
 
-  export const isAuth = () => {
-    return {
-      type: IS_AUTH
-    }
+export const logOut = () => {
+  return {
+    type: LOG_OUT
   }
+}
+
+export const isAuth = () => {
+  return {
+    type: IS_AUTH
+  }
+}

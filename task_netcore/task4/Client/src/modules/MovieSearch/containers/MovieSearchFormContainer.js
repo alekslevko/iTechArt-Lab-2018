@@ -3,14 +3,12 @@ import MovieSearchForm from '../views/MovieSearchForm';
 import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { axiosMovieSearch, onMovieSearchChange, clearMovieSearchField } from '../actions'
+import { searchMovies, onMovieSearchChange, clearMovieSearchField } from '../actions'
 import { applicationRoutes } from '../../../Constants';
-
 
 class MovieSearchFormContainer extends React.Component {
     onMovieSearchChange = (event) => {
-        let value = event.target.value;
-        this.props.onMovieSearchChange(value);
+        this.props.onMovieSearchChange(event.target.value);
     };
 
     onSubmit = (event) => {
@@ -18,7 +16,7 @@ class MovieSearchFormContainer extends React.Component {
 
         const { movie } = this.props;
 
-        axiosMovieSearch(this.props.dispatch, movie);
+        searchMovies(this.props.dispatch, movie);
 
         this.props.clearMovieSearchField()
         this.props.history.push(applicationRoutes.moviesSearchResultRoute);

@@ -14,12 +14,12 @@ using task4.DAL.Interfaces;
 
 namespace task4.BLL.Services
 {
-    public class AccountService: IAccountService
+    public class AccountService : IAccountService
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IConfiguration _configuration;
 
-        public AccountService(IUnitOfWork  uow, IConfiguration configuration)
+        public AccountService(IUnitOfWork uow, IConfiguration configuration)
         {
             _unitOfWork = uow;
             _configuration = configuration;
@@ -43,17 +43,15 @@ namespace task4.BLL.Services
 
                 return accountResultModel;
             }
-            else
+
+            accountResultModel.Errors = new List<string>();
+
+            foreach (var error in result.Errors)
             {
-                accountResultModel.Errors = new List<string>();
-
-                foreach (var error in result.Errors)
-                {
-                    accountResultModel.Errors.Add(error.Description);
-                }
-
-                return accountResultModel;
+                accountResultModel.Errors.Add(error.Description);
             }
+
+            return accountResultModel;
         }
 
         public async Task<AccountResultModel> Login(AccountModel accountModel)
@@ -69,14 +67,12 @@ namespace task4.BLL.Services
 
                 return accountResultModel;
             }
-            else
-            {
-                accountResultModel.Errors = new List<string>();
 
-                accountResultModel.Errors.Add("Incorrect login or password");
+            accountResultModel.Errors = new List<string>();
 
-                return accountResultModel;
-            }
+            accountResultModel.Errors.Add("Incorrect login or password");
+
+            return accountResultModel;
         }
 
         private string GenerateJwtToken(string userName, User user)

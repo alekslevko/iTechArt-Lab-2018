@@ -16,7 +16,7 @@ namespace task4.WEB.Controllers
         [HttpGet("{id}")]
         public IActionResult GetPhotos(int id)
         {
-            var photos = _photoService.GetPhotos(id);
+            var photos = _photoService.GetPhotosByMovie(id);
 
             if (photos == null)
             {

@@ -2,7 +2,7 @@ import { REQUESTED_AVERAGE_RATING, REQUESTED_AVERAGE_RATING_FAILED, REQUESTED_AV
 
 const InitialState = {
     averageRating: 0,
-    loading: false,
+    isLoading: false,
     error: false
 }
 
@@ -11,19 +11,19 @@ const averageRatingReducer = (state = InitialState, action) => {
         case REQUESTED_AVERAGE_RATING:
             return {
                 averageRating: 0,
-                loading: true,
+                isLoading: true,
                 error: false
             };
         case REQUESTED_AVERAGE_RATING_SUCCEEDED:
             return {
                 averageRating: action.averageRating,
-                loading: false,
+                isLoading: false,
                 error: false,
             };
         case REQUESTED_AVERAGE_RATING_FAILED:
             return {
                 averageRating: 0,
-                loading: false,
+                isLoading: false,
                 error: true,
             };
         default:

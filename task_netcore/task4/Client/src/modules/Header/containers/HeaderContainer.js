@@ -3,52 +3,56 @@ import { withRouter } from 'react-router-dom';
 import Header from '../views';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { headerHandleClose, headerHandleMenu, logOut } from '../actions';
+import { handleHeaderClose, handleHeaderMenu, logOut } from '../actions';
 import { SessionService } from '../../../Services/SessionService';
 
 class HeaderContainer extends React.Component {
-  currentPath = () => {
+  getCurrentPath = () => {
     return this.props.history.location.pathname;
   }
 
-  headerHandleMenu = (event) => {
+  handleHeaderMenu = (event) => {
     let value = event.currentTarget;
-    this.props.headerHandleMenu(value);
+    this.props.handleHeaderMenu(value);
   };
 
-  headerHandleClose = () => {
-    this.props.headerHandleClose();
+  handleHeaderClose = () => {
+    this.props.handleHeaderClose();
   };
 
   logOut = () => {
-    SessionService.removeItem('token');
-    SessionService.removeItem('user');
+    SessionService.removeItem('account');
     this.props.logOut();
   }
   
   render() {
     const { anchorEl, isAuth } = this.props;
-    const userName = SessionService.getItem('user');
     const open = Boolean(anchorEl);
+    let userName = '';
+    const acсount = SessionService.getJsonItem('account');
+
+    if (acсount) {
+      userName = acсount.userName;
+    }   
   
     return (
       <Header
-        handleMenu={this.headerHandleMenu}
-        handleClose={this.headerHandleClose}
+        handleMenu={this.handleHeaderMenu}
+        handleClose={this.handleHeaderClose}
         logOut={this.logOut}
         anchorEl={anchorEl}
         open={open}
         userName={userName}
         isAuth={isAuth}
-        path={this.currentPath()}  />
+        path={this.getCurrentPath()}  />
     );
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    headerHandleClose: bindActionCreators(headerHandleClose, dispatch),
-    headerHandleMenu: bindActionCreators(headerHandleMenu, dispatch),
+    handleHeaderClose: bindActionCreators(handleHeaderClose, dispatch),
+    handleHeaderMenu: bindActionCreators(handleHeaderMenu, dispatch),
     logOut: bindActionCreators(logOut, dispatch)
   }
 };

@@ -4,7 +4,7 @@ export class SessionService {
     };
 
     static setItem(type, value) {
-        return sessionStorage.setItem(type, value);
+        sessionStorage.setItem(type, value);
     };
 
     static removeItem(type) {
@@ -14,4 +14,12 @@ export class SessionService {
     static hasItem(type) {
         return !!sessionStorage.getItem(type);
     }
+
+    static setJsonItem(type, value) {
+        sessionStorage.setItem(type, JSON.stringify(value));
+    };
+
+    static getJsonItem(type) {
+        return JSON.parse(sessionStorage.getItem(type));
+    };
 }

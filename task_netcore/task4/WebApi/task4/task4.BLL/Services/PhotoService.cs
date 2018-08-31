@@ -19,7 +19,7 @@ namespace task4.BLL.Services
             _mapper = mapper;
         }
 
-        public IList<PhotoModel> GetPhotos(int movieId)
+        public IList<PhotoModel> GetPhotosByMovie(int movieId)
         {
             var photos = _unitOfWork.PhotoRepository.GetQueryableAll().Where(p => p.Movie.Id == movieId).ToList();
             var photosModel = _mapper.Map<IList<Photo>, IList<PhotoModel>>(photos);

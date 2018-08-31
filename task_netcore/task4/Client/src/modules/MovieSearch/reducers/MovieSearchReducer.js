@@ -2,7 +2,7 @@ import { REQUESTED_MOVIE_SEARCH, REQUESTED_MOVIE_SEARCH_FAILED, REQUESTED_MOVIE_
 
 const InitialState = {
     movies: [],
-    loading: false,
+    isLoading: false,
     haveMovieSearchErrors: false,
     errorMessage: ''
 }
@@ -12,20 +12,20 @@ const movieSearchReducer = (state = InitialState, action) => {
         case REQUESTED_MOVIE_SEARCH:
             return {
                 movies: [],
-                loading: true,
+                isLoading: true,
                 haveMovieSearchErrors: false,
                 errorMessage: ''
             };
         case REQUESTED_MOVIE_SEARCH_SUCCEEDED:
             return {
                 movies: action.movies,
-                loading: false,
+                isLoading: false,
                 haveMovieSearchErrors: false,
             };
         case REQUESTED_MOVIE_SEARCH_FAILED:
             return {
                 movies: [],
-                loading: false,
+                isLoading: false,
                 haveMovieSearchErrors: true,
                 errorMessage: action.errorMessage
             };

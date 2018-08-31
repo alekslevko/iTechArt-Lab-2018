@@ -5,15 +5,14 @@ import { Typography, withStyles } from '@material-ui/core';
 import ReactStars from 'react-stars';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
-const Rating = ({ classes, onRatingChange, alreadyRated, value, averageRating, haveRatingErrors, errorMessage, loading }) => {
+const Rating = ({ classes, onRatingChange, alreadyRated, value, averageRating, haveRatingErrors, errorMessage, isLoading }) => {
     return (
         <div>
             {
-                loading ? <CircularProgress /> :
+                isLoading ? <CircularProgress /> :
                     <div>
                         <Typography className={classes.ratingInfo}>
-                            Raiting: {averageRating === 0 && 'No rating'}
-                            {averageRating !== 0 && averageRating}
+                            Raiting: { averageRating === 0 ? 'No Rating' : averageRating }
                         </Typography>
                         <ReactStars
                             count={10}
