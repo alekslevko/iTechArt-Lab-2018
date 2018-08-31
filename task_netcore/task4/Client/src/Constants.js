@@ -1,4 +1,4 @@
-export const REG_EXPR = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{6,}$/;
+export const PASSWORD_VALIDATION_EXP = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{6,}$/;
 
 export const MIN_USERNAME_LENGTH = 3;
 
