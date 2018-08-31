@@ -12,10 +12,6 @@ export class SessionService {
     }
 
     static hasItem(type) {
-        if (sessionStorage.getItem(type) === null){
-            return false;
-        }
-
-        return true;
+        return !!sessionStorage.getItem(type);
     }
 }
