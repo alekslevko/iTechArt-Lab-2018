@@ -33,8 +33,6 @@ const Rating = ({ classes, onRatingChange, alreadyRated, value, averageRating, h
                         }
                     </div>
             }
-
-
         </div>
     );
 }

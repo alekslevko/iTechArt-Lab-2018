@@ -2,12 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { clearErrorMessage, axiosLogin, axiosRegister } from '../actions';
-import { isAuth } from '../../Header/actions'
 import { validateUserName, validatePassword } from '../../../Validation';
 import AccountForm from '../views';
 import { withRouter } from 'react-router-dom';
 import { applicationRoutes, errorMessagesEnum } from '../../../Constants';
-import { SessionService } from '../../../Services/SessionService';
 
 class AccountFormContainer extends React.Component {
   componentDidMount() {
@@ -21,23 +19,13 @@ class AccountFormContainer extends React.Component {
     }; 
 
     if (this.currentPath() === applicationRoutes.registerFormRoute) {
-      axiosRegister(this.props.dispatch, user);
-      if(SessionService.hasItem('user'))
-        this.onSuccess();
+      axiosRegister(this.props.dispatch, user, this.props.history);
     }
 
     if (this.currentPath() === applicationRoutes.loginFormRoute) {
-      axiosLogin(this.props.dispatch, user);
-      if(SessionService.hasItem('user'))
-        this.onSuccess();
+      axiosLogin(this.props.dispatch, user, this.props.history);
     }
   };
-
-  onSuccess = () => {
-      this.props.isAuth();
-      this.props.history.push(
-        applicationRoutes.moviesRoute);
-  }
 
   currentPath = () => {
     return this.props.history.location.pathname;
@@ -63,8 +51,7 @@ class AccountFormContainer extends React.Component {
 
   render() {
     const { haveAccountErrors, errorMessage } = this.props;
-    console.log(this.props);
-    console.log(sessionStorage);
+
     return (
       <AccountForm
         haveAccountErrors={haveAccountErrors}
@@ -78,7 +65,6 @@ class AccountFormContainer extends React.Component {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    isAuth: bindActionCreators(isAuth, dispatch),
     clearErrorMessage: bindActionCreators(clearErrorMessage, dispatch),
     dispatch
   }

@@ -54,7 +54,6 @@ class CommentFormContainer extends React.Component {
     }
 }
 
-
 const mapDispatchToProps = (dispatch) => {
     return {
         onCommentChange: bindActionCreators(onCommentChange, dispatch),

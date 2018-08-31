@@ -1,7 +1,9 @@
 import { SHOW_ERROR_MESSAGE, CLEAR_ERROR_MESSAGE, REQUESTED_AUTHENTICATION, REQUESTED_AUTHENTICATION_FAILED , REQUESTED_AUTHENTICATION_SUCCEEDED } from './types';
 import { webApiRoutes } from '../../../Constants';
 import axios from 'axios';
+import { isAuth } from '../../Header/actions/index';
 import { SessionService } from '../../../Services/SessionService';
+import { applicationRoutes } from '../../../Constants';
 
 export const showErrorMessage = (errorMessage) => {
     return {
@@ -37,7 +39,7 @@ export const requestAuthentication = () => {
     }
   };
   
-  export const axiosLogin = (dispatch, user) => {
+  export const axiosLogin = (dispatch, user, history) => {
     dispatch(requestAuthentication());
 
     return axios.post(webApiRoutes.loginRoute, user)
@@ -45,21 +47,27 @@ export const requestAuthentication = () => {
         dispatch(requestAuthenticationSuccess(
           SessionService.setItem('token', response.data),
           SessionService.setItem('user', user.userName)));
+          dispatch(isAuth());
+          history.push(
+            applicationRoutes.moviesRoute);
+
       })
       .catch(errors => {
         dispatch(requestAuthenticationError(errors.response.data));
       })
   };
 
-  export const axiosRegister = (dispatch, user) => {
+  export const axiosRegister = (dispatch, user, history) => {
     dispatch(requestAuthentication());
 
     return axios.post(webApiRoutes.registerRoute, user)
       .then(response => {
         dispatch(requestAuthenticationSuccess(
           SessionService.setItem('token', response.data),
-          SessionService.setItem('token', response.data),
           SessionService.setItem('user', user.userName)));
+          dispatch(isAuth());
+          history.push(
+            applicationRoutes.moviesRoute);
       })
       .catch(errors => {
         dispatch(requestAuthenticationError(errors.response.data));
