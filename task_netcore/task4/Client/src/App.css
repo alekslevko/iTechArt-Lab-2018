@@ -1,0 +1,16 @@
+.App {
+  text-align: center;
+}
+.movieContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+#ReactGridGallery {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+}
+
