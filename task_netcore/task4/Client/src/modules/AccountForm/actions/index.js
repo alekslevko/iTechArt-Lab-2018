@@ -64,7 +64,7 @@ export const register = (dispatch, user, history) => {
     .then(response => {
       dispatch(requestAuthenticationSuccess(
         SessionService.setJsonItem('account', {
-          token: response.data,
+          token: response.data.token,
           userName: response.data.userName
         })));
       dispatch(isAuth());
