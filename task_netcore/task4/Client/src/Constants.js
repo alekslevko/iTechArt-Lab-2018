@@ -19,7 +19,7 @@ export const applicationRoutes = {
     errorRoute: '/*'
 };
 
-const domainName = 'http://localhost:49448';
+export const domainName = 'http://localhost:49448';
 
 export const webApiRoutes = {
     loadMoviesRoute: domainName + '/movie/getmovies',

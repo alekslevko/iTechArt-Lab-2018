@@ -4,13 +4,27 @@ import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { onCommentChange, loadComments, sendComment } from '../actions'
-import { applicationRoutes } from '../../../Constants';
+import { applicationRoutes, domainName } from '../../../Constants';
 import CommentContentContainer from '../../Comments/containers/CommentContentContainer';
 
+const signalR = require('@aspnet/signalr');
+const hubConnection = new signalR.HubConnectionBuilder()
+    .withUrl(domainName + '/comment')
+    .build();
+
 class CommentFormContainer extends React.Component {
-    state = {
-        id: this.props.id
-    };
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            id: this.props.id
+        };
+
+        hubConnection.start().catch(error => {
+            console.log(error);
+        });        
+    }
+
 
     onCommentChange = (event) => {
         this.props.onCommentChange(event.target.value);
@@ -18,6 +32,15 @@ class CommentFormContainer extends React.Component {
 
     componentDidMount() {
         loadComments(this.props.dispatch, this.state.id);
+
+        hubConnection.on('GetComment', comment => {
+            console.log(comment);
+            console.log(comment.movieId);
+            console.log(this.props.id)
+            if (comment.result.movieId === this.state.id) {                
+                this.props.loadComments();
+            }
+        });
     }
 
     onSubmit = (event) => {

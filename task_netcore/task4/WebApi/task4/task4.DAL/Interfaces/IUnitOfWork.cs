@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System;
+using System.Threading.Tasks;
 using task4.DAL.Entities;
 
 namespace task4.DAL.Interfaces
@@ -20,6 +21,6 @@ namespace task4.DAL.Interfaces
 
         IRepository<Rating> RatingRepository { get; }
 
-        void Commit();
+        Task CommitAsync();
     }
 }
