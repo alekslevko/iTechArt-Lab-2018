@@ -54,9 +54,10 @@ namespace task4.WEB.Controllers
             comment.UserId = Convert.ToInt32(HttpContext.GetUserIdByHttpContext());
             comment.Date = DateTime.Now.ToString();
 
-            await _hubContext.Clients.All.SendAsync("GetComment", _commentService.AddComment(comment));
+            await _commentService.AddComment(comment);
+            await _hubContext.Clients.All.SendAsync("GetComments", _commentService.GetCommentsByMovieId(comment.MovieId));
 
-            return Ok(comment);
+            return Ok();
         }
     }
 }

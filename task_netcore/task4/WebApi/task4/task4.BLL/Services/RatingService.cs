@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -72,7 +73,7 @@ namespace task4.BLL.Services
 
             if (ratings.Count != 0)
             {
-                var rating = ratings.Average(r => r.Value);
+                var rating = Math.Round(ratings.Average(r => r.Value), 1);
 
                 return rating;
             }

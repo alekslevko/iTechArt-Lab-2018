@@ -3,7 +3,7 @@ import CommentForm from '../views/CommentForm';
 import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { onCommentChange, loadComments, sendComment } from '../actions'
+import { onCommentChange, loadComments, sendComment } from '../actions';
 import { applicationRoutes, domainName } from '../../../Constants';
 import CommentContentContainer from '../../Comments/containers/CommentContentContainer';
 
@@ -22,23 +22,23 @@ class CommentFormContainer extends React.Component {
 
         hubConnection.start().catch(error => {
             console.log(error);
-        });        
+        });
     }
-
 
     onCommentChange = (event) => {
         this.props.onCommentChange(event.target.value);
     };
 
     componentDidMount() {
-        loadComments(this.props.dispatch, this.state.id);
+        const id = this.state.id;
 
-        hubConnection.on('GetComment', comment => {
-            console.log(comment);
-            console.log(comment.movieId);
-            console.log(this.props.id)
-            if (comment.result.movieId === this.state.id) {                
-                this.props.loadComments();
+        loadComments(this.props.dispatch, id);
+
+        hubConnection.on('GetComments', comments => {
+            console.log(comments);
+            
+            if (comments[0].movieId === id) {
+                loadComments(this.props.dispatch, id);
             }
         });
     }
@@ -46,23 +46,24 @@ class CommentFormContainer extends React.Component {
     onSubmit = (event) => {
         event.preventDefault();
 
+        const id = this.state.id;
         const { isAuth, message } = this.props;
         const comment = {
             message: message,
-            movieid: this.state.id
+            movieid: id
         }
 
         if (!isAuth) {
             this.props.history.push(applicationRoutes.loginFormRoute);
         }
         else {
-            sendComment(this.props.dispatch, comment, this.state.id);
+            sendComment(this.props.dispatch, comment, id);
         }
     }
 
     render() {
         const { message, comments } = this.props;
-
+        console.log('commentform render');
         return (
             <div>
                 <CommentForm

@@ -48,9 +48,11 @@ export const sendComment = (dispatch, comment, id) => {
     }
   })
     .then(response => {
+      console.log('sended');  
       dispatch(requestSendCommentSuccess());
       dispatch(clearCommentField());
-      loadComments(dispatch, id);
+      dispatch(loadComments(dispatch, id)); 
+         
     })
     .catch(errors => {
       dispatch(requestSendCommentError(errors.data));

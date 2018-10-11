@@ -26,7 +26,8 @@ namespace task4.BLL.Services
             {
                 Date = x.Date,
                 Message = x.Message,
-                User = x.User
+                User = x.User,
+                Movie = x.Movie
             }).ToList();
 
             return _mapper.Map<IList<Comment>, IList<CommentModel>>(comments);
