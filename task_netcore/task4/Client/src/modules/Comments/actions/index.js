@@ -39,8 +39,6 @@ export const requestSendCommentError = (errorMessage) => {
 };
 
 export const sendComment = (dispatch, comment, id) => {
-  dispatch(requestSendComment());
-
   return axios.post(webApiRoutes.addCommentRoute, comment, {
     headers: {
       'Content-Type': 'application/json',

@@ -10,18 +10,20 @@ const commentsReducer = (state = InitialState, action) => {
     switch (action.type) {
         case REQUESTED_COMMENTS:
             return {
-                comments: [],
+                ...state,
                 loading: true,
                 error: false,
             };
         case REQUESTED_COMMENTS_SUCCEEDED:
             return {
-                comments: action.comments,
+                ...state,
+                comments: [...action.comments],
                 loading: false,
                 error: false,
             };
         case REQUESTED_COMMENTS_FAILED:
             return {
+                ...state,
                 comments: [],
                 loading: false,
                 error: true,
