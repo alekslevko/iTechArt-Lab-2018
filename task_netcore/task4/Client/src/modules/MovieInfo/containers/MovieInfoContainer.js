@@ -16,7 +16,7 @@ class MovieInfoContainer extends React.Component {
     render() {
         const { id, name, year, genre, description, country, producer, pictureUrl, photos } = this.props.movieInfo;
         const { isLoading } = this.props;
-        console.log('render');
+
         return (
             <div>
                 {

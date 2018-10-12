@@ -46,7 +46,6 @@ export const sendComment = (dispatch, comment, id) => {
     }
   })
     .then(response => {
-      console.log('sended');  
       dispatch(requestSendCommentSuccess());
       dispatch(clearCommentField());
       dispatch(loadComments(dispatch, id)); 

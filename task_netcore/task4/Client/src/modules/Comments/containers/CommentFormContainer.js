@@ -35,8 +35,6 @@ class CommentFormContainer extends React.Component {
         loadComments(this.props.dispatch, id);
 
         hubConnection.on('GetComments', comments => {
-            console.log(comments);
-            
             if (comments[0].movieId === id) {
                 loadComments(this.props.dispatch, id);
             }
@@ -63,7 +61,7 @@ class CommentFormContainer extends React.Component {
 
     render() {
         const { message, comments } = this.props;
-        console.log('commentform render');
+
         return (
             <div>
                 <CommentForm
