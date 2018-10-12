@@ -3,7 +3,7 @@ import CommentForm from '../views/CommentForm';
 import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { onCommentChange, loadComments, sendComment } from '../actions';
+import { onCommentChange, loadComments, sendComment, newCommentReceived } from '../actions';
 import { applicationRoutes, domainName } from '../../../Constants';
 import CommentContentContainer from '../../Comments/containers/CommentContentContainer';
 
@@ -34,9 +34,10 @@ class CommentFormContainer extends React.Component {
 
         loadComments(this.props.dispatch, id);
 
-        hubConnection.on('GetComments', comments => {
-            if (comments[0].movieId === id) {
-                loadComments(this.props.dispatch, id);
+        hubConnection.on('GetComment', comment => {
+            if (comment.movieId === id) {
+                let comments = [...this.props.comments, comment];
+                this.props.newCommentReceived(comments);
             }
         });
     }
@@ -78,6 +79,7 @@ class CommentFormContainer extends React.Component {
 const mapDispatchToProps = (dispatch) => {
     return {
         onCommentChange: bindActionCreators(onCommentChange, dispatch),
+        newCommentReceived: bindActionCreators(newCommentReceived, dispatch),
         dispatch
     }
 };

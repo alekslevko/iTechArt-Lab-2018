@@ -55,7 +55,7 @@ namespace task4.WEB.Controllers
             comment.Date = DateTime.Now.ToString();
 
             await _commentService.AddComment(comment);
-            await _hubContext.Clients.All.SendAsync("GetComments", _commentService.GetCommentsByMovieId(comment.MovieId));
+            await _hubContext.Clients.All.SendAsync("GetComment", comment);
 
             return Ok();
         }

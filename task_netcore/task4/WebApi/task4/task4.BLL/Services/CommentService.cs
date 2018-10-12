@@ -43,6 +43,8 @@ namespace task4.BLL.Services
             comment.User = user;
             comment.Movie = movie;
 
+            commentModel.UserName = user.UserName;
+
             _unitOfWork.CommentRepository.Insert(comment);
             await _unitOfWork.CommitAsync();
 

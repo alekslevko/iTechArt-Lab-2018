@@ -1,4 +1,4 @@
-import { REQUESTED_COMMENTS, REQUESTED_COMMENTS_FAILED, REQUESTED_COMMENTS_SUCCEEDED } from '../actions/types';
+import { REQUESTED_COMMENTS, REQUESTED_COMMENTS_FAILED, REQUESTED_COMMENTS_SUCCEEDED, NEW_COMMENT_RECEIVED } from '../actions/types';
 
 const InitialState = {
     comments: [],
@@ -27,6 +27,13 @@ const commentsReducer = (state = InitialState, action) => {
                 comments: [],
                 loading: false,
                 error: true,
+            };
+        case NEW_COMMENT_RECEIVED:
+            return {
+                ...state,
+                comments: [...action.comments],
+                loading: false,
+                error: false,
             };
         default:
             return state;
