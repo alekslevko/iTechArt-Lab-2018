@@ -59,7 +59,7 @@ namespace task4.WEB
 
             services.AddCors();
 
-            services.AddAutoMapper();            
+            services.AddAutoMapper();
 
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
             services
