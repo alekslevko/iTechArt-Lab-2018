@@ -16,6 +16,7 @@ using task4.DAL.EF;
 using task4.DAL.Entities;
 using task4.DAL.Interfaces;
 using task4.DAL.Repositories;
+using task4.WEB.SignalR;
 using static task4.DAL.Entities.User;
 
 namespace task4.WEB
@@ -51,6 +52,8 @@ namespace task4.WEB
             services.AddTransient<IRatingService, RatingService>();
 
             services.AddTransient<IUnitOfWork, UnitOfWork>();
+
+            services.AddSignalR();
 
             services.AddMvc();
 
@@ -92,6 +95,10 @@ namespace task4.WEB
             app.UseStaticFiles();
             app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod().AllowCredentials());
             app.UseAuthentication();
+            app.UseSignalR(route =>
+            {
+                route.MapHub<CommentHub>("/comment");
+            });
             app.UseMvc();
         }
     }

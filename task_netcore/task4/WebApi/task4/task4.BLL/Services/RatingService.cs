@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using task4.BLL.Interfaces;
 using task4.BLL.Models;
 using task4.DAL.Entities;
@@ -21,7 +23,7 @@ namespace task4.BLL.Services
             _movieService = movieService;
         }
 
-        public RatingResultModel AddRating(RatingModel ratingModel)
+        public async Task<RatingResultModel> AddRating(RatingModel ratingModel)
         {
             var userRating = _unitOfWork.RatingRepository.GetQueryableAll().FirstOrDefault(r => r.User.Id == ratingModel.UserId && r.Movie.Id == ratingModel.MovieId);
             var ratingResultModel = new RatingResultModel();
@@ -39,9 +41,9 @@ namespace task4.BLL.Services
             rating.Movie = _unitOfWork.MovieRepository.GetById(ratingModel.MovieId);
 
             _unitOfWork.RatingRepository.Insert(rating);
-            _unitOfWork.Commit();
+            await _unitOfWork.CommitAsync();
 
-            _movieService.UpdateMovieRating(rating.Movie.Id);
+            await _movieService.UpdateMovieRating(rating.Movie.Id);
 
             return ratingResultModel;
         }
@@ -71,7 +73,7 @@ namespace task4.BLL.Services
 
             if (ratings.Count != 0)
             {
-                var rating = ratings.Average(r => r.Value);
+                var rating = Math.Round(ratings.Average(r => r.Value), 1);
 
                 return rating;
             }

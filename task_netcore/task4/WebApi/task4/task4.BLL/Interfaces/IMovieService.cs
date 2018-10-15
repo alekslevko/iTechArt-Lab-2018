@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using task4.BLL.Models;
 
 namespace task4.BLL.Interfaces
@@ -11,6 +12,6 @@ namespace task4.BLL.Interfaces
 
         MovieInfoModel GetMovieInfoById(int movieId);
 
-        decimal UpdateMovieRating(int movieId);
+        Task<decimal> UpdateMovieRating(int movieId);
     }
 }

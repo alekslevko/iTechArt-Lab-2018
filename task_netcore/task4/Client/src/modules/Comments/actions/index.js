@@ -2,7 +2,7 @@ import { webApiRoutes } from '../../../Constants';
 import axios from 'axios';
 import {
   REQUESTED_SEND_COMMENT, REQUESTED_SEND_COMMENT_SUCCEEDED, REQUESTED_SEND_COMMENT_FAILED, CLEAR_COMMENT_FIELD, ON_COMMENT_CHANGE,
-  REQUESTED_COMMENTS, REQUESTED_COMMENTS_FAILED, REQUESTED_COMMENTS_SUCCEEDED
+  REQUESTED_COMMENTS, REQUESTED_COMMENTS_FAILED, REQUESTED_COMMENTS_SUCCEEDED, NEW_COMMENT_RECEIVED
 } from './types';
 import { SessionService } from '../../../Services/SessionService';
 
@@ -39,8 +39,6 @@ export const requestSendCommentError = (errorMessage) => {
 };
 
 export const sendComment = (dispatch, comment, id) => {
-  dispatch(requestSendComment());
-
   return axios.post(webApiRoutes.addCommentRoute, comment, {
     headers: {
       'Content-Type': 'application/json',
@@ -49,8 +47,7 @@ export const sendComment = (dispatch, comment, id) => {
   })
     .then(response => {
       dispatch(requestSendCommentSuccess());
-      dispatch(clearCommentField());
-      loadComments(dispatch, id);
+      dispatch(clearCommentField());  
     })
     .catch(errors => {
       dispatch(requestSendCommentError(errors.data));
@@ -87,4 +84,11 @@ export const loadComments = (dispatch, id) => {
     .catch(errors => {
       dispatch(requestCommentsError(errors.data));
     })
+};
+
+export const newCommentReceived = (comments) => {
+  return {
+    type: NEW_COMMENT_RECEIVED,
+    comments
+  }
 };

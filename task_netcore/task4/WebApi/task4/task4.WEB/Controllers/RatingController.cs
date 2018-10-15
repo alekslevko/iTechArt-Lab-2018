@@ -7,6 +7,7 @@ using task4.BLL.Models;
 using task4.WEB.Models;
 using task4.WEB.Common;
 using System;
+using System.Threading.Tasks;
 
 namespace task4.WEB.Controllers
 {
@@ -24,13 +25,13 @@ namespace task4.WEB.Controllers
 
         [Authorize]
         [HttpPost]
-        public IActionResult AddRating([FromBody] RatingViewModel ratingViewModel)
+        public async Task<IActionResult> AddRating([FromBody] RatingViewModel ratingViewModel)
         {
             var rating = _mapper.Map<RatingViewModel, RatingModel>(ratingViewModel);
 
             rating.UserId = Convert.ToInt32(HttpContext.GetUserIdByHttpContext());
 
-            var ratingResult = _ratingService.AddRating(rating);
+            var ratingResult = await _ratingService.AddRating(rating);
 
             if (ratingResult.Errors != null)
             {

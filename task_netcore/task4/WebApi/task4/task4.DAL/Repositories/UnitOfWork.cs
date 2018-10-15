@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System;
+using System.Threading.Tasks;
 using task4.DAL.EF;
 using task4.DAL.Entities;
 using task4.DAL.Interfaces;
@@ -43,9 +44,9 @@ namespace task4.DAL.Repositories
         public IRepository<Rating> RatingRepository =>
             _ratingRepository ?? (_ratingRepository = new Repository<Rating>(_context));    
 
-        public void Commit()
+        public async Task CommitAsync()
         {
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
         private bool _disposed = false;

@@ -1,12 +1,15 @@
 ﻿using System;
+using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using task4.BLL.Interfaces;
 using task4.BLL.Models;
 using task4.WEB.Common;
 using task4.WEB.Models;
+using task4.WEB.SignalR;
 
 namespace task4.WEB.Controllers
 {
@@ -15,11 +18,13 @@ namespace task4.WEB.Controllers
     {
         private readonly ICommentService _commentService;
         private readonly IMapper _mapper;
+        private readonly IHubContext<CommentHub> _hubContext;
 
-        public CommentController(ICommentService commentService, IMapper mapper)
+        public CommentController(ICommentService commentService, IMapper mapper, IHubContext<CommentHub> hubContext)
         {
             _commentService = commentService;
             _mapper = mapper;
+            _hubContext = hubContext;
         }
 
         [HttpGet("{id}")]
@@ -37,7 +42,7 @@ namespace task4.WEB.Controllers
 
         [Authorize]
         [HttpPost]
-        public IActionResult AddComment([FromBody] CommentViewModel commentViewModel)
+        public async Task<IActionResult> AddComment([FromBody] CommentViewModel commentViewModel)
         {
             if (!ModelState.IsValid)
             {
@@ -49,9 +54,10 @@ namespace task4.WEB.Controllers
             comment.UserId = Convert.ToInt32(HttpContext.GetUserIdByHttpContext());
             comment.Date = DateTime.Now.ToString();
 
-            _commentService.AddComment(comment);
+            await _commentService.AddComment(comment);
+            await _hubContext.Clients.All.SendAsync("GetComment", comment);
 
-            return Ok(comment);
+            return Ok();
         }
     }
 }

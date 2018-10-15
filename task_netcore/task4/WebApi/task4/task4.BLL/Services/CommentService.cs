@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using task4.BLL.Interfaces;
 using task4.BLL.Models;
 using task4.DAL.Entities;
@@ -25,13 +26,14 @@ namespace task4.BLL.Services
             {
                 Date = x.Date,
                 Message = x.Message,
-                User = x.User
+                User = x.User,
+                Movie = x.Movie
             }).ToList();
 
             return _mapper.Map<IList<Comment>, IList<CommentModel>>(comments);
         }
 
-        public void AddComment(CommentModel commentModel)
+        public async Task<CommentModel> AddComment(CommentModel commentModel)
         {
             var user = _unitOfWork.UserRepository.GetById(commentModel.UserId);
             var movie = _unitOfWork.MovieRepository.GetById(commentModel.MovieId);
@@ -41,8 +43,12 @@ namespace task4.BLL.Services
             comment.User = user;
             comment.Movie = movie;
 
+            commentModel.UserName = user.UserName;
+
             _unitOfWork.CommentRepository.Insert(comment);
-            _unitOfWork.Commit();
+            await _unitOfWork.CommitAsync();
+
+            return commentModel;
         }
     }
 }
